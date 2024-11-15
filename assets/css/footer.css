@@ -1,0 +1,89 @@
+/* estilos footer */
+:root {
+    --PrimaryColor: #560319; /* Borgoña oscuro */
+    --HoverColor: hsl(330, 28%, 17%); /* Un tono más oscuro para el hover */
+    --WhiteColor: #ffffff; /* Blanco */
+    --BlackColor: #000000; /* Negro */
+    --TextColor: hsl(0, 0%, 45%); /* Un tono más oscuro para el texto */
+    --WhiteColorDim: hsl(0, 0%, 93%); /* Blanco ligeramente atenuado */
+    --GreyBg: hsl(0, 0%, 94%); /* Un gris claro para el fondo */
+    --GreyText: hsl(0, 0%, 75%); /* Un gris más oscuro para el texto secundario */
+    --InputColor: hsl(0, 0%, 97%); /* Un blanco ligeramente azulado para campos de entrada */
+}
+
+.footer {
+    height: 45vh;
+    background: 
+        linear-gradient(rgba(33,33,33,0.522), rgba(33,33,33,0.522)), 
+        url(../img/barber.png); /* Imagen de fondo */
+    background-repeat: repeat-x; /* Repetir la imagen horizontalmente */
+    background-size: auto 100%; /* Mantener el tamaño original en el eje X y estirar a 100% en el eje Y */
+    box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334); 
+    padding: 0px 50px;
+    margin-bottom: 0%;
+}
+.secContainer{
+        gap: 1.5rem;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+}
+        
+.footerLogo{
+       
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}    
+.logo{
+    font-size: 50px;
+}
+img{
+    width: 200px; /* Tamaño deseado */
+    height: auto; /* Mantener proporciones */
+    margin-right: 10px; /* Ajustar margen derecho según sea necesario */
+}
+.socials{
+    gap: .5rem;
+    margin: auto;
+    justify-content: center;
+}
+.icon{
+    font-size: 30px;   
+    background: var(--PrimaryColor);
+    border-radius: 60%;
+    padding: 8px;
+    color: var(--WhiteColor);
+}
+.icon:hover{
+    background: var(--BlackColor);
+}
+.footerLinks{
+    display: grid;
+    row-gap: .2rem;
+   
+}
+
+span{
+    color: #ffffff;
+}
+
+.linkTitle{
+    padding-bottom: .5rem;
+    color: var(--BlackColor);
+    font-weight: 700;
+}
+li:hover{
+    transform: translateX(10px);
+}
+li a {
+    color: var(--PrimaryColor);
+}
+
+a, .phone, .email{
+    color: var(--TextColor);
+    font-size: 13px;
+    font-weight: 500;
+}
+        

@@ -1,0 +1,151 @@
+/* estilos para el header */
+:root {
+    --PrimaryColor: #560319; /* Borgoña oscuro */
+    --HoverColor: hsl(330, 28%, 17%); /* Un tono más oscuro para el hover */
+    --WhiteColor: #ffffff; /* Blanco */
+    --BlackColor: #000000; /* Negro */
+    --TextColor: hsl(0, 0%, 45%); /* Un tono más oscuro para el texto */
+    --WhiteColorDim: hsl(0, 0%, 93%); /* Blanco ligeramente atenuado */
+    --GreyBg: hsl(0, 0%, 94%); /* Un gris claro para el fondo */
+    --GreyText: hsl(0, 0%, 75%); /* Un gris más oscuro para el texto secundario */
+    --InputColor: hsl(0, 0%, 97%); /* Un blanco ligeramente azulado para campos de entrada */
+}
+.headerHome{
+    /* margin-top: 200px; */
+    height: 15vh;
+    
+    box-shadow: 0 5px 8px 5px rgba(178, 178, 178, 0.334);   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+}
+
+.headerText {
+    margin-top: 45px;
+    text-align: center; /* Alinea todo el contenido al centro */
+}
+
+.text-container {
+    margin-bottom: 20px; /* Espacio entre el texto y el botón */
+}
+
+
+.titulo {
+    color: var(--WhiteColor);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    text-align: center;
+}
+.subtitulo {
+    color: var(--WhiteColor);
+    font-weight: 300;
+    font-size: 13px;
+    padding: 1rem 0 ;
+    max-width: 70%;
+    text-align: center;
+    margin: auto;
+}
+
+/* Estilos para el botón */
+.boton {
+    padding: .4rem 1.5rem;
+    background: var(--PrimaryColor);
+    border: none;
+    outline: none;
+    border-radius: 3rem;
+    cursor: pointer;
+    color: var(--WhiteColor) !important; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: 500; /* Peso de la fuente */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+}
+
+/* Estilos de hover para el botón */
+.boton:hover {
+    background-color: var(--BlackColor); /* Cambia el color de fondo al pasar el cursor sobre el botón */
+}
+
+a{
+    color: #ffffff;
+}
+@media screen and (max-width: 925px) {
+    .headerHome{
+        height: 250vh;
+    }
+}
+
+.frmImg{
+    height: 50px;
+    width: 50px;
+  }
+
+.alineacion_Y_texto{
+    width: 40%;
+    margin: auto;
+    color: aliceblue;
+}
+
+.totalVenta{
+    background-image: linear-gradient(to top, #64758b, #286099);
+    padding: 9px;
+    border-radius: 20px;
+    border: 0;
+    font-size: 15px;
+    box-shadow: 2px 2px 4px #000000;
+}
+
+.cambio{
+    margin-top: 5px;
+    width: 40%;
+    background-image: linear-gradient(to top, #64758b, #289986);
+    padding: 5px;
+    border-radius: 20px;
+    border: 0;
+    font-size: 15px;
+    box-shadow: 2px 2px 4px #000000;
+    color: bold;
+}
+
+.no-border-input {
+    border: none;
+    border-radius: 8px; /* Ligero borde redondeado */
+    padding: 4px;
+    
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+
+.margenArriba{
+    margin-top: 5px;
+}
+
+.margenLados{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Opcional: Cambia el fondo de las filas cuando el usuario pasa el ratón */
+table.dataTable tbody tr:hover {
+    background-color: #c5c3c3;
+}
+
+#search_results .active {
+    background-color: #007bff;
+    color: white;
+}
+
+.buscador{
+    display: grid 1fr;
+    margin: auto;
+    width: 100%;
+    max-width: 400px;
+    background: rgb(255, 255, 255, 0.2);
+    padding: 10px 10px 10px;
+    text-align: center;
+    border-radius:12px ;
+    backdrop-filter: blur(5px);
+}
+

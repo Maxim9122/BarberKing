@@ -1,0 +1,40 @@
+.clock {
+    font-size: 3rem;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+    border: 2px solid #fcfffc;
+    color: #eef3ef;
+    background-color: #000;
+    position: relative;
+    
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+.clock::before{
+    content: "";
+    position: absolute; /* Cambiado a 'absolute' para posicionarlo en relación con el botón */
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+    background: linear-gradient(45deg,  red, white, blue, red, white, blue);
+    background-size: 400%;
+    border-radius: 12px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+}
+
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}

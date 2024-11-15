@@ -1,0 +1,181 @@
+
+:root {
+    --PrimaryColor: #560319; /* Borgoña oscuro */
+    --HoverColor: hsl(330, 19%, 89%); /* Un tono más oscuro para el hover */
+    --WhiteColor: #ffffff; /* Blanco */
+    --BlackColor: #000000; /* Negro */
+    --TextColor: hsl(0, 0%, 45%); /* Un tono más oscuro para el texto */
+    --WhiteColorDim: hsl(0, 0%, 93%); /* Blanco ligeramente atenuado */
+    --GreyBg: hsl(0, 0%, 94%); /* Un gris claro para el fondo */
+    --GreyText: hsl(0, 0%, 75%); /* Un gris más oscuro para el texto secundario */
+    --InputColor: hsl(0, 0%, 97%); /* Un blanco ligeramente azulado para campos de entrada */
+}
+
+.navBarSection .headernav {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.4s ease;
+    width: 100%;
+    padding: .5rem;
+    z-index: 1000;
+    /* top: 0; */
+}
+
+.navBarSection .headernav.scrolled {
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334); 
+}
+.navBarSection .headernav.scrolled .navList .navItem a {
+    color: var(--PrimaryColor);
+}
+.navBarSection .headernav.scrolled .navList .navItem a .navLink {
+    color: var(--PrimaryColor);
+}
+.navBarSection .headernav.scrolled .navList .navItem button a {
+    color: var(--WhiteColor);
+}
+.navBarSection .headernav .logoDiv {
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: azure;
+}
+
+
+
+.navBarSection .headernav .logoDiv .logo {
+    color: var(--HoverColor);
+}
+
+.navBarSection .headernav .logoDiv .logo img {
+    width: 30px;
+    height: auto;
+    margin-right: 12px;
+}
+
+.navBarSection .headernav .toggleNavBar {
+    font-size: 45px;
+    color: var(--WhiteColor);
+    cursor: pointer;
+}
+.navList .navItem{
+    padding: .5rem;
+    margin-right: .5rem;
+}
+.navList .navItem a{
+    color: rgb(245, 239, 239);
+}
+
+.headerBtns .btn a {
+    font-weight: 600;
+}
+
+.headerBtns .btn a:hover {
+    color: var(--WhiteColor);
+}
+
+.headerBtns {
+    background: none;
+    border: 1px solid var(--PrimaryColor);
+    margin-right: .5rem;
+}
+
+.headerBtns a {
+    color: var(--PrimaryColor);
+}
+
+
+.headerBtns :hover a {
+    color: var(--WhiteColor);
+}
+
+
+@media screen and (max-width: 925px) {
+    .navBarSection .headernav {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-content: center; /* Centra los elementos horizontalmente */
+        align-items: center; /* Centra los elementos verticalmente */
+        gap: 0.5rem; /* Reduce el espacio entre los elementos */
+        background: var(--GreyBg);
+        position: absolute;
+        height: max-content;
+        padding: 1rem; /* Ajusta el relleno */
+        width: 100%;
+        top: 0;
+        box-shadow: 0 2px 4px rgba(180, 180, 180, 0.904);
+        transition: 0.5s ease;
+        z-index: 1000;
+    }
+
+    .navBarSection .headernav .navBar .navList {
+        flex-direction: column;
+        justify-content: center;
+        max-width: 100%;
+        margin: auto;
+    }
+
+    .navBarSection .headernav .navBar .navList .navItem {
+        padding: 2rem 0;
+    }
+
+    .navBarSection .headernav .navBar .navList .navItem .navLink {
+        color: var(--BlackColor);
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .navBarSection .headernav .navBar .navList .navItem .navLink:hover {
+        color: var(--HoverColor);
+    }
+
+    .navBarSection .headernav .navBar .headerBtns {
+        flex-direction: column;
+    }
+
+    .navBarSection .headernav .navBar .headerBtns .btn {
+        margin-top: 1rem;
+    }
+
+    .navBarSection .headernav .navBar .headerBtns .btn a {
+        font-weight: 600;
+    }
+
+    .navBarSection .headernav .navBar .headerBtns .loginBtn {
+        background: none;
+        border: 1px solid var(--HoverColor);
+    }
+
+    .navBarSection .headernav .navBar .headerBtns .loginBtn a {
+        color: var(--HoverColor);
+    }
+
+    .navBarSection .headernav .navBar .headerBtns .loginBtn:hover {
+        background: var(--HoverColor);
+    }
+
+    .navBarSection .headernav .navBar .closeNavBar {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        color: var(--HoverColor);
+    }
+
+    .navBarSection .headernav .navBar .closeNavBar .icon:hover {
+        color: var(--HoverColor);
+    }
+}
+
+
+
+/* Media queries adicionales */
+@media screen and (min-width: 556px) {
+    .mainContent {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        margin: 0.5rem;
+    }
+}

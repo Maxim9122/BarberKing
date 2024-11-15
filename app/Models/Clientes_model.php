@@ -1,0 +1,14 @@
+<?php
+namespace App\Models;
+use CodeIgniter\Model;
+class Clientes_model extends Model
+{
+	protected $table = 'cliente';
+    protected $primaryKey = 'id_cliente';
+    protected $allowedFields = ['nombre','telefono','foto'];
+
+    public function getUsuario($id){
+
+    	return $this->where('id_cliente',$id)->first($id);
+    }
+}

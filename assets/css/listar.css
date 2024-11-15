@@ -1,0 +1,46 @@
+.container-contruccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa; /* Cambia el color de fondo */
+}
+
+.construction-message {
+    text-align: center;
+}
+
+/*Productos Modo Tarjetas*/
+@font-face{
+    font-family: 'miFuente';
+    src: url(../fuentes/FredokaOne-Regular.ttf)
+  }
+  .newText{
+    font-family: 'miFuente';
+    font-size: 15px;
+  }
+  .contenedor{
+    width: 100%;
+    background-color: light;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .caja{
+    border-radius: 10px;
+    width: 200px;
+    height: 320px;
+    border: solid 1px rgb(117, 214, 209);
+    text-align: center;
+    line-height: 35px;
+    margin: 50px;
+    background-color: #dadddd;  
+  }
+  .Textcatalogo{
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .Borde_img{
+    border-radius: 10px;
+  }

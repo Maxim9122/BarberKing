@@ -1,0 +1,132 @@
+/* Estilos para el contenedor del formulario */
+.nuevoTurno {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nuevoTurno h2 {
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Estilos para etiquetas y campos de entrada */
+  .nuevoTurno label {
+    font-size: 1.1em;
+    color: #ccc;
+    display: block;
+    margin-top: 15px;
+  }
+  
+  .nuevoTurno input[type="text"],
+  .nuevoTurno input[type="file"],
+  .nuevoTurno select {
+    width: 100%;
+    padding: 10px;
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  /* Estilos para los inputs */
+.nuevoTurno input[type="date"],
+.nuevoTurno input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #444;
+  color: #e0e0e0;
+  border: 1px solid #555;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+  
+  .nuevoTurno input[type="text"]::placeholder {
+    color: #bbb;
+  }
+  
+  .nuevoTurno select {
+    color: #ccc;
+  }
+  
+  /* Estilos para mensajes de error */
+  .nuevoTurno .alert {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .nuevoTurno .alert-danger {
+    background-color: #bb4a4a;
+    color: #fff;
+  }
+  
+  /* Estilos para botones con efecto de brillo */
+  .button2{
+    border: 2px solid #fcfffc;
+    background: black;
+    cursor: pointer;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden; /* Asegura que el brillo no desborde el botón */
+    z-index: 1; /* Asegura que el botón esté encima del brillo */
+}
+
+.button2::before {
+    content: "";
+    position: absolute; /* Cambiado a 'absolute' para posicionarlo en relación con el botón */
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: -1;
+    background: linear-gradient(45deg, 
+    red 0%, red 14.2%, 
+    white 14.2%, white 28.4%, 
+    blue 28.4%, blue 42.6%, 
+    white 42.6%, white 56.8%, 
+    red 56.8%, red 71%, 
+    blue 71%, blue 85.2%, 
+    white 85.2%, white 100%
+);
+
+    background-size: 400%;
+    border-radius: 12px;
+    filter: blur(8px);
+    animation: glowing 20s linear infinite;
+}
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espacio entre los botones */
+    margin-top: 20px; /* Espacio superior para separarlos de los campos de entrada */
+  }
+
+  
+  
