@@ -13,15 +13,15 @@ class Carrito_controller extends Controller{
 	}
 
 	//Rescato las ventas cabeceras y muestro.
-	public function ListComprasCabecera(){
+	public function ListVentasCabecera(){
 		//Me conecto a la base de datos
 		$db = db_connect();
 		//Me ubico en la tabla ventas_cabecera y genero un alias "u" y guardo su contenido en $bluider
 		$builder = $db->table('ventas_cabecera u');
 		//Selecciono de ambas tablas (Cabecera y Detalle) los campos que necesito mostrar en la vista
-		$builder->select('u.id , d.nombre , d.apellido, d.telefono , d.direccion , u.total_venta , u.fecha , u.hora , u.tipo_pago');
+		$builder->select('u.id , c.nombre , c.telefono , u.total_venta , u.fecha , u.hora , u.tipo_pago');
 		//Con un Join relaciono los "id" de ambas tablas para generar una sola con todos los datos
-		$builder->join('usuarios d','u.usuario_id = d.id');
+		$builder->join('cliente c','u.id_cliente = c.id_cliente');
 		//Guardo el contenido de la relacion de ambas tablas en la variable $ventas
 		$ventas= $builder->get();
 		//Vuelvo a guardar toda la info pero en la forma de un array para mejor manejo.
@@ -32,25 +32,25 @@ class Carrito_controller extends Controller{
         $data['titulo']='Listado de Compras';
 		echo view('navbar/navbar'); 
         echo view('header/header',$data);        
-        echo view('comprasXcliente/ListaCompras_view',$datos);
+        echo view('comprasXcliente/ListaVentas_view',$datos);
         echo view('footer/footer');
     }
 
 	//Rescato las ventas cabeceras de este cliente y muestro.
-	public function ListaTurnosCabeceraCliente($id){
+	public function ListaComprasCabeceraCliente($id){
 		$fechaHoy = date('d-m-Y');
 		//Me conecto a la base de datos
 		$db = db_connect();
 		//Me ubico en la tabla ventas_cabecera y genero un alias "u" y guardo su contenido en $bluider
 		$builder = $db->table('ventas_cabecera u');
 		//Filtro las ventas para que solo rescate las ventas de este Cliente mediante su id.
-		$builder->where('usuario_id',$id);
+		$builder->where('id',$id);
 		//Trae las ventas del dia.
 		$builder->where('fecha',$fechaHoy);
 		//Selecciono de ambas tablas (Cabecera y Detalle) los campos que necesito mostrar en la vista
 		$builder->select('u.id , d.nombre , d.apellido, d.telefono , d.direccion , u.total_venta , u.fecha , u.hora , u.tipo_pago');
 		//Con un Join relaciono los "id" de ambas tablas para generar una sola con todos los datos
-		$builder->join('usuarios d','u.usuario_id = d.id');
+		$builder->join('usuarios d','u.id = d.id');
 		//Guardo el contenido de la relacion de ambas tablas en la variable $ventas
 		$ventas= $builder->get();
 		//Vuelvo a guardar toda la info pero en la forma de un array para mejor manejo.

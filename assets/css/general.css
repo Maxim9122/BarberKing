@@ -9,12 +9,16 @@
 .dataTables_wrapper .dataTables_paginate .paginate_button, /* Botones de paginación */
 .dataTables_wrapper .dataTables_info { /* Información total de registros */
     color: white;
+    font-size: 1.2rem; /* Tamaño de texto */
+    font-weight: bold; /* Grosor del texto */
 }
 
 /* Agrega un borde entre las celdas */
 #users-list td, /* Aplica a las celdas del cuerpo */
 #users-list th { /* Aplica a los encabezados */
-   border-bottom: 1px solid #ccc; /* Cambia #ccc por el color que desees */
+   border-bottom: 1px solid #ccc;
+   font-size: 1.1rem; /* Tamaño de texto más grande */
+    font-weight: bold; /* Texto más grueso */ /* Cambia #ccc por el color que desees */
 }
 
 #users-list td, #users-list th {

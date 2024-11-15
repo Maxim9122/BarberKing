@@ -115,7 +115,7 @@ $routes->get('carrito_elimina/(:any)', 'Carrito_controller::remove/$1');
 $routes->post('carrito_actualiza', 'Carrito_controller::actualiza_carrito');
 $routes->get('comprar', 'Carrito_controller::muestra_Compra');
 $routes->post('confirma_compra', 'Carrito_controller::guarda_compra');
-$routes->get('compras', 'Carrito_controller::ListComprasCabecera');
+$routes->get('compras', 'Carrito_controller::ListVentasCabecera');
 $routes->get('DetalleVta/(:num)', 'Carrito_controller::ListCompraDetalle/$1');
 $routes->get('Gracias', 'Carrito_controller::GraciasPorSuCompra');
 

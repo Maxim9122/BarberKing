@@ -15,36 +15,53 @@ class Turnos_controller extends Controller{
            helper(['form', 'url']);
 	}
 
-    //Rescato las ventas cabeceras de este cliente y muestro.
-	public function ListarTurnos(){
-		$fechaHoy = date('d-m-Y');
-		//Me conecto a la base de datos
-		$db = db_connect();
-		//Me ubico en la tabla ventas_cabecera y genero un alias "u" y guardo su contenido en $bluider
-		$builder = $db->table('turnos t');
-		//Filtro las ventas para que solo rescate las ventas de este Cliente mediante su id.
-        $estado='Pendiente';
-		$builder->where('estado',$estado);
-		//Trae las ventas del dia.
-		$builder->where('fecha_turno',$fechaHoy);
-		//Selecciono de ambas tablas (Cabecera y Detalle) los campos que necesito mostrar en la vista
-		$builder->select('t.id , t.id_barber , c.nombre , c.telefono , t.hora_turno , t.estado , t.fecha_registro , t.tipo_servicio');
-		//Con un Join relaciono los "id" de ambas tablas para generar una sola con todos los datos
-		$builder->join('cliente c','c.id_cliente = t.id_cliente');
-		//Guardo el contenido de la relacion de ambas tablas en la variable $ventas
-		$turnos= $builder->get();
-		//Vuelvo a guardar toda la info pero en la forma de un array para mejor manejo.
-		$datos['turnos']=$turnos->getResultArray();
-		//print_r($datos);
-		//exit;
-        
-        $data['titulo']='Listado de Turnos';
-		echo view('navbar/navbar'); 
-        echo view('header/header',$data);        
-        echo view('turnos/ListaTurnos_view',$datos);
-        echo view('footer/footer');
-    }
+    public function ListarTurnos()
+{
+    $fechaHoy = date('d-m-Y');
+    $estado = 'Pendiente';
 
+    // Me conecto a la base de datos
+    $db = db_connect();
+    // Inicio la consulta desde la tabla turnos con un alias "t"
+    $builder = $db->table('turnos t');
+
+    // Filtro las ventas para que solo rescate los turnos pendientes de hoy
+    $builder->where('t.estado', $estado);
+    $builder->where('t.fecha_turno', $fechaHoy);
+
+    // Selecciono los campos que necesito de las tres tablas
+    $builder->select('
+        t.id, 
+        t.id_barber, 
+        t.hora_turno, 
+        t.estado, 
+        t.fecha_registro, 
+        t.tipo_servicio,
+        c.nombre AS cliente_nombre, 
+        c.telefono AS cliente_telefono,
+        u.nombre AS barber_nombre
+    ');
+
+    // Relaciono la tabla turnos con clientes
+    $builder->join('cliente c', 'c.id_cliente = t.id_cliente');
+    // Relaciono la tabla turnos con usuarios (barberos)
+    $builder->join('usuarios u', 'u.id = t.id_barber');
+
+    // Ejecuto la consulta
+    $turnos = $builder->get();
+
+    // Transformo los resultados en un array para la vista
+    $datos['turnos'] = $turnos->getResultArray();
+
+    // Cargo las vistas
+    $data['titulo'] = 'Listado de Turnos';
+    echo view('navbar/navbar');
+    echo view('header/header', $data);
+    echo view('turnos/ListaTurnos_view', $datos);
+    echo view('footer/footer');
+}
+
+//Carga la vista del formulario para nuevos turnos
     public function nuevoTurno() {
         $data['titulo']='Crear Nuevo Turno'; 
         echo view('navbar/navbar');
@@ -54,6 +71,7 @@ class Turnos_controller extends Controller{
     
    }
 
+   //Verifica y guarda los turnos
    public function RegistrarTurno() {
     $input = $this->validate([
         'nombre_cliente' => 'required|min_length[3]',
