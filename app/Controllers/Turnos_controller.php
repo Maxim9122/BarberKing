@@ -41,7 +41,7 @@ class Turnos_controller extends Controller{
         $data['titulo']='Listado de Turnos';
 		echo view('navbar/navbar'); 
         echo view('header/header',$data);        
-        echo view('comprasXcliente/ListaTurnos_view',$datos);
+        echo view('turnos/ListaTurnos_view',$datos);
         echo view('footer/footer');
     }
 
