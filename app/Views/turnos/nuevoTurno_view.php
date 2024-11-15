@@ -52,11 +52,11 @@
    <label for="exampleFormControlInput1">Tipo Servicio:</label>
    <select name="tipo_servicio">
     <option>Seleccione Corte:</option>
-    <option value="Degrade">Degrade</option>
-    <option value="Degrade/Barba">Degrade/Barba</option>
-    <option value="Clasico">Clasico</option>
-    <option value="Clasico/Barba">Clasico/Barba</option>
-    <option value="Barba">Barba</option>
+    <option value="1">Degrade</option>
+    <option value="2">Degrade/Barba</option>
+    <option value="3">Clasico</option>
+    <option value="3">Clasico/Barba</option>
+    <option value="5">Barba</option>
     </select>
    <!-- Error -->
         <?php if($validation->getError('servicio')) {?>

@@ -7,6 +7,7 @@ Use App\Models\VentaDetalle_model;
 use App\Models\Turnos_model;
 use App\Models\Usuarios_model;
 use App\Models\Clientes_model;
+use App\Models\Servicios_model;
 //use Dompdf\Dompdf;
 
 class Turnos_controller extends Controller{
@@ -36,16 +37,20 @@ class Turnos_controller extends Controller{
         t.hora_turno, 
         t.estado, 
         t.fecha_registro, 
-        t.tipo_servicio,
+        t.id_servi,
         c.nombre AS cliente_nombre, 
         c.telefono AS cliente_telefono,
-        u.nombre AS barber_nombre
+        u.nombre AS barber_nombre,
+        s.descripcion,
+        s.precio
     ');
 
     // Relaciono la tabla turnos con clientes
     $builder->join('cliente c', 'c.id_cliente = t.id_cliente');
     // Relaciono la tabla turnos con usuarios (barberos)
     $builder->join('usuarios u', 'u.id = t.id_barber');
+    // Relaciono la tabla turnos con servicio
+    $builder->join('servicios s', 's.id_servi = t.id_servi');
 
     // Ejecuto la consulta
     $turnos = $builder->get();
@@ -128,7 +133,7 @@ class Turnos_controller extends Controller{
             'fecha_registro' => $fecha,
             'fecha_turno' => $fecha_turno_formateada,
             'hora_turno' => $this->request->getVar('hora_turno'),
-            'tipo_servicio' => $this->request->getVar('tipo_servicio'),
+            'id_servi' => $this->request->getVar('tipo_servicio'),
             'estado' => 'Pendiente',
         ]);
 

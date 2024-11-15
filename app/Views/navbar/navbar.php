@@ -36,7 +36,10 @@
             <a class="btn signUp" href="<?php echo base_url('compras');?>">VENTAS</a>
           </li>
           <li class="nnavItem">
-            <a href="<?= base_url('usuarios-list')?>" class="btn signUp">USUARIOS</a>
+            <a href="<?= base_url('usuarios-list')?>" class="btn signUp">US/Empleado</a>
+          </li>
+          <li class="nnavItem">
+            <a class="btn signUp" href="<?php echo base_url('clientes');?>">CLIENTES</a>
           </li>
           <li class="nnavItem">
             <a href="<?= base_url('Lista_Productos')?>" class="btn">PRODUCTOS</a>

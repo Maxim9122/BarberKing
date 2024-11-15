@@ -38,13 +38,10 @@ $routes->get('/turnos', 'Turnos_controller::ListarTurnos');
 $routes->get('/nuevoTurno', 'Turnos_controller::nuevoTurno');
 $routes->post('/RegistrarTurno', 'Turnos_controller::RegistrarTurno');
 
-
-//agregamos las rutas
-$routes->add('/comercializacion', 'Home::comercializacion');
-$routes->add('/quienes_somos', 'Home::quienes_somos');
-$routes->add('/contacto', 'Home::contacto');
-$routes->add('/terminos_usos', 'Home::terminos_usos');
-
+//clientes
+$routes->get('/clientes', 'Clientes_controller::ListarClientes');
+$routes->get('/editarCliente/(:num)', 'Clientes_controller::editarCliente/$1');
+$routes->post('/edicionOk', 'Clientes_controller::EdicionOk');
 
 //usuarios
 $routes->get('/registro', 'Usuario_controller::create');

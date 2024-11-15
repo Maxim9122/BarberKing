@@ -28,8 +28,8 @@
              <th>Telefono</th>
              <th>Barber</th>
              <th>Hora Turno</th>
-             <th>Precio</th>
              <th>Servicio</th>
+             <th>Precio</th>             
              <th>Acciones</th>
           </tr>
        </thead>
@@ -42,8 +42,8 @@
              <td><?php echo $trn['cliente_telefono']; ?></td>
              <td><?php echo $trn['barber_nombre']; ?></td>
              <td class="text-center"><?php echo $trn['hora_turno']; ?></td>
-             <td>---</td>
-             <td><?php echo $trn['tipo_servicio']; ?></td>
+             <td><?php echo $trn['descripcion']; ?></td>
+             <td><?php echo $trn['precio']; ?></td>             
              
              <td class="row">
                <a class="btn btn-outline-primary" href="<?php echo base_url('DetalleVta/'.$trn['id']);?>">
