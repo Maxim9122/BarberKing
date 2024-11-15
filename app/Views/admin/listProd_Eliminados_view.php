@@ -34,20 +34,15 @@
              $categoria='';
              switch ($prod['categoria_id']) {
                 case 1:
-                    $categoria = 'Microprocesador';
+                    $categoria = 'Makinas';
                     break;
                 case 2:
-                    $categoria = 'Motherboard';
+                    $categoria = 'Perfumes';
                     break;
                 case 3:
-                    $categoria = 'RAM';
+                    $categoria = 'Ropa';
                     break;
-                case 4:
-                    $categoria = 'Fuentes';
-                    break;
-                case 5:
-                    $categoria = 'Otros';
-                    break;
+              
               }?>
              <td><?php echo $categoria ?></td>
              <td><img class="frmImg" src="<?php echo base_url('assets/uploads/'.$prod['imagen']);?>"></td>

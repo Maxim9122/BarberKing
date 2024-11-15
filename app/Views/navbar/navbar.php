@@ -39,7 +39,10 @@
             <a href="<?= base_url('usuarios-list')?>" class="btn signUp">USUARIOS</a>
           </li>
           <li class="nnavItem">
-            <a href="<?= base_url('Lista_Productos')?>" class="btn signUp">TURNOS</a>
+            <a href="<?= base_url('Lista_Productos')?>" class="btn">PRODUCTOS</a>
+          </li>
+          <li class="nnavItem">
+            <a href="<?= base_url('turnos')?>" class="button">TURNOS</a>
           </li>
           <li class="navItem">
             <button class="btn signUp">

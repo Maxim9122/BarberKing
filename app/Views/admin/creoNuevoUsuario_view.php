@@ -1,8 +1,8 @@
 <br>
-<div class="nuevoProd">
+<div class="nuevoTurno">
   <div class="" style="width: 100%;" >
     <div class= "">
-      <h2>Nuevo Usuario</h2>
+      <h2>Nuevo Usuario/Barber</h2>
     </div>
   
  <?php $validation = \Config\Services::validation(); ?>
@@ -36,8 +36,8 @@
         <?php }?>
     </div>
     <div class="">
-       <label for="exampleFormControlInput1" class="form-label">email</label>
-   <input name="email"  type="femail" class="form-control"  placeholder="correo@algo.com" >
+       <label for="exampleFormControlInput1" class="">email</label>
+   <input name="email"  type="femail" class=""  placeholder="correo@algo.com" >
     <!-- Error -->
         <?php if($validation->getError('email')) {?>
             <div class='alert alert-danger mt-2'>
@@ -79,8 +79,8 @@
   </div>
 
   <div class="mb-3">
-   <label for="exampleFormControlInput1" class="form-label">Password</label>
-   <input name="pass" type="txt" class="form-control"  placeholder="password">
+   <label for="exampleFormControlInput1" class="">Password</label>
+   <input name="pass" type="txt" class=""  placeholder="password">
    <!-- Error -->
         <?php if($validation->getError('pass')) {?>
             <div class='alert alert-danger mt-2'>
@@ -104,9 +104,11 @@
         <?php }?>
   </div>
   <br>
-          <input type="submit" value="Crear" class="btn btn-outline-success float-end">
-          <a type="reset" href="<?php echo base_url('usuarios-list');?>" class="btn btn-outline-danger float-end">Cancelar</a>
-      <br><br>
+  <div class="button-container">
+          <a type="reset" href="<?php echo base_url('usuarios-list');?>" class="button2">Cancelar</a>
+          <button type="submit" class="button2">Crear US</button>
+      <br>
+        </div>
  </div>
 </form>
 </div>
