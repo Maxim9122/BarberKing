@@ -7,8 +7,8 @@ class Clientes_model extends Model
     protected $primaryKey = 'id_cliente';
     protected $allowedFields = ['nombre','telefono','foto'];
 
-    public function getUsuario($id){
-
-    	return $this->where('id_cliente',$id)->first($id);
+    public function getClientes()
+    {
+    return $this->findAll();
     }
 }

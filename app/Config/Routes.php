@@ -103,7 +103,6 @@ $routes->get('consultasResueltas', 'Contactocontroller::Datos_consultasResueltas
 //Rutas del Login / Registro
 $routes->get('/login', 'Login_controller');
 $routes->post('/enviarlogin','Login_controller::auth');
-$routes->get('/panel', 'Panel_controller::index');
 $routes->get('/logout', 'Login_controller::logout');
 
 //Carrito

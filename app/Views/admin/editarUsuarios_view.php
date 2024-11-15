@@ -50,16 +50,6 @@
             </div>
         <?php }?>
   </div>
-    <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Usuario</label>
-   <input  type="text" name="usuario" class="form-control" placeholder="usuario" value="<?php echo $data['usuario']?>">
-   <!-- Error -->
-        <?php if($validation->getError('usuario')) {?>
-            <div class='alert alert-danger mt-2'>
-              <?= $error = $validation->getError('usuario'); ?>
-            </div>
-        <?php }?>
-  </div>
   
   <div class="mb-3">
        <label for="exampleFormControlInput1" class="form-label">Teléfono</label>

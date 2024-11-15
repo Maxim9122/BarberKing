@@ -9,7 +9,7 @@
           $direccion=$session->get('direccion');
           ?>
  <?php
- //print_r($session);
+ //print_r($clientes);
  //exit;
     $gran_total = 0;
 
@@ -49,12 +49,23 @@
                 </tr>
                 <tr>
                     <td style="color: #2BD5C3;">
-                        Apellido:
-                    </td>
-                    <td>
-                        <?php echo($apellido) ?>
-                    </td>
-                </tr>
+                                Cliente:
+                         </td>
+                            <td>
+                                <?php if ($clientes): ?>
+                                    <select name="cliente_id" required>
+                                        <option value="">Seleccione un cliente</option>
+                                        <?php foreach ($clientes as $cl): ?>
+                                            <option value="<?php echo $cl['id_cliente']; ?>">
+                                                <?php echo $cl['nombre'] . ' - ' . $cl['id_cliente']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php else: ?>
+                                    <span>No hay clientes disponibles</span>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
                 <tr>
                     <td style="color: #2BD5C3;">
                         Dirección:

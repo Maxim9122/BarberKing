@@ -75,7 +75,7 @@ class Turnos_controller extends Controller{
    public function RegistrarTurno() {
     $input = $this->validate([
         'nombre_cliente' => 'required|min_length[3]',
-        'telefono' => 'required|min_length[10]|max_length[10]',
+        'telefono' => 'required|min_length[10]|max_length[10]|is_unique[cliente.telefono]',
         'tipo_servicio' => 'required|max_length[13]'
     ]);
 
