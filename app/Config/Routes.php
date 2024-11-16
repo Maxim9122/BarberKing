@@ -38,6 +38,15 @@ $routes->get('/turnos', 'Turnos_controller::ListarTurnos');
 $routes->get('/nuevoTurno', 'Turnos_controller::nuevoTurno');
 $routes->post('/RegistrarTurno', 'Turnos_controller::RegistrarTurno');
 
+
+//Servicios
+$routes->get('/Lista_servicios', 'Servicios_controller::Servicios');
+$routes->get('/new_Servicio', 'Servicios_controller::new_Servicio');
+$routes->post('/agregar_Servicio', 'Servicios_controller::agregar_Servicio');
+$routes->get('/editarServi/(:num)', 'Servicios_controller::editarServi/$1');
+$routes->post('/edicionServiOk', 'Servicios_controller::edicionServiOk');
+
+
 //clientes
 $routes->get('/clientes', 'Clientes_controller::ListarClientes');
 $routes->get('/editarCliente/(:num)', 'Clientes_controller::editarCliente/$1');

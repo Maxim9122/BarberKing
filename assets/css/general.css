@@ -8,7 +8,7 @@
 #users-list_paginate a,           /* Enlaces de paginación */
 .dataTables_wrapper .dataTables_paginate .paginate_button, /* Botones de paginación */
 .dataTables_wrapper .dataTables_info { /* Información total de registros */
-    color: white;
+    color: #ffffff;
     font-size: 1.2rem; /* Tamaño de texto */
     font-weight: bold; /* Grosor del texto */
 }
@@ -214,7 +214,7 @@ label {
 }
 
 body {
-    background: linear-gradient(rgba(33,33,33,0.522), rgba(33,33,33,0.522)),url(../img/fondo.jpg);
+    background: linear-gradient(rgba(33,33,33,0.522), rgba(33,33,33,0.522)),url(../img/corona.webp);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

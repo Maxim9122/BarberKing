@@ -26,7 +26,9 @@
   </svg>Eliminados</a>
   <br><br>
   <div class="mt-3 text">
-  <h3 class="textoColor" align="center">Listado de Productos</h3>
+  <section class="contenedor-titulo">
+  <strong class="titulo-vidrio">Listado de Productos</strong>
+  </section>
       <!-- Variables para calcular cuanto hay en $ en mercaderia total -->
   <?php $TotalArticulos= 0; 
         $totalCU = 0;

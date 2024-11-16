@@ -4,7 +4,9 @@
           $id=$session->get('id');?>
 <section class="Fondo">
 <div class="" style="width: 100%;">
-  <br>
+<section class="contenedor-titulo">
+  <strong class="titulo-vidrio">Lista de Productos Vendidos</strong>
+  </section>
   <div style="text-align: end;">
   <strong class="nombreLogo" >Barber King</strong>
   <br><br>

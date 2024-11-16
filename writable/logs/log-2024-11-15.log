@@ -431,3 +431,141 @@ CRITICAL - 2024-11-15 12:34:20 --> Unknown column 's.drescripcion' in 'field lis
 #7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
 #9 {main}
+CRITICAL - 2024-11-15 16:45:46 --> Undefined variable $turnos
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\turnos\ListaTurnos_view.php(37): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 37)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('turnos/ListaTur...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(26): view('turnos/ListaTur...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->Servicios()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 16:47:00 --> Undefined variable $servicios
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\servicios_view.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 33)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/servi...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(26): view('servicios/servi...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->Servicios()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 16:48:53 --> Undefined variable $servicios
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\servicios_view.php(33): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 33)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/servi...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(26): view('servicios/servi...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->Servicios()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 17:02:27 --> Undefined variable $datos
+#0 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 35)
+#1 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->new_Servicio()
+#2 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2024-11-15 17:18:41 --> Unmatched '}'
+#0 C:\xampp\htdocs\BarberiaKing\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\BarberiaKing\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(797): class_exists('\\App\\Controller...', true)
+#4 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(406): CodeIgniter\CodeIgniter->startController()
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2024-11-15 18:02:01 --> Undefined array key "nombre"
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\clientes\editoCliente.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 21)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('clientes/editoC...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(76): view('clientes/editoC...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->editarServi('1')
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 18:03:07 --> Invalid file: servicios/editoServicio.php
+#0 C:\xampp\htdocs\BarberiaKing\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('servicios/edito...')
+#1 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/edito...', Array, true)
+#2 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(76): view('servicios/edito...', Array)
+#3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->editarServi('1')
+#4 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2024-11-15 18:14:51 --> Undefined variable $datos
+#0 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 99)
+#1 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#2 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2024-11-15 18:17:43 --> Undefined variable $datos
+#0 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(100): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 100)
+#1 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#2 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2024-11-15 18:17:55 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\editoServicio_view.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 20)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/edito...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(96): view('servicios/edito...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 18:19:25 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\editoServicio_view.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 20)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/edito...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(96): view('servicios/edito...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 18:20:12 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\editoServicio_view.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 20)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/edito...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(96): view('servicios/edito...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 18:20:50 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\editoServicio_view.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 20)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/edito...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(96): view('servicios/edito...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-11-15 18:23:33 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\BarberiaKing\app\Views\servicios\editoServicio_view.php(20): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 20)
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('servicios/edito...', Array, true)
+#4 C:\xampp\htdocs\BarberiaKing\app\Controllers\Servicios_controller.php(96): view('servicios/edito...', Array)
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Servicios_controller->edicionServiOk()
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Servicios_controller))
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 {main}

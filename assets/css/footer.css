@@ -1,89 +1,65 @@
-/* estilos footer */
-:root {
-    --PrimaryColor: #560319; /* Borgoña oscuro */
-    --HoverColor: hsl(330, 28%, 17%); /* Un tono más oscuro para el hover */
-    --WhiteColor: #ffffff; /* Blanco */
-    --BlackColor: #000000; /* Negro */
-    --TextColor: hsl(0, 0%, 45%); /* Un tono más oscuro para el texto */
-    --WhiteColorDim: hsl(0, 0%, 93%); /* Blanco ligeramente atenuado */
-    --GreyBg: hsl(0, 0%, 94%); /* Un gris claro para el fondo */
-    --GreyText: hsl(0, 0%, 75%); /* Un gris más oscuro para el texto secundario */
-    --InputColor: hsl(0, 0%, 97%); /* Un blanco ligeramente azulado para campos de entrada */
-}
-
+/* Estilo para la footer */
 .footer {
-    height: 45vh;
-    background: 
-        linear-gradient(rgba(33,33,33,0.522), rgba(33,33,33,0.522)), 
-        url(../img/barber.png); /* Imagen de fondo */
-    background-repeat: repeat-x; /* Repetir la imagen horizontalmente */
-    background-size: auto 100%; /* Mantener el tamaño original en el eje X y estirar a 100% en el eje Y */
-    box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334); 
-    padding: 0px 50px;
-    margin-bottom: 0%;
+    background-color: rgba(27, 25, 25, 0.7); /* Gris transparente */
+    color: white; /* Texto blanco */
+    padding: 10px 0; /* Reducimos el espacio para que el footer no sea tan alto */
+    text-align: center; /* Centra el contenido */
 }
-.secContainer{
-        gap: 1.5rem;
-        justify-content: center;
-        text-align: center;
-        align-items: center;
-}
-        
-.footerLogo{
-       
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
+
+/* Centrado del contenido */
+.secContainer {
     display: flex;
-}    
-.logo{
-    font-size: 50px;
-}
-img{
-    width: 200px; /* Tamaño deseado */
-    height: auto; /* Mantener proporciones */
-    margin-right: 10px; /* Ajustar margen derecho según sea necesario */
-}
-.socials{
-    gap: .5rem;
-    margin: auto;
     justify-content: center;
-}
-.icon{
-    font-size: 30px;   
-    background: var(--PrimaryColor);
-    border-radius: 60%;
-    padding: 8px;
-    color: var(--WhiteColor);
-}
-.icon:hover{
-    background: var(--BlackColor);
-}
-.footerLinks{
-    display: grid;
-    row-gap: .2rem;
-   
+    align-items: center;
+    flex-direction: column;
 }
 
-span{
-    color: #ffffff;
+/* Estilo para los logos */
+.footerLogo {
+    font-size: 22px; /* Ajustamos el tamaño para que no sea tan grande */
+    font-weight: bold;
 }
 
-.linkTitle{
-    padding-bottom: .5rem;
-    color: var(--BlackColor);
-    font-weight: 700;
-}
-li:hover{
-    transform: translateX(10px);
-}
-li a {
-    color: var(--PrimaryColor);
+/* Estilo para los enlaces */
+.footerLinks {
+    margin-top: 10px; /* Reducimos el espacio entre los enlaces */
 }
 
-a, .phone, .email{
-    color: var(--TextColor);
-    font-size: 13px;
-    font-weight: 500;
+/* Estilo para los iconos de redes sociales */
+.socials {
+    display: flex;
+    justify-content: center; /* Centra los iconos */
+    gap: 10px; /* Reducimos el espacio entre los iconos */
+    margin: 10px 0; /* Reducimos el margen superior e inferior */
 }
-        
+
+.icon {
+    font-size: 25px; /* Reducimos el tamaño de los iconos */
+    color: white; /* Color por defecto de los iconos */
+    transition: all 0.4s ease; /* Transición suave para todos los cambios */
+    border-radius: 50%; /* Redondea los bordes de los iconos */
+    padding: 10px; /* Añadimos espacio alrededor del icono */
+    border: 2px solid transparent; /* Borde inicial transparente */
+}
+
+/* Efecto de fuego al pasar el ratón sobre los iconos */
+.icon:hover {
+    color: white; /* Mantén el color blanco del icono */
+    background: linear-gradient(45deg, #ff4500, #ffd700, #ff6347); /* Gradiente que simula el fuego */
+    background-clip: text; /* Estándar, pero con soporte limitado */
+    -webkit-background-clip: text; /* Prefijo WebKit para compatibilidad */
+    border: 12px solid transparent;
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6), 0 0 20px 5px rgba(160, 0, 0, 0.6); /* Sombra de fuego alrededor del icono */
+}
+
+/* Efecto de fuego azul para el icono de Facebook */
+.icon.fa-facebook:hover {
+    background: linear-gradient(45deg, #0066ff, #3399ff, #66ccff); /* Gradiente azul para el fuego */
+    box-shadow: 0 0 15px 5px rgba(0, 102, 255, 0.6), 0 0 20px 5px rgba(51, 153, 255, 0.6); /* Sombra de fuego azul */
+}
+
+/* Efecto de fuego rojo y amarillo para el icono de Instagram */
+.icon.fa-instagram:hover {
+    background: linear-gradient(45deg, #ff0000, #ff0000, #ff6347); /* Gradiente que simula el fuego */
+    box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6), 0 0 20px 5px rgba(168, 0, 0, 0.6); /* Sombra de fuego alrededor del icono */
+}

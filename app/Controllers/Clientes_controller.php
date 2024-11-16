@@ -36,7 +36,7 @@ class Clientes_controller extends Controller{
                 echo view('footer/footer');
     }
 
-    //Verifica y guarda los turnos
+    //Verifica y edita el cliente
     public function EdicionOk()
     {
         $input = $this->validate([

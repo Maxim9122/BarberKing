@@ -17,7 +17,7 @@ class Turnos_controller extends Controller{
 	}
 
     public function ListarTurnos()
-{
+    {
     $fechaHoy = date('d-m-Y');
     $estado = 'Pendiente';
 
@@ -64,7 +64,7 @@ class Turnos_controller extends Controller{
     echo view('header/header', $data);
     echo view('turnos/ListaTurnos_view', $datos);
     echo view('footer/footer');
-}
+        }
 
 //Carga la vista del formulario para nuevos turnos
     public function nuevoTurno() {
@@ -74,7 +74,7 @@ class Turnos_controller extends Controller{
         echo view('turnos/nuevoTurno_view');
         echo view('footer/footer');
     
-   }
+        }
 
    //Verifica y guarda los turnos
    public function RegistrarTurno() {
@@ -87,13 +87,13 @@ class Turnos_controller extends Controller{
     $turnosModel = new Turnos_model();
     $clienteModel = new Clientes_model();
 
-    if (!$input) {
+        if (!$input) {
         $data['titulo'] = 'Registro'; 
         echo view('navbar/navbar');
         echo view('header/header', $data);                
         echo view('turnos/nuevoTurno_view', ['validation' => $this->validator]);
         echo view('footer/footer');
-    } else {
+        } else {
         date_default_timezone_set('America/Argentina/Buenos_Aires');
         $fecha = date('d-m-Y');
 
@@ -139,7 +139,7 @@ class Turnos_controller extends Controller{
 
         session()->setFlashdata('msg', 'Turno Registrado');
         return redirect()->to(base_url('turnos'));
-    }
-}
+        }
+        }
 
 }
