@@ -10,7 +10,7 @@
     <title>Footer</title>
 </head>
 <body>
-        <br>
+       
         <div class="footer">
     <div class="secContainer container grid">
         <div class="logoDiv">
@@ -19,12 +19,12 @@
                     <strong class="nombreLogo">Barberia King</strong>
                 </a>
             </div>
-            <br><br>
+            
             <div class="socials flex">
                 <i class="fa fa-facebook icon" aria-hidden="true"></i>
                 <i class="fa fa-instagram icon" aria-hidden="true"></i>
             </div>
-            <br>
+            
             <div class="footerLinks">
                 <span>
                     Desarrollado por <span>Luna Maximiliano</span>
