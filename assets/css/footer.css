@@ -1,6 +1,7 @@
 /* Estilo para la footer */
 .footer {
-    background-color: rgba(27, 25, 25, 0.7); /* Gris transparente */
+    background-color: rgba(36, 35, 35, 0.7); /* Gris transparente */
+    box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.334); 
     color: white; /* Texto blanco */
     padding: 10px 0; /* Reducimos el espacio para que el footer no sea tan alto */
     text-align: center; /* Centra el contenido */
