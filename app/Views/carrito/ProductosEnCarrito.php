@@ -21,7 +21,7 @@
 
 <div class="cart" >
         <div class = "heading">
-            <u><i><h2>Turnos Registrados</h2></i></u>
+            <u><i><h2>Productos En Carrito</h2></i></u>
         </div>
         <div class="texto-negrita" align="center" >
 
@@ -37,11 +37,11 @@
        <!-- Formulario para agregar un Gastos de productos no registrados-->
     <form action="<?php echo base_url('Otros_gastos');?>" method="post" class="alineacion_Y_texto">
     <input type="hidden" name="id" value="10000">
-    <label for="nombre_producto">Nuevo Turno:</label>
+    <label for="nombre_producto">Otros:</label>
     <input type="text" name="nombre" id="nombre_producto" class="no-border-input" placeholder="Nombre" required>
     <label for="precio_producto">Monto/Precio:</label>
     <input type="text" name="precio_vta" id="precio_producto" class="no-border-input" placeholder="Importe en $" required>    
-    <button class="success margenArriba" type="submit" >Registrar Turno</button>
+    <button class="success margenArriba" type="submit" >Agregar Producto</button>
     </form>
 <br>
 

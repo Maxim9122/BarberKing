@@ -3,7 +3,7 @@
           $perfil=$session->get('perfil_id');
           $id=$session->get('id');?>  
  <?php if($perfil == 1){  ?>
-   <div class="nuevoProd">   
+   <div class="nuevoTurno">   
       <h2>Editar Producto</h2>
  <?php $validation = \Config\Services::validation(); ?>
      <form method="post" enctype="multipart/form-data" action="<?php echo base_url('/enviarEdicionProd') ?>">
@@ -109,9 +109,9 @@
    <label for="exampleFormControlInput1" class="form-label">Categoria</label>
    <select name="categoria_id">
     <option value="<?php echo $data['categoria_id']?>"><?php echo $categoria ?></option>
-    <option value="1">Bebidas</option>
-    <option value="2">Mercaderia</option>
-    <option value="3">Carniceria</option>
+    <option value="1">Makinas</option>
+    <option value="2">Perfumes</option>
+    <option value="3">Ropa</option>
     
     </select>
    <!-- Error -->
@@ -136,9 +136,12 @@
   <input type="hidden" name="id" value="<?php echo $data['id']?>">
 
   <br>
-           <input type="submit" value="Modificar" class="btn btn-outline-success float-end">
-            <a type="reset" href="<?php echo base_url('Lista_Productos');?>" class="btn btn-outline-danger float-end">Cancelar</a>
-      <br><br>
+  <div class="button-container">
+           
+            <a type="reset" href="<?php echo base_url('Lista_Productos');?>" class="btn">Cancelar</a>
+            <input type="submit" value="Modificar" class="success">
+            <br><br>
+        </div>
  </div>
 </form>
 

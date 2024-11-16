@@ -4,6 +4,7 @@ use CodeIgniter\Controller;
 Use App\Models\Productos_model;
 Use App\Models\Cabecera_model;
 Use App\Models\VentaDetalle_model;
+Use App\Models\Clientes_model;
 //use Dompdf\Dompdf;
 
 class Carrito_controller extends Controller{
@@ -13,15 +14,15 @@ class Carrito_controller extends Controller{
 	}
 
 	//Rescato las ventas cabeceras y muestro.
-	public function ListComprasCabecera(){
+	public function ListVentasCabecera(){
 		//Me conecto a la base de datos
 		$db = db_connect();
 		//Me ubico en la tabla ventas_cabecera y genero un alias "u" y guardo su contenido en $bluider
 		$builder = $db->table('ventas_cabecera u');
 		//Selecciono de ambas tablas (Cabecera y Detalle) los campos que necesito mostrar en la vista
-		$builder->select('u.id , d.nombre , d.apellido, d.telefono , d.direccion , u.total_venta , u.fecha , u.hora , u.tipo_pago');
+		$builder->select('u.id , c.nombre , c.telefono , u.total_venta , u.fecha , u.hora , u.tipo_pago');
 		//Con un Join relaciono los "id" de ambas tablas para generar una sola con todos los datos
-		$builder->join('usuarios d','u.usuario_id = d.id');
+		$builder->join('cliente c','u.id_cliente = c.id_cliente');
 		//Guardo el contenido de la relacion de ambas tablas en la variable $ventas
 		$ventas= $builder->get();
 		//Vuelvo a guardar toda la info pero en la forma de un array para mejor manejo.
@@ -32,25 +33,25 @@ class Carrito_controller extends Controller{
         $data['titulo']='Listado de Compras';
 		echo view('navbar/navbar'); 
         echo view('header/header',$data);        
-        echo view('comprasXcliente/ListaCompras_view',$datos);
+        echo view('comprasXcliente/ListaVentas_view',$datos);
         echo view('footer/footer');
     }
 
 	//Rescato las ventas cabeceras de este cliente y muestro.
-	public function ListaTurnosCabeceraCliente($id){
+	public function ListaComprasCabeceraCliente($id){
 		$fechaHoy = date('d-m-Y');
 		//Me conecto a la base de datos
 		$db = db_connect();
 		//Me ubico en la tabla ventas_cabecera y genero un alias "u" y guardo su contenido en $bluider
 		$builder = $db->table('ventas_cabecera u');
 		//Filtro las ventas para que solo rescate las ventas de este Cliente mediante su id.
-		$builder->where('usuario_id',$id);
+		$builder->where('id',$id);
 		//Trae las ventas del dia.
 		$builder->where('fecha',$fechaHoy);
 		//Selecciono de ambas tablas (Cabecera y Detalle) los campos que necesito mostrar en la vista
 		$builder->select('u.id , d.nombre , d.apellido, d.telefono , d.direccion , u.total_venta , u.fecha , u.hora , u.tipo_pago');
 		//Con un Join relaciono los "id" de ambas tablas para generar una sola con todos los datos
-		$builder->join('usuarios d','u.usuario_id = d.id');
+		$builder->join('usuarios d','u.id = d.id');
 		//Guardo el contenido de la relacion de ambas tablas en la variable $ventas
 		$ventas= $builder->get();
 		//Vuelvo a guardar toda la info pero en la forma de un array para mejor manejo.
@@ -215,90 +216,73 @@ class Carrito_controller extends Controller{
     //Muestra los detalles de la venta y confirma(función guarda_compra())
 	function muestra_compra()
 	{
+		$ClientesModel = new Clientes_model();
+        $datos['clientes'] = $ClientesModel->getClientes();
 		$data['titulo'] = 'Confirmar compra';
 		echo view('navbar/navbar');
 		echo view('header/header',$data);		
-		echo view('carrito/confirmarCompra');
+		echo view('carrito/confirmarCompra',$datos);
 		echo view('footer/footer');
     }
 
-    //Guarda los datos de la venta en la base de datos
     public function guarda_compra()
-	{
-        $cart = \Config\Services::cart();
-		$session = session();
-        $usuario_id= $session->get('id');
-		$tipo_Pago= $_POST['tipo_pago'];
-		$total = $_POST['total_venta'];
-		date_default_timezone_set('America/Argentina/Buenos_Aires');
-		$hora = date('H:i:s');
-		$fecha = date('d-m-Y');
-		//print_r($hora);
-		//exit;
+{
+    $cart = \Config\Services::cart();
+    $session = session();
 
-        $cabecera_model = new Cabecera_model();
-		$ventas_id = $cabecera_model->save([
-            'fecha' 		=> $fecha,
-			'hora'			=> $hora,
-			'usuario_id' 	=> $usuario_id,
-			'total_venta'	=> $total,
-			'tipo_pago'		=> $tipo_Pago
+    // Recuperar datos del formulario usando $this->request->getPost()
+    $id_cliente = $this->request->getPost('cliente_id');
+    $tipo_pago = $this->request->getPost('tipo_pago');
+    $total = $this->request->getPost('total_venta');
 
-        ]);
-		//Rescato el ID de la cabecera que se guardo para asignarle al venta_id del detalle.
-		$id_cabecera = $cabecera_model->getInsertID();
-		
-		//Si el carrito no esta vacio guarda cada una de las ventas detalle.
-		//Uso el numero que trae $id_cabecera para relacionar esta venta cabecera con cada venta detalle y guardar en venta_id.
-		if ($cart):
-		//print_r($cart);
-		//exit;	
-			foreach ($cart->contents() as $item):
-                $VentaDetalle_model = new VentaDetalle_model();
-            	$cust_id = $VentaDetalle_model->save([
-                    'venta_id' 		=> $id_cabecera,
-					'producto_id' 	=> $item['id'],
-					'cantidad' 		=> $item['qty'],
-					'precio' 		=> $item['price'],
-					'total' 		=> $item['subtotal']
-        
-                ]);
+    // Establecer zona horaria y obtener fecha/hora en formato correcto
+    date_default_timezone_set('America/Argentina/Buenos_Aires');
+    $hora = date('H:i:s'); // Formato TIME
+    $fecha = date('d-m-Y'); // Formato DATE
 
-            	//Descuenta del stock y lo guarda en la base de datos
-                $Producto_model = new Productos_model();
-            	$producto = $Producto_model->getProducto($item['id']);
-            	
-				if($item['id'] < 100000){
-					$stock = $producto['stock'];
-                }
-				if($item['id'] < 100000){
-            	$stock_edit = $stock - 	$item['qty'];
-				$datos=[
-				'stock'  => $stock_edit,
-				];
-				
-            	$producto = $Producto_model->update($item['id'],$datos);
-				}
-            	
+    // Guardar cabecera de la venta
+    $cabecera_model = new Cabecera_model();
+    $ventas_id = $cabecera_model->save([
+        'fecha'        => $fecha,
+        'hora'         => $hora,
+        'id_cliente'   => $id_cliente,
+        'total_venta'  => $total,
+        'tipo_pago'    => $tipo_pago,
+    ]);
 
-			endforeach;
-		endif;
+    // Obtener ID de la cabecera guardada
+    $id_cabecera = $cabecera_model->getInsertID();
 
-		$cart->destroy();
-		session()->setFlashdata('msg','Compra Guardada con Éxito!');
-		return redirect()->to(base_url('/catalogo'));
+    // Guardar detalles de la venta si el carrito no está vacío
+    if ($cart):
+        foreach ($cart->contents() as $item):
+            $VentaDetalle_model = new VentaDetalle_model();
+            $VentaDetalle_model->save([
+                'venta_id'    => $id_cabecera,
+                'producto_id' => $item['id'],
+                'cantidad'    => $item['qty'],
+                'precio'      => $item['price'],
+                'total'       => $item['subtotal'],
+            ]);
 
-	}
+            // Actualizar stock del producto
+            $Producto_model = new Productos_model();
+            $producto = $Producto_model->find($item['id']); // Asegúrate de usar el método correcto para obtener datos
 
-	//Muestra los detalles de la venta y confirma(función guarda_compra())
-	function GraciasPorSuCompra()
-	{
-		$data['titulo'] ='Confirmar Realizada';
-		echo view('navbar/navbar');
-		echo view('header/header',$data);		
-		echo view('carrito/GraciasCompra_view');
-		echo view('footer/footer');
-    }
+            if ($producto && isset($producto['stock'])) {
+                $stock_edit = $producto['stock'] - $item['qty'];
+                $Producto_model->update($item['id'], ['stock' => $stock_edit]);
+            }
+        endforeach;
+    endif;
+
+    // Limpiar el carrito y redirigir con mensaje
+    $cart->destroy();
+    session()->setFlashdata('msg', 'Compra Guardada con Éxito!');
+    return redirect()->to(base_url('/catalogo'));
+}
+
+
 
 	function FacturaAdmin($id)
 	{

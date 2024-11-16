@@ -39,12 +39,18 @@ $routes->get('/nuevoTurno', 'Turnos_controller::nuevoTurno');
 $routes->post('/RegistrarTurno', 'Turnos_controller::RegistrarTurno');
 
 
-//agregamos las rutas
-$routes->add('/comercializacion', 'Home::comercializacion');
-$routes->add('/quienes_somos', 'Home::quienes_somos');
-$routes->add('/contacto', 'Home::contacto');
-$routes->add('/terminos_usos', 'Home::terminos_usos');
+//Servicios
+$routes->get('/Lista_servicios', 'Servicios_controller::Servicios');
+$routes->get('/new_Servicio', 'Servicios_controller::new_Servicio');
+$routes->post('/agregar_Servicio', 'Servicios_controller::agregar_Servicio');
+$routes->get('/editarServi/(:num)', 'Servicios_controller::editarServi/$1');
+$routes->post('/edicionServiOk', 'Servicios_controller::edicionServiOk');
 
+
+//clientes
+$routes->get('/clientes', 'Clientes_controller::ListarClientes');
+$routes->get('/editarCliente/(:num)', 'Clientes_controller::editarCliente/$1');
+$routes->post('/edicionOk', 'Clientes_controller::EdicionOk');
 
 //usuarios
 $routes->get('/registro', 'Usuario_controller::create');
@@ -103,7 +109,6 @@ $routes->get('consultasResueltas', 'Contactocontroller::Datos_consultasResueltas
 //Rutas del Login / Registro
 $routes->get('/login', 'Login_controller');
 $routes->post('/enviarlogin','Login_controller::auth');
-$routes->get('/panel', 'Panel_controller::index');
 $routes->get('/logout', 'Login_controller::logout');
 
 //Carrito
@@ -115,7 +120,7 @@ $routes->get('carrito_elimina/(:any)', 'Carrito_controller::remove/$1');
 $routes->post('carrito_actualiza', 'Carrito_controller::actualiza_carrito');
 $routes->get('comprar', 'Carrito_controller::muestra_Compra');
 $routes->post('confirma_compra', 'Carrito_controller::guarda_compra');
-$routes->get('compras', 'Carrito_controller::ListComprasCabecera');
+$routes->get('compras', 'Carrito_controller::ListVentasCabecera');
 $routes->get('DetalleVta/(:num)', 'Carrito_controller::ListCompraDetalle/$1');
 $routes->get('Gracias', 'Carrito_controller::GraciasPorSuCompra');
 

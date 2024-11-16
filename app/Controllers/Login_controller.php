@@ -37,7 +37,6 @@ class Login_controller extends Controller
                     'nombre' => $data['nombre'],
                     'apellido'=> $data['apellido'],
                     'email' =>  $data['email'],
-                    'usuario' => $data['usuario'],
                     'telefono' => $data['telefono'],
                     'direccion' => $data['direccion'],
                     'perfil_id'=> $data['perfil_id'],

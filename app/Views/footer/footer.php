@@ -12,28 +12,28 @@
 <body>
         <br>
         <div class="footer">
-            <div class="secContainer container grid">
-                <div class="logoDiv">
-                    <div class="footerLogo">
-                        <a href="<?= base_url('catalogo')?>" class="logo">
-                            <strong class="nombreLogo">Barberia King</strong>
-                        <!-- <img src={img1} alt="logoimg"/> -->
-                        </a>
-                    </div>
-                    <br><br>
-                    <div class="socials flex">
-                    <i class="fa fa-facebook icon" aria-hidden="true"></i>
-                    <i class="fa fa-instagram icon" aria-hidden="true"></i>
-                    </div>
-                <!-- </div> -->
-                <br>
-                <div class="footerLinks">
-                    
-                    <span>
-                        Desarrollado por <span>Luna Maximiliano</span>
-                    </span>
-                </div>
+    <div class="secContainer container grid">
+        <div class="logoDiv">
+            <div class="footerLogo">
+                <a href="<?= base_url('catalogo')?>" class="logo">
+                    <strong class="nombreLogo">Barberia King</strong>
+                </a>
+            </div>
+            <br><br>
+            <div class="socials flex">
+                <i class="fa fa-facebook icon" aria-hidden="true"></i>
+                <i class="fa fa-instagram icon" aria-hidden="true"></i>
+            </div>
+            <br>
+            <div class="footerLinks">
+                <span>
+                    Desarrollado por <span>Luna Maximiliano</span>
+                </span>
             </div>
         </div>
+    </div>
+</div>
+
+
 </body>
 </html>
