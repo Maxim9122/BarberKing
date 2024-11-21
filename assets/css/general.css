@@ -86,6 +86,7 @@ label {
 .colorTexto2{
     color: rgb(231, 227, 227);
     align-items: center;
+    background: rgba(14, 13, 13, 0.7);
 }
 
 .imagenForm{
