@@ -49,22 +49,20 @@
   </div>
 
   <div>
-   <label for="exampleFormControlInput1">Tipo Servicio:</label>
-   <select name="tipo_servicio">
-    <option>Seleccione Corte:</option>
-    <option value="1">Degrade</option>
-    <option value="2">Degrade/Barba</option>
-    <option value="3">Clasico</option>
-    <option value="3">Clasico/Barba</option>
-    <option value="5">Barba</option>
-    </select>
-   <!-- Error -->
-        <?php if($validation->getError('servicio')) {?>
-            <div class='alert alert-danger mt-2'>
-              <?= $error = $validation->getError('servicio'); ?>
-            </div>
-        <?php }?>
-  </div>
+  <label for="tipo_servicio">Tipo Servicio:</label>
+  <select name="tipo_servicio">
+    <option value="">Seleccione un servicio</option> <!-- Sin servicio por defecto -->
+    <?php foreach($servicios as $servicio): ?>
+      <option value="<?= $servicio['id_servi']; ?>"><?= $servicio['descripcion']; ?> - $<?= $servicio['precio']; ?></option>
+    <?php endforeach; ?>
+  </select>
+  <!-- Error -->
+  <?php if($validation->getError('servicio')) {?>
+    <div class='alert alert-danger mt-2'>
+      <?= $validation->getError('servicio'); ?>
+    </div>
+  <?php } ?>
+</div>
 
   <div class="nuevoTurno">
   <label for="fecha">Fecha:</label>

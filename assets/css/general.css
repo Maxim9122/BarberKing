@@ -258,19 +258,45 @@ li{
     align-items: center;
 }
 
-.btn{
-    padding: .4rem 1.5rem;
-    background: var(--PrimaryColor);
-    border: none;
-    outline: none;
-    border-radius: 3rem;
-    cursor: pointer;
-    color: var(--WhiteColor);
+:root {
+    --primary-white: #ffffff;
+    --primary-black: #000000;
 }
 
+.btn {
+    padding: .4rem 1rem;
+    background-color: var(--primary-black); /* Fondo negro */
+    border: 2px solid var(--primary-white); /* Borde blanco */
+    outline: none;
+    border-radius: 2rem; /* Bordes redondeados */
+    cursor: pointer;
+    color: var(--primary-white); /* Texto blanco */
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3); /* Sombra blanca suave */
+    transition: all 0.7s ease; /* Transición suave para los efectos */
+}
+
+.btn:hover {
+    background-color: var(--primary-white); /* Fondo blanco en hover */
+    color: var(--primary-black); /* Texto negro en hover */
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.6); /* Aumento de la sombra blanca */
+    transform: scale(1.05); /* Efecto de aumento en hover */
+}
+
+.btn:focus {
+    outline: 2px solid var(--primary-white); /* Borde blanco cuando tiene foco */
+}
+
+.btn:active {
+    transform: scale(0.98); /* Efecto de presionado */
+}
+
+
 .btn  a {
-    color: white;
-    font-weight: 500;
+    color: rgb(0, 0, 0);
+    font-weight: 300;
 }
 
 .btn:hover a {
@@ -305,7 +331,7 @@ input{
 }
 
 :root {
-    --PrimaryColor: #560319; /* Borgoña oscuro */
+    --PrimaryColor: #a8a3a5; /* Borgoña oscuro */
     --HoverColor: hsl(330, 28%, 17%); /* Un tono más oscuro para el hover */
     --WhiteColor: #ffffff; /* Blanco */
     --BlackColor: #000000; /* Negro */

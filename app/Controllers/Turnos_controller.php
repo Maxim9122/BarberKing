@@ -66,16 +66,29 @@ class Turnos_controller extends Controller{
     echo view('footer/footer');
         }
 
-//Carga la vista del formulario para nuevos turnos
-    public function nuevoTurno() {
-        $data['titulo']='Crear Nuevo Turno'; 
-        echo view('navbar/navbar');
-        echo view('header/header',$data);        
-        echo view('turnos/nuevoTurno_view');
-        echo view('footer/footer');
+
+        public function nuevoTurno()
+        {
+            // Cargar el modelo de servicios
+            $serviciosModel = new Servicios_model();
     
+            // Obtener todos los servicios desde la base de datos
+            $servicios = $serviciosModel->getServicio();
+    
+            // Preparar los datos para la vista
+            $data = [
+                'titulo' => 'Crear Nuevo Turno',
+                'servicios' => $servicios // Pasamos los servicios a la vista
+            ];
+    
+            // Cargar las vistas
+            echo view('navbar/navbar');
+            echo view('header/header', $data);
+            echo view('turnos/nuevoTurno_view', $data); // Pasamos los datos a la vista
+            echo view('footer/footer');
         }
 
+        
    //Verifica y guarda los turnos
    public function RegistrarTurno() {
     $input = $this->validate([
@@ -88,7 +101,7 @@ class Turnos_controller extends Controller{
     $clienteModel = new Clientes_model();
 
         if (!$input) {
-        $data['titulo'] = 'Registro'; 
+        $data['titulo'] = 'Registro Turno'; 
         echo view('navbar/navbar');
         echo view('header/header', $data);                
         echo view('turnos/nuevoTurno_view', ['validation' => $this->validator]);
