@@ -43,7 +43,16 @@
              <td><?php echo $trn['id']; ?></td>
              <td><?php echo $trn['cliente_nombre']; ?></td>
              <td><?php echo $trn['cliente_telefono']; ?></td>
-             <td><?php echo $trn['barber_nombre']; ?></td>
+             <td>
+                <!-- Dropdown para seleccionar barber -->
+                <select class="colorTexto2" data-turno-id="<?php echo $trn['id_barber']; ?>">
+                    <?php foreach($barbers as $barber): ?>
+                    <option value="<?php echo $barber['id']; ?>" <?php echo $barber['id'] == $trn['id_barber'] ? 'selected' : ''; ?>>
+                        <?php echo $barber['nombre']; ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+             </td>
              <td><?php echo $trn['hora_turno']; ?></td>
              <td><?php echo $trn['descripcion']; ?></td>
              <td><?php echo $trn['precio']; ?></td>           

@@ -55,6 +55,10 @@ class Turnos_controller extends Controller{
     // Ejecuto la consulta
     $turnos = $builder->get();
 
+    $UsModel = new Usuarios_model();
+        $baja='NO';
+        $datos2['barbers'] = $UsModel->getUsBaja($baja);
+
     // Transformo los resultados en un array para la vista
     $datos['turnos'] = $turnos->getResultArray();
 
@@ -62,7 +66,7 @@ class Turnos_controller extends Controller{
     $data['titulo'] = 'Listado de Turnos';
     echo view('navbar/navbar');
     echo view('header/header', $data);
-    echo view('turnos/ListaTurnos_view', $datos);
+    echo view('turnos/ListaTurnos_view', $datos+$datos2);
     echo view('footer/footer');
         }
 
@@ -88,7 +92,7 @@ class Turnos_controller extends Controller{
             echo view('footer/footer');
         }
 
-        
+
    //Verifica y guarda los turnos
    public function RegistrarTurno() {
     $input = $this->validate([
