@@ -54,19 +54,22 @@ class Turnos_controller extends Controller{
 
     // Ejecuto la consulta
     $turnos = $builder->get();
+     // Transformo los resultados en un array para la vista
+    $datos['turnos'] = $turnos->getResultArray();
 
     $UsModel = new Usuarios_model();
         $baja='NO';
         $datos2['barbers'] = $UsModel->getUsBaja($baja);
 
-    // Transformo los resultados en un array para la vista
-    $datos['turnos'] = $turnos->getResultArray();
+    $serviModel = new Servicios_model();
+        $datos3['servicios'] = $serviModel->getServicio();
+       
 
     // Cargo las vistas
     $data['titulo'] = 'Listado de Turnos';
     echo view('navbar/navbar');
     echo view('header/header', $data);
-    echo view('turnos/ListaTurnos_view', $datos+$datos2);
+    echo view('turnos/ListaTurnos_view', $datos+$datos2+$datos3);
     echo view('footer/footer');
         }
 
@@ -158,5 +161,33 @@ class Turnos_controller extends Controller{
         return redirect()->to(base_url('turnos'));
         }
         }
+
+
+    //Actualiza el turno
+    public function turno_actualizar($id_turno){ 
+     // Cargar el modelo
+     $Turnos_model = new Turnos_model();
+
+     // Capturar los datos enviados desde el formulario
+     $id_barber = $this->request->getPost('id_barber');
+     $hora_turno = $this->request->getPost('hora_turno');
+     $id_servi = $this->request->getPost('id_servi');
+
+     // Preparar los datos para actualizar
+     $data = array(
+         'id_barber' => $id_barber,
+         'hora_turno' => $hora_turno,
+         'id_servi' => $id_servi
+     );
+
+     // Actualizar en la base de datos
+     $Turnos_model->actualizar_turno($id_turno, $data);
+
+     // Redirigir a la lista de turnos
+     session()->setFlashdata('msg', 'Turno Actualizado!');
+    return redirect()->to(base_url('turnos'));
+    }
+        
+        
 
 }

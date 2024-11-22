@@ -38,38 +38,64 @@
        </thead>
        <tbody>
           <?php if($turnos): ?>
-          <?php foreach($turnos as $trn): ?>
-          <tr>
-             <td><?php echo $trn['id']; ?></td>
-             <td><?php echo $trn['cliente_nombre']; ?></td>
-             <td><?php echo $trn['cliente_telefono']; ?></td>
-             <td>
-                <!-- Dropdown para seleccionar barber -->
-                <select class="colorTexto2" data-turno-id="<?php echo $trn['id_barber']; ?>">
-                    <?php foreach($barbers as $barber): ?>
-                    <option value="<?php echo $barber['id']; ?>" <?php echo $barber['id'] == $trn['id_barber'] ? 'selected' : ''; ?>>
-                        <?php echo $barber['nombre']; ?>
-                    </option>
+            <?php foreach($turnos as $trn): ?>
+    <tr>
+        <td><?php echo $trn['id']; ?></td>
+        <td><?php echo $trn['cliente_nombre']; ?></td>
+        <td><?php echo $trn['cliente_telefono']; ?></td>
+
+        <!-- Formulario por cada turno -->
+        <form action="<?php echo base_url('turno_actualizar/'.$trn['id']); ?>" method="POST">
+            <!-- Dropdown para el barbero -->
+            <td>
+                <select class="form-control btn" name="id_barber">
+                    <?php foreach ($barbers as $barber): ?>
+                        <option value="<?= $barber['id']; ?>" <?= $barber['id'] == $trn['id_barber'] ? 'selected' : ''; ?>>
+                            <?= $barber['nombre']; ?>
+                        </option>
                     <?php endforeach; ?>
                 </select>
-             </td>
-             <td><?php echo $trn['hora_turno']; ?></td>
-             <td><?php echo $trn['descripcion']; ?></td>
-             <td><?php echo $trn['precio']; ?></td>           
-             
-             <td class="row">
-               <a class="btn btn-outline-primary" href="<?php echo base_url('atenderCliente/'.$trn['id']);?>">
-               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+            </td>
+
+            <!-- Campo editable para la hora del turno -->
+            <td>
+                <input type="time" class="form-control btn" name="hora_turno" value="<?= $trn['hora_turno']; ?>">
+            </td>
+
+            <!-- Dropdown para el servicio -->
+            <td>
+                <select class="form-control btn" name="id_servi">
+                    <?php foreach ($servicios as $servicio): ?>
+                        <option value="<?= $servicio['id_servi']; ?>" <?= $servicio['id_servi'] == $trn['id_servi'] ? 'selected' : ''; ?>>
+                            <?= $servicio['descripcion']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+
+            <!-- Campo solo de visualización del precio -->
+            <td><?php echo $trn['precio']; ?></td>
+
+            <!-- Botón para enviar la actualización -->
+            <td>
+                <button type="submit" class="btn btn-actualizar">Actualizar</button>
+                
+                <a class="btn" href="<?php echo base_url('atenderCliente/'.$trn['id']);?>">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-                </svg> Atender</a>
-             </td>
-             
-            </tr>
+                </svg> Listo</a>
+            </td>
+            
+         </form>
+         
+         </tr>
          <?php endforeach; ?>
+
          <?php endif; ?>
        
      </table>
+     
      <br>
   </div>
 </div>

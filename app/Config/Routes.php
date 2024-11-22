@@ -37,6 +37,7 @@ $routes->get('/', 'Login_controller');
 $routes->get('/turnos', 'Turnos_controller::ListarTurnos');
 $routes->get('/nuevoTurno', 'Turnos_controller::nuevoTurno');
 $routes->post('/RegistrarTurno', 'Turnos_controller::RegistrarTurno');
+$routes->post('turno_actualizar/(:num)', 'Turnos_controller::turno_actualizar/$1');
 
 
 //Servicios

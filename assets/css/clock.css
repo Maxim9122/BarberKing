@@ -26,7 +26,15 @@
     right: -4px;
     bottom: -4px;
     z-index: -1;
-    background: linear-gradient(45deg, red, white, blue, red, white, blue);
+    background: linear-gradient(45deg, 
+    red 0%, red 14.2%, 
+    white 14.2%, white 28.4%, 
+    blue 28.4%, blue 42.6%, 
+    white 42.6%, white 56.8%, 
+    red 56.8%, red 71%, 
+    blue 71%, blue 85.2%, 
+    white 85.2%, white 100%
+);
     background-size: 400%;
     border-radius: 12px;
     filter: blur(8px);
