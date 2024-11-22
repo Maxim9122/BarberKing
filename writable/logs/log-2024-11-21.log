@@ -106,3 +106,13 @@ CRITICAL - 2024-11-21 19:21:22 --> Call to undefined method CodeIgniter\Database
 #3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
 #5 {main}
+CRITICAL - 2024-11-21 19:58:58 --> Call to undefined function bse_url()
+#0 C:\xampp\htdocs\BarberiaKing\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\BarberiaKing\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\BarberiaKing\system\Common.php(1089): CodeIgniter\View\View->render('header/header', Array, true)
+#3 C:\xampp\htdocs\BarberiaKing\app\Controllers\Turnos_controller.php(71): view('header/header', Array)
+#4 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Turnos_controller->ListarTurnos()
+#5 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Turnos_controller))
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 {main}

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barberia King</title>
-  <link rel="icon" href="<?php echo base_url('./assets/img/carrito2.png');?>">
+  <link rel="icon" href="<?php echo base_url('./assets/img/iconoBK.png');?>">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/navbar.css">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/clock.css">
 
