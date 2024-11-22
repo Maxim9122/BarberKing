@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barberia King</title>
-  <link rel="icon" href="<?php echo base_url('./assets/img/carrito2.png');?>">
+  <link rel="icon" href="<?php echo base_url('./assets/img/iconoBK.png');?>">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/navbar.css">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/clock.css">
+
   <script src="https://kit.fontawesome.com/a25933befb.js" crossorigin="anonymous"></script>
 
 </head>
@@ -20,8 +21,12 @@
   <section class="navBarSection">
     <div class="headernav">
       <div class="logoDiv">
-        <a href="<?= base_url('catalogo')?>" class="logo">
-          <div class="clock" id="clock"></div>
+        <a href="<?= base_url('turnos')?>" class="logo">
+        <div class="clock">
+          <div id="day" class="day"></div>
+          <div id="time"></div>
+        </div>
+
         </a>
 
       </div>
@@ -59,14 +64,13 @@
           <li class="nnavItem">
             <h5 class="colorTexto2"><?php echo "Bienvenido ".$nombre?></h5>
           <li class="nnavItem">
-            <a href="<?= base_url('/catalogo')?>" class="btn signUp">Productos</a>
+            <a href="<?= base_url('/catalogo')?>" class="btn">Productos</a>
           </li>
           <li class="navItem">
           <a href="<?php echo base_url('CarritoList') ?>"> <img src=" <?php echo base_url('assets/img/icons/carrito2.png')?>"> </a>
           </li>
           <li class="nnavItem">
             <a class="button" href="<?php echo base_url('turnos');?>">Turnos</a>
-          </li>
             <li class="navItem">
             <button class="btn signUp">
               <a href="<?= base_url('/logout')?>" class="signUp">Salir</a>
@@ -104,25 +108,28 @@
 
 <script>
 
-  function clock() {
-    var now = new Date();
-    var hour = now.getHours();
-    var minutes = now.getMinutes();
-    var seconds = now.getSeconds();
+function updateClock() {
+    const timeElement = document.getElementById('time');
+    const dayElement = document.getElementById('day');
 
-    hour = hour < 10 ? "0" + hour : hour;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+    // Obtener la fecha y hora actuales
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
     
-    var Time = hour + ":" + minutes + ":" + seconds;
-    document.getElementById("clock").innerHTML = Time;
-  }
+    // Mostrar la hora actual
+    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
 
-  // Actualizar el reloj cada segundo
-  setInterval(clock, 1000);
+    // Mostrar el día actual
+    dayElement.textContent = days[now.getDay()];
+}
 
-  // Llamar a la función una vez para que el reloj se muestre de inmediato
-  clock();
+// Actualizar el reloj cada segundo
+setInterval(updateClock, 1000);
+updateClock(); // Llamar inicialmente
+
 </script>
 
 

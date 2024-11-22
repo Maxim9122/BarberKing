@@ -1,31 +1,45 @@
+/* Aplicar la fuente de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 .clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
     font-size: 3rem;
     font-weight: 700;
-    padding: 1px 7px;
+    padding: 3px;
     border-radius: 10px;
     border: 2px solid #fcfffc;
     color: #eef3ef;
     background-color: #000;
     position: relative;
-    
     animation: glow 1.5s ease-in-out infinite alternate;
+    font-family: 'Bangers', sans-serif; /* Usamos la fuente de barbería */
 }
 
-.clock::before{
+.clock::before {
     content: "";
-    position: absolute; /* Cambiado a 'absolute' para posicionarlo en relación con el botón */
+    position: absolute;
     top: -4px;
     left: -4px;
     right: -4px;
     bottom: -4px;
     z-index: -1;
-    background: linear-gradient(45deg,  red, white, blue, red, white, blue);
+    background: linear-gradient(45deg, 
+    red 0%, red 14.2%, 
+    white 14.2%, white 28.4%, 
+    blue 28.4%, blue 42.6%, 
+    white 42.6%, white 56.8%, 
+    red 56.8%, red 71%, 
+    blue 71%, blue 85.2%, 
+    white 85.2%, white 100%
+);
     background-size: 400%;
     border-radius: 12px;
     filter: blur(8px);
     animation: glowing 20s linear infinite;
 }
-
 
 @keyframes glowing {
     0% {
@@ -37,4 +51,14 @@
     100% {
         background-position: 0 0;
     }
+}
+
+.day {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: #fcfffc;
+    text-transform: uppercase;
+    margin-right: 10px;
+    margin-left: 3px;
+    font-family: 'Bangers', sans-serif; /* Usamos la misma fuente para el día */
 }

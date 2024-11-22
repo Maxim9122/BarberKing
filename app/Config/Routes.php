@@ -33,11 +33,16 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Login_controller');
 
-//Turnos
+//Todo sobre Turnos
+$routes->get('/turnosCompletados', 'Turnos_controller::TurnosCompletados');
+$routes->post('/filtrarTurnos', 'Turnos_controller::filtrarTurnos');
 $routes->get('/turnos', 'Turnos_controller::ListarTurnos');
 $routes->get('/nuevoTurno', 'Turnos_controller::nuevoTurno');
 $routes->post('/RegistrarTurno', 'Turnos_controller::RegistrarTurno');
-
+$routes->post('turno_actualizar/(:num)', 'Turnos_controller::turno_actualizar/$1');
+$routes->get('clienteListo/(:num)', 'Turnos_controller::Turno_completado/$1');
+$routes->get('cancelar/(:num)', 'Turnos_controller::Turno_cancelado/$1');
+$routes->post('turnoClienteRegistrado', 'Turnos_controller::turnoClienteRegistrado');
 
 //Servicios
 $routes->get('/Lista_servicios', 'Servicios_controller::Servicios');

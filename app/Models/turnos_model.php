@@ -11,4 +11,10 @@ class Turnos_model extends Model
 
     	return $this->where('id',$id)->first($id);
     }
+
+    public function actualizar_turno($id_turno, $data) {
+        return $this->db->table('turnos') // Indicar la tabla
+                        ->where('id', $id_turno) // Condición
+                        ->update($data); // Actualización
+    }
 }

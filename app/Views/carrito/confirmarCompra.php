@@ -1,5 +1,5 @@
 <br>
-<?php $cart = \Config\Services::cart(); ?>
+ <?php $cart = \Config\Services::cart(); ?>
  <?php $session = session();
           $nombre= $session->get('nombre');
           $apellido = $session->get('apellido');
@@ -19,7 +19,7 @@
             $gran_total = $gran_total + $item['subtotal'];
         endforeach;
     endif;
-?>
+ ?>
 
 <div class="comprados" style="width:40%;">
     <div id="">
@@ -53,9 +53,9 @@
                          </td>
                             <td>
                                 <?php if ($clientes): ?>
-                                    <select name="cliente_id" required>
-                                        <option value="">Seleccione un cliente</option>
-                                        <?php foreach ($clientes as $cl): ?>
+                                    <select name="cliente_id">
+                                        <option value="Anonimo">Seleccione un cliente</option>
+                                            <?php foreach ($clientes as $cl): ?>
                                             <option value="<?php echo $cl['id_cliente']; ?>">
                                                 <?php echo $cl['nombre'] . ' - ' . $cl['id_cliente']; ?>
                                             </option>
