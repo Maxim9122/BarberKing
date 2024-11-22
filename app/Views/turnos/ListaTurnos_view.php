@@ -3,14 +3,62 @@
           $perfil=$session->get('perfil_id');
           $id=$session->get('id');?>
 <section class="Fondo">
+
+<?php if (session()->getFlashdata('msg')): ?>
+    <div id="flash-message" class="success" style="width: 30%;">
+        <?= session()->getFlashdata('msg') ?>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('flash-message').style.display = 'none';
+        }, 2000); // 2000 milisegundos = 2 segundos
+    </script>
+<?php endif; ?>
+  <?php if(session("msgEr")):?>
+   <div id="flash-message2" class="danger" style="width: 30%;">
+      <?php echo session("msgEr"); ?>
+      </div>
+      <script>
+        setTimeout(function() {
+            document.getElementById('flash-message2').style.display = 'none';
+        }, 2000); // 2000 milisegundos = 2 segundos
+    </script>
+  <?php endif?>
+
 <div class="" style="width: 100%;">
-  <section class="contenedor-titulo">
-  <strong class="nombreLogo">Barber King</strong>
-  
-  </section>
+        <section class="contenedor-titulo">
+        <strong class="nombreLogo">Barber King</strong>
+        
+        <!-- Formulario para turno para Clientes Registrados -->
+        <form class="estiloTurno" action="<?php echo base_url('turnoClienteRegistrado'); ?>" method="POST">
+        <select class="form-control" name="id_cliente" id="id_cliente" required>
+            <option value="">Seleccione un cliente</option>
+            <?php foreach ($clientes as $cliente): ?>
+                <option value="<?= $cliente['id_cliente']; ?>">
+                <?= $cliente['nombre']; ?>
+                </option>
+            <?php endforeach; ?>
+            </select>
+            
+            <select name="tipo_servicio" class="form-control" required>
+            <option value="">Seleccione un servicio</option>
+            <?php foreach($servicios as $servicio): ?>
+                <option value="<?= $servicio['id_servi']; ?>"><?= $servicio['descripcion']; ?> - $<?= $servicio['precio']; ?></option>
+            <?php endforeach; ?>
+            </select>
+            
+            <label for="fecha" class="label-inline">Fecha:</label>
+            <input type="date" class="form-control" id="fecha" name="fecha_turno">
+            
+            <label for="hora" class="label-inline">Hora:</label>
+            <input type="time" class="form-control" id="hora" name="hora_turno">
+            
+            <button type="submit" class="btn btn-submit">Agendar</button>
+        </form>
+        </section>
   <div style="text-align: end;">
   
-  <br><br>
+  <br>
    <a class="button" href="<?php echo base_url('turnos');?>">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -78,7 +126,10 @@
 
             <!-- Botón para enviar la actualización -->
             <td>
-                <button type="submit" class="btn btn-actualizar">Actualizar</button>
+                <button type="submit" class="btn btn-actualizar">Editar</button>
+                
+                <a class="btn" href="<?php echo base_url('cancelar/'.$trn['id']);?>">
+                Cancelar</a>
                 
                 <a class="btn" href="<?php echo base_url('clienteListo/'.$trn['id']);?>">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="" viewBox="0 0 16 16">
@@ -122,6 +173,30 @@
         }
     } );
     });
+
+
+    // Crear un objeto Date en UTC
+  const today = new Date();
+
+// Ajustar la hora a la zona horaria de Argentina (UTC-3)
+const options = { timeZone: 'America/Argentina/Buenos_Aires', hour12: false };
+const formatter = new Intl.DateTimeFormat('es-AR', {
+    ...options,
+    year: 'numeric', month: '2-digit', day: '2-digit'
+});
+
+const formattedDate = formatter.format(today).split('/').reverse().join('-'); // Formato YYYY-MM-DD
+
+// Formatear la hora en formato HH:MM
+const formattedTime = new Intl.DateTimeFormat('es-AR', {
+    ...options,
+    hour: '2-digit',
+    minute: '2-digit'
+}).format(today);
+
+// Establecer la fecha y hora actuales en los campos correspondientes
+document.getElementById('fecha').value = formattedDate;
+document.getElementById('hora').value = formattedTime;
 
 </script>
 <br><br>

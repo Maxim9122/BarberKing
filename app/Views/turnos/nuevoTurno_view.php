@@ -62,6 +62,7 @@
       <?= $validation->getError('servicio'); ?>
     </div>
   <?php } ?>
+  
 </div>
 
   <div class="nuevoTurno">

@@ -4,8 +4,8 @@
           $perfil=$session->get('perfil_id');
           $id=$session->get('id');?>  
  <?php if($perfil == 1){  ?>
-<div class="container mt-1 mb-0 comprados">
-  <div class="comprados" style="width: 50%;" >
+<div class="container mt-1 mb-0 nuevoTurno">
+  <div class=""  >
     <div class= "card-header text-center">
       <h2>Editar Usuarios</h2>
     </div>
@@ -74,8 +74,8 @@
   </div>
   
   <div class="mb-3">
-   <label for="exampleFormControlInput1" class="form-label">Password</label>
-   <input name="pass" type="txt" class="form-control"  placeholder="password" value="<?php echo $data['pass']?>">
+   
+   <input name="pass" type="hidden" class="form-control"  placeholder="password" value="<?php echo $data['pass']?>">
    <!-- Error -->
         <?php if($validation->getError('pass')) {?>
             <div class='alert alert-danger mt-2'>
@@ -92,14 +92,14 @@
         $perfil = 'Admin';
         break;
     case 2:
-        $perfil = 'Cliente';
+        $perfil = 'Barber';
         break;
 }?>
    <label for="exampleFormControlInput1" class="form-label">Categoria</label>
    <select name="perfil_id">
     <option value="<?php echo $data['perfil_id']?>"><?php echo $perfil ?></option>
     <option value="1">Admin</option>
-    <option value="2">Cliente</option>
+    <option value="2">Barber</option>
     </select>
    <!-- Error -->
         <?php if($validation->getError('perfil_id')) {?>

@@ -69,8 +69,7 @@
   </div>
 
   <div class="mb-3">
-   <label for="exampleFormControlInput1" class="">Password</label>
-   <input name="pass" type="txt" class=""  placeholder="password">
+   <input name="pass" type="hidden" class=""  placeholder="password" value="123">
    <!-- Error -->
         <?php if($validation->getError('pass')) {?>
             <div class='alert alert-danger mt-2'>
@@ -83,8 +82,8 @@
    <label for="exampleFormControlInput1" class="form-label">Perfil:</label>
    <select name="perfil_id">
     <option>Seleccione Perfil</option>
-    <option value="1">Admin</option>
-    <option value="2">Cliente</option>
+    <option value="2">Barber</option>
+    <option value="2">Vendedor</option>
     </select>
    <!-- Error -->
         <?php if($validation->getError('perfil_id')) {?>

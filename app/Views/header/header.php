@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?php echo base_url('./assets/css/buscador_prod.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('./assets/css/nombreLogoYbotones.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('./assets/css/formulario_turnos.css');?>">
+    <link rel="stylesheet" href="<?php echo base_url('./assets/css/turnos_clientes_registrados.css');?>">
 
 </head>
 <body>

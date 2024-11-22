@@ -64,12 +64,14 @@ class Turnos_controller extends Controller{
     $serviModel = new Servicios_model();
         $datos3['servicios'] = $serviModel->getServicio();
        
+    $ClienteModel = new Clientes_model();
+        $datos4['clientes'] = $ClienteModel->getClientes();
 
     // Cargo las vistas
     $data['titulo'] = 'Listado de Turnos';
     echo view('navbar/navbar');
     echo view('header/header', $data);
-    echo view('turnos/ListaTurnos_view', $datos+$datos2+$datos3);
+    echo view('turnos/ListaTurnos_view', $datos+$datos2+$datos3+$datos4);
     echo view('footer/footer');
         }
 
@@ -157,11 +159,42 @@ class Turnos_controller extends Controller{
             'estado' => 'Pendiente',
         ]);
 
-        session()->setFlashdata('msg', 'Turno Registrado');
+        session()->setFlashdata('msg', 'Turno Registrado!');
         return redirect()->to(base_url('turnos'));
         }
         }
 
+
+    //Verifica y guarda los turnos de clientes ya registrados
+    public function turnoClienteRegistrado() {
+
+        $turnosModel = new Turnos_model();
+        $clienteModel = new Clientes_model();
+
+        date_default_timezone_set('America/Argentina/Buenos_Aires');
+        $fecha = date('d-m-Y');
+
+         // Rescato el ID del cliente.
+         $id_cliente = $this->request->getVar('id_cliente');
+
+         // Convertir la fecha al formato dd-mm-yyyy
+         $fecha_turno = $this->request->getVar('fecha_turno');
+         $fecha_turno_formateada = date('d-m-Y', strtotime($fecha_turno));
+ 
+         // Guardar el turno en la base de datos
+         $turnosModel->save([
+             'id_cliente' => $id_cliente,
+             'id_barber' => 2,
+             'fecha_registro' => $fecha,
+             'fecha_turno' => $fecha_turno_formateada,
+             'hora_turno' => $this->request->getVar('hora_turno'),
+             'id_servi' => $this->request->getVar('tipo_servicio'),
+             'estado' => 'Pendiente',
+         ]);
+ 
+         session()->setFlashdata('msg', 'Turno Registrado!');
+         return redirect()->to(base_url('turnos'));
+    }
 
     //Actualiza el turno
     public function turno_actualizar($id_turno){ 
@@ -188,6 +221,39 @@ class Turnos_controller extends Controller{
     return redirect()->to(base_url('turnos'));
     }
         
+    
+    //Guarda el turno Completado
+   public function Turno_completado($id_turno) {
+
+    $turnos_model = new Turnos_model();
+
+        // Cambia el estado a Listo o sea completado
+        $data = array(
+            'estado' => 'Listo'
+        );
+
+        $turnos_model->actualizar_turno($id_turno, $data);
+
+        session()->setFlashdata('msg', 'Turno Completado!');
+        return redirect()->to(base_url('turnos'));
+        }
+
+
+         //Guarda el turno Cancelado
+   public function Turno_cancelado($id_turno) {
+
+    $turnos_model = new Turnos_model();
+
+        // Cambia el estado a Listo o sea completado
+        $data = array(
+            'estado' => 'Cancelado'
+        );
+
+        $turnos_model->actualizar_turno($id_turno, $data);
+
+        session()->setFlashdata('msgEr', 'Turno Cancelado!');
+        return redirect()->to(base_url('turnos'));
+        }
         
 
 }
