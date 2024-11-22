@@ -254,6 +254,143 @@ class Turnos_controller extends Controller{
         session()->setFlashdata('msgEr', 'Turno Cancelado!');
         return redirect()->to(base_url('turnos'));
         }
-        
+    
+    //Muestra todos los turnos realizados    
+    public function turnosCompletados(){
+            {
+                $estado = 'Listo';
+            
+                // Me conecto a la base de datos
+                $db = db_connect();
+                // Inicio la consulta desde la tabla turnos con un alias "t"
+                $builder = $db->table('turnos t');
+            
+                // Filtro las ventas para que solo rescate los turnos pendientes de hoy
+                $builder->where('t.estado', $estado);
+                
+            
+                // Selecciono los campos que necesito de las tres tablas
+                $builder->select('
+                    t.id, 
+                    t.id_barber, 
+                    t.hora_turno, 
+                    t.estado, 
+                    t.fecha_registro,
+                    t.fecha_turno, 
+                    t.id_servi,
+                    c.nombre AS cliente_nombre, 
+                    c.telefono AS cliente_telefono,
+                    u.nombre AS barber_nombre,
+                    s.descripcion,
+                    s.precio
+                ');
+            
+                // Relaciono la tabla turnos con clientes
+                $builder->join('cliente c', 'c.id_cliente = t.id_cliente');
+                // Relaciono la tabla turnos con usuarios (barberos)
+                $builder->join('usuarios u', 'u.id = t.id_barber');
+                // Relaciono la tabla turnos con servicio
+                $builder->join('servicios s', 's.id_servi = t.id_servi');
+            
+                // Ejecuto la consulta
+                $turnos = $builder->get();
+                 // Transformo los resultados en un array para la vista
+                $datos['turnos'] = $turnos->getResultArray();
+            
+                $UsModel = new Usuarios_model();
+                    $baja='NO';
+                    $datos2['barbers'] = $UsModel->getUsBaja($baja);
+            
+                $serviModel = new Servicios_model();
+                    $datos3['servicios'] = $serviModel->getServicio();
+                   
+                $ClienteModel = new Clientes_model();
+                    $datos4['clientes'] = $ClienteModel->getClientes();
+            
+                // Cargo las vistas
+                $data['titulo'] = 'Listado de Turnos';
+                echo view('navbar/navbar');
+                echo view('header/header', $data);
+                echo view('turnos/turnosCompletados', $datos+$datos2+$datos3+$datos4);
+                echo view('footer/footer');
+        }
+        }
+
+//Filtrado de turnos por fecha y barber
+public function filtrarTurnos()
+{
+    // Rescato las fechas que vienen del formulario y las convierto al formato correcto (dia-mes-año)
+    $fecha_desde = $this->request->getVar('fecha_desde');
+    $fecha_desdeOK = date('d-m-Y', strtotime($fecha_desde));
+    $fecha_hasta = $this->request->getVar('fecha_hasta');
+    $fecha_hastaOK = date('d-m-Y', strtotime($fecha_hasta));
+    $barber = $this->request->getVar('id_barber');
+    $estado = 'Listo';
+
+    // Me conecto a la base de datos
+    $db = db_connect();
+
+    // Inicio la consulta desde la tabla turnos con un alias "t"
+    $builder = $db->table('turnos t');
+
+    // Aplico filtros
+    $builder->where('t.estado', $estado);
+
+    // Filtrar por rango de fechas (considerando el formato dd-mm-yyyy)
+    if (!empty($fecha_desdeOK)) {
+        $builder->where('STR_TO_DATE(t.fecha_turno, "%d-%m-%Y") >=', date('Y-m-d', strtotime($fecha_desdeOK)));
+    }
+    if (!empty($fecha_hastaOK)) {
+        $builder->where('STR_TO_DATE(t.fecha_turno, "%d-%m-%Y") <=', date('Y-m-d', strtotime($fecha_hastaOK)));
+    }
+
+    // Filtrar por barbero si se seleccionó alguno
+    if (!empty($barber)) {
+        $builder->where('t.id_barber', $barber);
+    }
+
+    // Selección de campos y joins
+    $builder->select('t.id, 
+                      t.id_barber, 
+                      t.hora_turno, 
+                      t.estado, 
+                      t.fecha_turno,
+                      t.fecha_registro, 
+                      t.id_servi,
+                      c.nombre AS cliente_nombre, 
+                      c.telefono AS cliente_telefono,
+                      u.nombre AS barber_nombre,
+                      s.descripcion,
+                      s.precio');
+
+    // Relaciono la tabla turnos con cliente, usuarios (barberos) y servicios
+    $builder->join('cliente c', 'c.id_cliente = t.id_cliente');
+    $builder->join('usuarios u', 'u.id = t.id_barber');
+    $builder->join('servicios s', 's.id_servi = t.id_servi');
+
+    // Ejecuto la consulta
+    $turnos = $builder->get();
+
+    // Transformo los resultados en un array para la vista
+    $datos['turnos'] = $turnos->getResultArray();
+
+    $UsModel = new Usuarios_model();
+        $baja='NO';
+        $datos2['barbers'] = $UsModel->getUsBaja($baja);
+
+    $serviModel = new Servicios_model();
+        $datos3['servicios'] = $serviModel->getServicio();
+       
+    $ClienteModel = new Clientes_model();
+        $datos4['clientes'] = $ClienteModel->getClientes();
+
+    // Cargo las vistas
+    $data['titulo'] = 'Listado de Turnos';
+    echo view('navbar/navbar');
+    echo view('header/header', $data);
+    echo view('turnos/turnosCompletados', $datos+$datos2+$datos3+$datos4);
+    echo view('footer/footer');
+    }
+
 
 }
