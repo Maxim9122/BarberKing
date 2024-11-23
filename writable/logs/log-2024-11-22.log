@@ -140,3 +140,10 @@ CRITICAL - 2024-11-22 17:26:16 --> Undefined array key "fecha_turno"
 #7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
 #9 {main}
+CRITICAL - 2024-11-22 17:56:29 --> Call to undefined method App\Models\Turnos_model::obtenerTurnosCompletados
+#0 C:\xampp\htdocs\BarberiaKing\app\Controllers\Turnos_controller.php(214): CodeIgniter\Model->__call('obtenerTurnosCo...', Array)
+#1 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Turnos_controller->turnosCompletados()
+#2 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Turnos_controller))
+#3 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 {main}
