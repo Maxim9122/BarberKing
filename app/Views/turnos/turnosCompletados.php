@@ -86,7 +86,7 @@
         <td><?php echo $trn['hora_turno']; ?></td>
         <td><?php echo $trn['fecha_turno']; ?></td>
         <td><?php echo $trn['descripcion']; ?></td>
-        <td><?php echo $trn['precio']; ?></td>
+        <td>$<?php echo $trn['precio']; ?></td>
             <!-- Calculo lo recaudado -->            
         <?php $Recaudacion = $Recaudacion + $trn['precio'];?>
          
@@ -96,7 +96,7 @@
          <?php endif; ?>
        
      </table>
-
+            <!-- Muestro la Recaudacion de los turnos completado que se trajo del filtro o de todos-->
      <section class="estiloTurno textColor day">
      <h3 class="estiloTurno textColor day">Recaudacion total: $ <?php echo $Recaudacion ?></h3>
      <?php $Recaudacion = $Recaudacion * 0.6 ;?>

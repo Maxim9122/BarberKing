@@ -33,7 +33,7 @@
                     
                 </div>
                 <div class="">
-                    <!-- <button id="signUp" type="button"> Registrate </button> -->
+                    <!-- Boton de ingresar -->
                     <button type="submit" class="button2"> Ingresar </button>
                 </div>
             </form>

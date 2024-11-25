@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*Estilos de Fuentes (Letras)*/
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../fonts/pxiAyp8kv8JHgFVrJJLmE0tCMPI.woff2') format('woff2');
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, 
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
  
 /* Cambiar el color de texto a blanco para todas las etiquetas de DataTables */
 #users-list_filter label,         /* Texto del filtro */
@@ -84,9 +95,11 @@ label {
 }
 
 .colorTexto2{
-    color: rgb(231, 227, 227);
+    color: #ffff;
     align-items: center;
-    background: rgba(14, 13, 13, 0.7);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 7pX;
+    border-radius: 30px;
 }
 
 .imagenForm{
@@ -302,6 +315,29 @@ li{
 
 .btn:hover a {
     color: var(--LogoText);
+}
+
+.btn2 {
+    padding: 1.1rem 1rem;
+    background-color: var(--primary-black); /* Fondo negro */
+    border: 2px solid var(--primary-white); /* Borde blanco */
+    outline: none;
+    border-radius: 2rem; /* Bordes redondeados */
+    cursor: pointer;
+    color: var(--primary-white); /* Texto blanco */
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3); /* Sombra blanca suave */
+    transition: all 0.7s ease; /* Transición suave para los efectos */
+}
+
+.btn2:hover {
+    background-color: var(--primary-white); /* Fondo blanco en hover */
+    color: var(--primary-black); /* Texto negro en hover */
+    box-shadow: 0 4px 15px rgba(53, 52, 52, 0.6); /* Aumento de la sombra blanca */
+    transform: scale(1.05); /* Efecto de aumento en hover */
+    font-size: 0.8rem;
 }
 
 .secIntro{

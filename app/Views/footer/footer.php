@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/footer.css">
     <!-- <link rel="stylesheet" href="../../assets/css/bootstrap-grid.css"> -->
     <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/general.css">
-    <script src="https://kit.fontawesome.com/a25933befb.js" crossorigin="anonymous"></script>
+
     <title>Footer</title>
 </head>
 <body>
@@ -25,9 +25,9 @@
                 <i class="fa fa-instagram icon" aria-hidden="true"></i>
             </div>
             
-            <div class="footerLinks">
+            <div class="desarrollador">
                 <span>
-                    Desarrollado por <span>Luna Maximiliano</span>
+                    Desarrollado por <span>Maximiliano Luna</span>
                 </span>
             </div>
         </div>

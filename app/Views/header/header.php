@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="<?php echo base_url('./assets/css/nombreLogoYbotones.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('./assets/css/formulario_turnos.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('./assets/css/turnos_clientes_registrados.css');?>">
+    
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead tr {
+            background-color: #333; /* Fondo oscuro para el encabezado */
+            color: #fff; /* Texto blanco para el contenido del <tr> */
+        }
+
+        tbody td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
 
 </head>
 <body>

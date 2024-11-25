@@ -101,27 +101,32 @@ class Usuario_controller extends Controller{
 
     public function formValidationEdit() {
         
-        //print_r($_POST);exit;
         
         $input = $this->validate([
-            'nombre'   => 'required|min_length[3]|string',
-            'apellido' => 'required|min_length[3]|max_length[25]',
-            'email'    => 'required|min_length[4]|max_length[100]|valid_email',
-            'telefono'  => 'required|min_length[10]|max_length[10]',
-            'direccion'  => 'required|max_length[100]',
-            'pass'     => 'required|min_length[3]',
-            'perfil_id'=> 'required|max_length[1]',
-            'baja'  => 'required|max_length[2]'
+            'nombre'    => 'required|min_length[3]',
+            'apellido'  => 'required|min_length[3]|max_length[25]',
+            'email'     => 'required|min_length[4]|max_length[100]|valid_email',
+            'telefono'  => 'required|exact_length[10]',
+            'direccion' => 'required|max_length[100]',
+            'pass'      => 'required|min_length[3]',
+            'perfil_id' => 'required|is_natural_no_zero|max_length[1]',
+            'baja'      => 'required|max_length[2]'
         ]);
+        
         $Model = new Usuarios_model();
-        $id=$_POST['id'];
+        $id = $_POST['id'];
+        
         if (!$input) {
-            $data=$Model->getUsuario($id);
-            $dato['titulo']='Editar Usuario'; 
-                echo view('navbar/navbar');
-                echo view('header/header',$dato);                
-                echo view('back/Admin/editarUsuarios_view',compact('data'));
-                echo view('footer');
+            $data = $Model->getUsuario($id);
+            if (!$data) {
+                return redirect()->to('/admin/usuarios')->with('error', 'Usuario no encontrado');
+            }
+        
+            $dato['titulo'] = 'Editar Usuario'; 
+            echo view('navbar/navbar');
+            echo view('header/header', $dato);                
+            echo view('admin/editarUsuarios_view', ['validation' => $this->validator,'data' => $data]);
+            echo view('footer/footer');
         } else {
             $data=$Model->getUsuario($id);
             $pass=$data['pass'];

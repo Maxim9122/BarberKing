@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/navbar.css">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/clock.css">
 
-  <script src="https://kit.fontawesome.com/a25933befb.js" crossorigin="anonymous"></script>
-
+  <script src="<?php echo base_url();?>./assets/js/a25933befb.js" crossorigin="anonymous"></script>
+  
 </head>
+
 <body>
 
 <?php $session = session();
@@ -23,8 +24,10 @@
       <div class="logoDiv">
         <a href="<?= base_url('turnos')?>" class="logo">
         <div class="clock">
-          <div id="day" class="day"></div>
-          <div id="time"></div>
+        <div id="day" class="day"></div>
+        <div id="hours"></div>
+        <span class="colon" id="colon">:</span>
+        <div id="minutes"></div>
         </div>
 
         </a>
@@ -34,8 +37,8 @@
       <div id="navBar" class="navBar">
         <ul class="navList flex">
         <?php if( ($perfil =='1')) { ?>
-          <li>
-          <h5 class="colorTexto2"><?php echo "Bienvenida ".$nombre?></h5>
+          <li class="navItem">
+          <h5 class="colorTexto2"><?php echo "Bienvenido ".$nombre?> </h5>
           </li>
           <li class="nnavItem">
             <a class="btn signUp" href="<?php echo base_url('compras');?>">VENTAS</a>
@@ -61,8 +64,9 @@
             </button>
           </li>
           <?php } else if( (($perfil =='2')) ) { ?>
-          <li class="nnavItem">
+          <li class="navItem">
             <h5 class="colorTexto2"><?php echo "Bienvenido ".$nombre?></h5>
+          </li>
           <li class="nnavItem">
             <a href="<?= base_url('/catalogo')?>" class="btn">Productos</a>
           </li>
@@ -107,29 +111,34 @@
   </script>
 
 <script>
+    //Funciones del Reloj
+    let showColon = true;
 
 function updateClock() {
-    const timeElement = document.getElementById('time');
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+    const colonElement = document.getElementById('colon');
     const dayElement = document.getElementById('day');
 
     // Obtener la fecha y hora actuales
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
     const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
     const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-    
-    // Mostrar la hora actual
-    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
 
-    // Mostrar el día actual
+    // Alternar visibilidad del colon
+    colonElement.textContent = showColon ? ':' : ' '; // Espacio no separable
+    showColon = !showColon;
+
+    // Actualizar horas, minutos y día
+    hoursElement.textContent = hours;
+    minutesElement.textContent = minutes;
     dayElement.textContent = days[now.getDay()];
 }
 
-// Actualizar el reloj cada segundo
-setInterval(updateClock, 1000);
+// Actualizar el reloj cada medio segundo
+setInterval(updateClock, 500);
 updateClock(); // Llamar inicialmente
-
 </script>
 
 

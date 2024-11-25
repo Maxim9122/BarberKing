@@ -207,7 +207,7 @@ public function ListCompraDetalle($id)
 	//print_r($id_cliente);
 		//exit;
     if ($id_cliente == "Anonimo") {
-        $id_cliente = 1000; // Valor por defecto si no se envía cliente_id
+        $id_cliente = 1; // Valor por defecto si no se envía cliente_id
     }
     $tipo_pago = $this->request->getPost('tipo_pago');
     $total = $this->request->getPost('total_venta');

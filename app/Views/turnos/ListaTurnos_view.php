@@ -21,7 +21,7 @@
       <script>
         setTimeout(function() {
             document.getElementById('flash-message2').style.display = 'none';
-        }, 2000); // 2000 milisegundos = 2 segundos
+        }, 3000); // 3000 milisegundos = 3 segundos
     </script>
   <?php endif?>
 
@@ -68,7 +68,7 @@
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-    </svg> Nuevo Turno</a>
+    </svg> Turno Cliente Nuevo</a>
   <br><br>
   <?php $Recaudacion = 0; ?>
   <table class="table table-responsive table-hover" id="users-list">
@@ -122,20 +122,27 @@
             </td>
 
             <!-- Campo solo de visualización del precio -->
-            <td><?php echo $trn['precio']; ?></td>
+            <td>$ <?php echo $trn['precio']; ?></td>
 
-            <!-- Botón para enviar la actualización -->
+            
             <td>
+                <!-- Botón para enviar la actualización -->
                 <button type="submit" class="btn btn-actualizar">Editar</button>
                 
-                <a class="btn" href="<?php echo base_url('cancelar/'.$trn['id']);?>">
-                Cancelar</a>
-                
-                <a class="btn" href="<?php echo base_url('clienteListo/'.$trn['id']);?>">
+                <!-- Botón para eliminar o cancelar un turno -->
+                <a class="btn" href="<?php echo base_url('cancelar/'.$trn['id']);?>" onclick="mostrarConfirmacion(event, 'Cancelar turno.?', this.href);">
+                Cancelar
+                </a>
+
+                <!-- Botón para terminar un turno (Concretado o Completado) -->
+                <a class="btn" href="<?php echo base_url('clienteListo/'.$trn['id']);?>" onclick="mostrarConfirmacion(event, 'Turno Completado.?', this.href);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="" viewBox="0 0 16 16">
-                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-                </svg> Listo</a>
+                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                    <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                </svg> 
+                Listo
+                </a>
+
             </td>
             
          </form>
@@ -146,6 +153,17 @@
          <?php endif; ?>
        
      </table>
+
+     <!-- Cuadro de confirmación -->
+        <div id="confirm-dialog" class="confirm-dialog">
+            <div class="confirm-content btn2">
+                <p id="confirm-message"></p>
+                <div class="confirm-buttons">
+                    <button id="confirm-yes" class="btn btn-yes">Sí</button>
+                    <button id="confirm-no" class="btn btn-no">No</button>
+                </div>
+            </div>
+        </div>
      
   </div>
 </div>
@@ -161,7 +179,7 @@
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página.",
             "zeroRecords": "Lo sentimos! No hay resultados.",
-            "info": "Mostrando la página e _PAGE_ de _PAGES_",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
             "infoEmpty": "No hay registros disponibles.",
             "infoFiltered": "(filtrado de _MAX_ registros totales)",
             "search": "Buscar: ",
@@ -194,8 +212,40 @@ const formattedTime = new Intl.DateTimeFormat('es-AR', {
 }).format(today);
 
 // Establecer la fecha y hora actuales en los campos correspondientes
-document.getElementById('fecha').value = formattedDate;
+// Establecer la fecha mínima y el valor predeterminado
+const fechaInput = document.getElementById('fecha');
+fechaInput.setAttribute('min', formattedDate);
+fechaInput.setAttribute('value', formattedDate);
+//Rescata la hora del input por medio del id y asigna la hora actual (Lo mismo con la fecha)
 document.getElementById('hora').value = formattedTime;
 
 </script>
+
+<!--Esta parte es el Script para el cartel de confirmacion de Cancelar o dar como Listo un turno -->
+<script>
+    function mostrarConfirmacion(event, mensaje, href) {
+        event.preventDefault(); // Detener la acción predeterminada del enlace
+
+        // Mostrar el cuadro de diálogo
+        const dialog = document.getElementById('confirm-dialog');
+        const messageElement = document.getElementById('confirm-message');
+        const yesButton = document.getElementById('confirm-yes');
+        const noButton = document.getElementById('confirm-no');
+
+        messageElement.textContent = mensaje;
+        dialog.style.display = 'flex';
+
+        // Acción para confirmar
+        yesButton.onclick = function () {
+            dialog.style.display = 'none';
+            window.location.href = href; // Redirigir al enlace
+        };
+
+        // Acción para cancelar
+        noButton.onclick = function () {
+            dialog.style.display = 'none';
+        };
+    }
+</script>
+
 <br><br>

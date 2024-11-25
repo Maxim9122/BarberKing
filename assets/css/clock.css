@@ -1,21 +1,26 @@
 /* Aplicar la fuente de Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@font-face {
+    font-family: 'Bangers';
+    src: url('../fonts/FeVQS0BTqb0h60ACH55Q2A.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .clock {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    font-size: 3rem;
+    gap: 1px;
+    font-size: 3.7rem;
     font-weight: 700;
-    padding: 3px;
+    padding: 3px 7px;
     border-radius: 10px;
     border: 2px solid #fcfffc;
     color: #eef3ef;
     background-color: #000;
     position: relative;
     animation: glow 1.5s ease-in-out infinite alternate;
-    font-family: 'Bangers', sans-serif; /* Usamos la fuente de barbería */
+    font-family: 'Bangers', sans-serif;
 }
 
 .clock::before {
@@ -27,14 +32,14 @@
     bottom: -4px;
     z-index: -1;
     background: linear-gradient(45deg, 
-    red 0%, red 14.2%, 
-    white 14.2%, white 28.4%, 
-    blue 28.4%, blue 42.6%, 
-    white 42.6%, white 56.8%, 
-    red 56.8%, red 71%, 
-    blue 71%, blue 85.2%, 
-    white 85.2%, white 100%
-);
+    white 0%, white 12.5%, 
+    red 12.5%, red 25%, 
+    white 25%, white 37.5%, 
+    blue 37.5%, blue 50%, 
+    white 50%, white 62.5%, 
+    red 62.5%, red 75%, 
+    white 75%, white 87.5%, 
+    blue 87.5%, blue 100%);
     background-size: 400%;
     border-radius: 12px;
     filter: blur(8px);
@@ -51,6 +56,24 @@
     100% {
         background-position: 0 0;
     }
+}
+
+.colon {
+    display: inline-block;
+    width: 0.3em; /* Reserva espacio constante */
+    text-align: center;
+}
+
+.day {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.day {
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: #fff;
 }
 
 .day {

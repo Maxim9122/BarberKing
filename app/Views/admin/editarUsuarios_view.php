@@ -22,7 +22,7 @@
   <div class="mb-2">
    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
    <input name="nombre" type="text"  class="form-control" placeholder="nombre" 
-   value="<?php echo $data['nombre']?>">
+   value="<?php echo $data['nombre']?>" required>
      <!-- Error -->
         <?php if($validation->getError('nombre')) {?>
             <div class='alert alert-danger mt-2'>
@@ -32,7 +32,7 @@
   </div>
   <div class="mb-3">
    <label for="exampleFormControlTextarea1" class="form-label">Apellido</label>
-    <input type="text" name="apellido"class="form-control" placeholder="apellido" value="<?php echo $data['apellido'] ?>">
+    <input type="text" name="apellido" required class="form-control" placeholder="apellido" value="<?php echo $data['apellido'] ?>" >
     <!-- Error -->
         <?php if($validation->getError('apellido')) {?>
             <div class='alert alert-danger mt-2'>
@@ -42,7 +42,7 @@
     </div>
     <div class="mb-3">
        <label for="exampleFormControlInput1" class="form-label">email</label>
-   <input name="email"  type="femail" class="form-control"  placeholder="correo@algo.com" value="<?php echo $data['email']?>" >
+   <input name="email"  type="email" class="form-control"  placeholder="correo@algo.com" value="<?php echo $data['email']?>" >
     <!-- Error -->
         <?php if($validation->getError('email')) {?>
             <div class='alert alert-danger mt-2'>
