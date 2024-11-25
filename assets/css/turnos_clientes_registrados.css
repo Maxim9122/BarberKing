@@ -60,11 +60,11 @@
     padding: 5px;
     flex-wrap: wrap; /* Permite que los campos se ajusten en pantallas más pequeñas */
     margin-top: 10px;
-    background: rgba(20, 20, 20, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(7px);
     border-radius: 12px;
     border: 2px solid #fcfffc;
-    box-shadow: 0 3px 5px rgb(209, 205, 205);
+    box-shadow: 0 3px 5px rgb(201, 201, 201);
     color: #ffff;
     
   }

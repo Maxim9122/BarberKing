@@ -18,7 +18,7 @@
 
   <div>
    <label for="exampleFormControlInput1">Nombre</label>
-   <input name="nombre_cliente" type="text" placeholder="Nombre del Cliente" >
+   <input name="nombre_cliente" type="text" placeholder="Nombre del Cliente" required>
      <!-- Error -->
         <?php if($validation->getError('nombre')) {?>
             <div class='alert alert-danger mt-2'>
@@ -29,7 +29,7 @@
 
   <div>
   <label for="exampleFormControlInput1" class="form-label">Telefono</label>
-   <input  type="text" name="telefono" class="form-control" placeholder="Telefono">
+   <input  type="text" name="telefono" class="form-control" placeholder="Telefono" required>
    <!-- Error -->
         <?php if($validation->getError('telefono')) {?>
             <div class='alert alert-danger mt-2'>
@@ -51,7 +51,7 @@
   <div>
   <label for="tipo_servicio">Tipo Servicio:</label>
   <select name="tipo_servicio">
-    <option value="">Seleccione un servicio</option> <!-- Sin servicio por defecto -->
+    <option value="1">Seleccione un servicio</option> <!-- Sin servicio por defecto -->
     <?php foreach($servicios as $servicio): ?>
       <option value="<?= $servicio['id_servi']; ?>"><?= $servicio['descripcion']; ?> - $<?= $servicio['precio']; ?></option>
     <?php endforeach; ?>
@@ -84,7 +84,7 @@
 
     <br>
   <div class="button-container">
-  <a href="<?php echo base_url('usuarios-list'); ?>" class="button2" type="reset">Cancelar</a>
+  <a href="<?php echo base_url('turnos'); ?>" class="button2" type="reset">Cancelar</a>
   <button type="submit" class="button2">Registrar</button>
   </div>
 

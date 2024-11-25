@@ -1,4 +1,9 @@
+<?php $session = session();
+          $nombre= $session->get('nombre');
+          $perfil=$session->get('perfil_id');
+          $id=$session->get('id');?> 
 <div>
+<?php if($perfil == 1){  ?>
   <div class="comprados nuevoTurno" style="width: 50%;">
     <div>
       <h2>Editar Servicio</h2>
@@ -44,4 +49,9 @@
       </div>
     </form>
   </div>
+  <?php }else{ ?>
+  <h2 class="warning">Su perfil no tiene acceso a esta parte,
+    Vuelva a alguna sección de Empleado o comunuquese con el Jefe!
+  </h2>
+<?php }?>
 </div>

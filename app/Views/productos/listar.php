@@ -14,38 +14,11 @@
     </script>
 <?php endif; ?>
 <br>
-<div class="" style="width: 100%;">
+<div class="" style="width: 90%;">
   <div class="">
   <h2 class="textoColor" align="center">Listado de Productos</h2>
   <br>
-  <!-- <section class="buscador">
   
-  <form id="product_form" action="<?php echo base_url('Carrito_agrega'); ?>" method="post">
-  <button type="submit" class="success">Buscar y Agregar</button>
-  <br>
-    <div style="position: relative; display: inline-block;">
-        <input type="text" id="product_input" placeholder="Buscar producto..." autocomplete="off" required onfocus="this.value=''" />
-        <select id="product_select" name="product_id" required size="3">
-            <option class="separador">Seleccione un Producto!</option>
-            <?php if ($productos): ?>
-                
-                <?php foreach ($productos as $prod): ?>
-                  <?php if($prod['stock'] != 0) {?>
-                    <option class="product-option" value="<?php echo $prod['id']; ?>" data-nombre="<?php echo $prod['nombre']; ?>" data-precio="<?php echo $prod['precio_vta']; ?>">
-                        <?php echo $prod['nombre']; ?> <h5> ---- Precio -- $</h5> <?php echo $prod['precio_vta']; ?>
-                    </option>
-                    <?php  } ?>
-                <?php endforeach; ?>
-                
-            <?php endif; ?>
-        </select>
-        <input type="hidden" name="nombre" id="nombre">
-        <input type="hidden" name="precio_vta" id="precio_vta">
-        <input type="hidden" name="id" id="product_id">
-    </div>
-</form>
-
-    </section> -->
   <table class="" id="users-list">
        <thead>
           <tr class="colorTexto2">

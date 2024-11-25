@@ -64,3 +64,29 @@
     background: linear-gradient(45deg, #ff0000, #ff0000, #ff6347); /* Gradiente que simula el fuego */
     box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6), 0 0 20px 5px rgba(168, 0, 0, 0.6); /* Sombra de fuego alrededor del icono */
 }
+
+.warning {
+    color: #ffffff; /* Texto blanco para contraste */
+    background-color: #ff4d4d; /* Rojo claro para indicar advertencia */
+    border: 2px solid #cc0000; /* Borde rojo oscuro */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    text-align: center; /* Centrado del texto */
+    font-family: Arial, sans-serif; /* Fuente clara y legible */
+    font-size: 1.5rem; /* Tamaño del texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para profundidad */
+}
+
+.desarrollador {
+    color: #ecf0f1; /* Texto en un tono claro */
+    text-align: center; /* Centrado del texto */
+    padding: 10px 15px; /* Espaciado interno */
+    font-size: 1.2rem; /* Tamaño de fuente más pequeño */
+    font-family: 'Arial', sans-serif; /* Fuente legible */
+    border-top: 3px solid #71777c; /* Borde superior para separación */
+    position: relative; /* Mantiene la posición relativa */
+    bottom: 0; /* Fijado al final */
+    width: 100%; /* Ocupa todo el ancho */
+    font-weight: 900px;
+}
+

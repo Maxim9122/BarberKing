@@ -81,6 +81,7 @@ $routes->get('/usuarios-list', 'Datatable_controller::index');
 $routes->get('/editoMisDatos/(:num)','Datatable_controller::editoMisDatos/$1');
 $routes->get('/habilitarUs/(:num)', 'Usuario_controller::habilitar/$1');
 $routes->get('/editarUs/(:num)', 'Datatable_controller::editar/$1');
+$routes->get('/delete/(:num)', 'Usuario_controller::delete/$1');
 $routes->post('/enviarEdicion', 'Usuario_controller::formValidationEdit');
 $routes->get('/eliminados', 'Usuario_controller::usuariosEliminados');
 

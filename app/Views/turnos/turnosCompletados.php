@@ -32,10 +32,10 @@
         <div class="estiloTurno">
     <form action="<?php echo base_url('filtrarTurnos'); ?>" method="POST">
         <label for="start-date" class="label-inline">Fecha desde:</label>
-        <input type="date" id="fecha" name="fecha_desde" required>
+        <input type="date" id="fecha_desde" name="fecha_desde" required>
         
         <label for="end-date" class="label-inline">Fecha hasta:</label>
-        <input type="date" id="hora" name="fecha_hasta" required>
+        <input type="date" id="fecha_hasta" name="fecha_hasta" required>
         
         <label for="barber-id" class="label-inline">Barber:</label>
         <select id="barber-id" name="id_barber">
@@ -86,7 +86,7 @@
         <td><?php echo $trn['hora_turno']; ?></td>
         <td><?php echo $trn['fecha_turno']; ?></td>
         <td><?php echo $trn['descripcion']; ?></td>
-        <td><?php echo $trn['precio']; ?></td>
+        <td>$<?php echo $trn['precio']; ?></td>
             <!-- Calculo lo recaudado -->            
         <?php $Recaudacion = $Recaudacion + $trn['precio'];?>
          
@@ -96,10 +96,10 @@
          <?php endif; ?>
        
      </table>
-
+            <!-- Muestro la Recaudacion de los turnos completado que se trajo del filtro o de todos-->
      <section class="estiloTurno textColor day">
      <h3 class="estiloTurno textColor day">Recaudacion total: $ <?php echo $Recaudacion ?></h3>
-     <?php $Recaudacion = $Recaudacion * 0.3 ;?>
+     <?php $Recaudacion = $Recaudacion * 0.6 ;?>
      <h3 class="estiloTurno textColor day">Le corresponde al Barber: $ <?php echo $Recaudacion ?></h3>
      </section>
      
@@ -142,16 +142,9 @@ const formatter = new Intl.DateTimeFormat('es-AR', {
 
 const formattedDate = formatter.format(today).split('/').reverse().join('-'); // Formato YYYY-MM-DD
 
-// Formatear la hora en formato HH:MM
-const formattedTime = new Intl.DateTimeFormat('es-AR', {
-    ...options,
-    hour: '2-digit',
-    minute: '2-digit'
-}).format(today);
-
 // Establecer la fecha y hora actuales en los campos correspondientes
-document.getElementById('fecha').value = formattedDate;
-document.getElementById('hora').value = formattedTime;
+document.getElementById('fecha_desde').value = formattedDate;
+document.getElementById('fecha_hasta').value = formattedDate;
 
 </script>
 
