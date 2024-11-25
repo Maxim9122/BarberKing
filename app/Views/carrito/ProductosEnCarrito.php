@@ -23,6 +23,7 @@
         <div class = "heading">
             <u><i><h2>Productos En Carrito</h2></i></u>
         </div>
+        <br>
         <div class="texto-negrita" align="center" >
 
             <?php  
@@ -34,16 +35,7 @@
             }
             ?>
         </div>
-       <!-- Formulario para agregar un Gastos de productos no registrados-->
-    <form action="<?php echo base_url('Otros_gastos');?>" method="post" class="alineacion_Y_texto">
-    <input type="hidden" name="id" value="10000">
-    <label for="nombre_producto">Otros:</label>
-    <input type="text" name="nombre" id="nombre_producto" class="no-border-input" placeholder="Nombre" required>
-    <label for="precio_producto">Monto/Precio:</label>
-    <input type="text" name="precio_vta" id="precio_producto" class="no-border-input" placeholder="Importe en $" required>    
-    <button class="success margenArriba" type="submit" >Agregar Producto</button>
-    </form>
-<br>
+   
 
 <?php
 // Asegúrate de definir $gran_total antes de este script
@@ -89,13 +81,21 @@ $gran_total = isset($gran_total) ? $gran_total : 0; // Si $gran_total no está d
                         </td>
                         <td class="separador">
                         <?php 
-                                if($item['id'] < 10000){
-                                echo form_input('cart[' . $item['id'] . '][qty]', $item['qty'],
-                                'maxlength="3" size="1" style="text-align: right"');
-                            }else{
+                            if ($item['id'] < 10000) {
+                                echo form_input([
+                                    'name' => 'cart[' . $item['id'] . '][qty]',
+                                    'value' => $item['qty'],
+                                    'type' => 'number',
+                                    'min' => '1',
+                                    'maxlength' => '3',
+                                    'size' => '1',
+                                    'style' => 'text-align: right; width: 50px;',
+                                    'oninput' => "this.value = this.value.replace(/[^0-9]/g, '')"
+                                ]);
+                            } else {
                                 echo number_format($item['qty']);
                             }
-                        ?>
+                            ?>
                         </td>
                             <?php $gran_total = $gran_total + $item['subtotal']; ?>
                         <td class="separador">

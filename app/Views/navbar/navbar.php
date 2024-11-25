@@ -7,6 +7,7 @@
   <link rel="icon" href="<?php echo base_url('./assets/img/iconoBK.png');?>">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/navbar.css">
   <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/clock.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/mensajesTemporales.css">
 
   <script src="<?php echo base_url();?>./assets/js/a25933befb.js" crossorigin="anonymous"></script>
   

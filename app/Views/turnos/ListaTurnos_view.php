@@ -2,28 +2,25 @@
           $nombre= $session->get('nombre');
           $perfil=$session->get('perfil_id');
           $id=$session->get('id');?>
-<section class="Fondo">
-
-<?php if (session()->getFlashdata('msg')): ?>
-    <div id="flash-message" class="success" style="width: 30%;">
-        <?= session()->getFlashdata('msg') ?>
-    </div>
+<section class="Fon">
+<!-- Mensajes temporales -->
+    <?php if (session()->getFlashdata('msg')): ?>
+        <div id="flash-message" class="flash-message success">
+            <?= session()->getFlashdata('msg') ?>
+        </div>
+    <?php endif; ?>
+    <?php if (session("msgEr")): ?>
+        <div id="flash-message" class="flash-message danger">
+            <?php echo session("msgEr"); ?>
+        </div>
+    <?php endif; ?>
     <script>
         setTimeout(function() {
             document.getElementById('flash-message').style.display = 'none';
-        }, 2000); // 2000 milisegundos = 2 segundos
-    </script>
-<?php endif; ?>
-  <?php if(session("msgEr")):?>
-   <div id="flash-message2" class="danger" style="width: 30%;">
-      <?php echo session("msgEr"); ?>
-      </div>
-      <script>
-        setTimeout(function() {
-            document.getElementById('flash-message2').style.display = 'none';
         }, 3000); // 3000 milisegundos = 3 segundos
     </script>
-  <?php endif?>
+
+
 
 <div class="" style="width: 100%;">
         <section class="contenedor-titulo">
