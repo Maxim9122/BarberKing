@@ -151,16 +151,16 @@
        
      </table>
 
-     <!-- Cuadro de confirmación -->
-        <div id="confirm-dialog" class="confirm-dialog">
-            <div class="confirm-content btn2">
-                <p id="confirm-message"></p>
-                <div class="confirm-buttons">
-                    <button id="confirm-yes" class="btn btn-yes">Sí</button>
-                    <button id="confirm-no" class="btn btn-no">No</button>
-                </div>
-            </div>
+    <!-- Cuadro de confirmación -->
+    <div id="confirm-dialog" class="confirm-dialog" style="display: none;">
+    <div class="confirm-content btn2">
+        <p id="confirm-message">¿Estás seguro?</p>
+        <div class="confirm-buttons">
+            <button id="confirm-yes" class="btn btn-yes" autofocus>Sí</button>
+            <button id="confirm-no" class="btn btn-no">No</button>
         </div>
+    </div>
+    </div>
      
   </div>
 </div>
@@ -244,5 +244,53 @@ document.getElementById('hora').value = formattedTime;
         };
     }
 </script>
+
+<script>
+    function mostrarConfirmacion(event, mensaje, href) {
+        event.preventDefault(); // Detener la acción predeterminada del enlace
+
+        // Mostrar el cuadro de diálogo
+        const dialog = document.getElementById('confirm-dialog');
+        const messageElement = document.getElementById('confirm-message');
+        const yesButton = document.getElementById('confirm-yes');
+        const noButton = document.getElementById('confirm-no');
+
+        messageElement.textContent = mensaje;
+        dialog.style.display = 'flex';
+
+        // Acción para confirmar
+        yesButton.onclick = function () {
+            cerrarConfirmacion(); // Cerrar el cuadro
+            window.location.href = href; // Redirigir al enlace
+        };
+
+        // Acción para cancelar
+        noButton.onclick = cerrarConfirmacion;
+
+        // Detectar clics fuera del cuadro de diálogo
+        window.onclick = function (e) {
+            if (e.target === dialog) {
+                cerrarConfirmacion();
+            }
+        };
+
+        // Detectar la tecla Escape
+        window.onkeydown = function (e) {
+            if (e.key === "Escape") {
+                cerrarConfirmacion();
+            }
+        };
+    }
+
+    function cerrarConfirmacion() {
+        const dialog = document.getElementById('confirm-dialog');
+        dialog.style.display = 'none';
+
+        // Eliminar los eventos para evitar interferencias en el futuro
+        window.onclick = null;
+        window.onkeydown = null;
+    }
+</script>
+
 
 <br><br>
