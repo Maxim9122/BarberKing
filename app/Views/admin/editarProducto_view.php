@@ -97,13 +97,13 @@
   $categoria='';
   switch ($data['categoria_id']) {
     case 1:
-      $categoria = 'Bebidas';
+      $categoria = 'Makinas';
       break;
   case 2:
-      $categoria = 'Mercaderia';
+      $categoria = 'Perfumes';
       break;
   case 3:
-      $categoria = 'Carniceria';
+      $categoria = 'Ropa';
       break;
 }?>
    <label for="exampleFormControlInput1" class="form-label">Categoria</label>

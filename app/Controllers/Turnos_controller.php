@@ -36,9 +36,28 @@ class Turnos_controller extends Controller{
         echo view('footer/footer');
     }
 
+    public function TurnosTodos()
+    {
+        $turnosModel = new Turnos_model();
+        $filtros = [
+            'estado' => 'Pendiente'
+        ];
+        $datos['turnos'] = $turnosModel->obtenerTurnos($filtros);
 
-        public function nuevoTurno()
-        {
+        $datos2['barbers'] = (new Usuarios_model())->getUsBaja('NO');
+        $datos3['servicios'] = (new Servicios_model())->getServicio();
+        $datos4['clientes'] = (new Clientes_model())->getClientes();
+
+        $data['titulo'] = 'Listado de Turnos';
+        echo view('navbar/navbar');
+        echo view('header/header', $data);
+        echo view('turnos/turnosDeDiaDistinto_alActual', $datos + $datos2 + $datos3 + $datos4);
+        echo view('footer/footer');
+    }
+
+
+    public function nuevoTurno()
+    {
             // Cargar el modelo de servicios
             $serviciosModel = new Servicios_model();
     
@@ -179,7 +198,7 @@ class Turnos_controller extends Controller{
 
      // Redirigir a la lista de turnos
      session()->setFlashdata('msg', 'Turno Actualizado!');
-    return redirect()->to(base_url('turnos'));
+     return redirect()->to($this->request->getHeader('referer')->getValue());
     }
         
     
@@ -189,7 +208,7 @@ class Turnos_controller extends Controller{
         $turnosModel = new Turnos_model();
         $turnosModel->cambiarEstado($id_turno, 'Listo');
         session()->setFlashdata('msg', 'Turno Completado!');
-        return redirect()->to(base_url('turnos'));
+        return redirect()->to($this->request->getHeader('referer')->getValue());
     }
 
 
@@ -199,7 +218,7 @@ class Turnos_controller extends Controller{
              $turnosModel = new Turnos_model();
              $turnosModel->cambiarEstado($id_turno, 'Cancelado');
              session()->setFlashdata('msgEr', 'Turno Cancelado!');
-             return redirect()->to(base_url('turnos'));
+             return redirect()->to($this->request->getHeader('referer')->getValue());
         }
     
     //Muestra todos los turnos realizados    

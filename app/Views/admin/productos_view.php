@@ -14,7 +14,7 @@
         }, 2000); // 2000 milisegundos = 2 segundos
     </script>
 <?php endif; ?>
-<div class="container mt-5 fondo3 rounded" style="width: 107%;">
+<div class="container mt-5 fondo3 rounded" style="width: 100%;">
   <br>
   <a class="btn btn-success float-end" href="<?php echo base_url('nuevoProducto');?>">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
