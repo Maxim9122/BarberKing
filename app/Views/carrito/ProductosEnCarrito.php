@@ -30,7 +30,7 @@
             // Si el carrito está vacio, mostrar el siguiente mensaje
             if (empty($carrito))
             {
-                echo 'No hay Turnos Registrados Todavia.!"';
+                echo 'No hay productos agregados Todavia.!"';
                 
             }
             ?>

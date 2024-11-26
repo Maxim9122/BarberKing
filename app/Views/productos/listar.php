@@ -14,7 +14,7 @@
     </script>
 <?php endif; ?>
 <br>
-<div class="" style="width: 90%;">
+<div class="" style="width: 100%;">
   <div class="">
   <h2 class="textoColor" align="center">Listado de Productos</h2>
   <br>
