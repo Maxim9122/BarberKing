@@ -3,6 +3,25 @@
           $perfil=$session->get('perfil_id');
           $id=$session->get('id');?>
 <section class="Fondo">
+
+<!-- Mensajes temporales -->
+<?php if (session()->getFlashdata('msg')): ?>
+        <div id="flash-message" class="flash-message success">
+            <?= session()->getFlashdata('msg') ?>
+        </div>
+    <?php endif; ?>
+    <?php if (session("msgEr")): ?>
+        <div id="flash-message" class="flash-message danger">
+            <?php echo session("msgEr"); ?>
+        </div>
+    <?php endif; ?>
+    <script>
+        setTimeout(function() {
+            document.getElementById('flash-message').style.display = 'none';
+        }, 3000); // 3000 milisegundos = 3 segundos
+    </script>
+<!-- Fin de los mensajes temporales -->
+
 <div class="" style="width: 100%;">
 <section class="contenedor-titulo">
   <strong class="titulo-vidrio">Lista de Clientes</strong>

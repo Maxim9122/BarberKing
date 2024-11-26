@@ -123,9 +123,11 @@
   <input type="hidden" name="id" value="<?php echo $data['id']?>">
 
   <br>
-           <input type="submit" value="Editar" class="btn btn-outline-success float-end">
-            <a type="reset" href="<?php echo base_url('usuarios-list');?>" class="btn btn-outline-danger float-end">Cancelar</a>
-      <br><br>
+  <div style="text-align: end;">
+            <a type="reset" href="<?php echo base_url('usuarios-list');?>" class="btn" style="text-align: end;">Cancelar</a>
+            <input type="submit" value="Editar" class="btn" >
+  </div>
+
  </div>
 </form>
 <?php }else{ ?>

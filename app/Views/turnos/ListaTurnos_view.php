@@ -2,7 +2,7 @@
           $nombre= $session->get('nombre');
           $perfil=$session->get('perfil_id');
           $id=$session->get('id');?>
-<section class="Fon">
+<section>
 <!-- Mensajes temporales -->
     <?php if (session()->getFlashdata('msg')): ?>
         <div id="flash-message" class="flash-message success">

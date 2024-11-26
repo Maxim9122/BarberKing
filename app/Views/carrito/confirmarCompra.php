@@ -90,7 +90,7 @@
             </table>
             <br> <br>
             <a class='btn' href="<?php echo base_url('CarritoList') ?>">Volver</a>
-            <?php echo form_submit('confirmar', 'Confirmar',"class='success'"); ?>
+            <?php echo form_submit('confirmar', 'Confirmar',"class='btn'"); ?>
             <br> <br>
         </div>
     </div>

@@ -58,7 +58,7 @@
   <div class="button-container">
             <a type="reset" href="<?php echo base_url('/');?>" class="btn">
             Volver</a>
-           <button type="submit" value="Editar" class="success">
+           <button type="submit" value="Editar" class="btn">
            Modificar</button>
            
       <br><br>

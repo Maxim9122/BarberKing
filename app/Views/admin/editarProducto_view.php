@@ -139,7 +139,7 @@
   <div class="button-container">
            
             <a type="reset" href="<?php echo base_url('Lista_Productos');?>" class="btn">Cancelar</a>
-            <input type="submit" value="Modificar" class="success">
+            <input type="submit" value="Modificar" class="btn">
             <br><br>
         </div>
  </div>

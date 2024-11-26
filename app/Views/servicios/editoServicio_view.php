@@ -45,7 +45,7 @@
       <br><br>
       <div class="button-container">
         <a type="reset" href="<?php echo base_url('Lista_servicios'); ?>" class="btn">Volver</a>
-        <button type="submit" value="Editar" class="success">Modificar</button>
+        <button type="submit" value="Editar" class="btn">Modificar</button>
       </div>
     </form>
   </div>
