@@ -27,7 +27,7 @@
             
             <div class="desarrollador">
                 <span>
-                    Desarrollado por <span>Maximiliano Luna</span>
+                    Desarrollado por <span>Maximiliano Luna (Tel:3841-670079)</span>
                 </span>
             </div>
         </div>
