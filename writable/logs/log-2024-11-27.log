@@ -51,3 +51,16 @@ CRITICAL - 2024-11-27 14:04:57 --> Undefined variable $ttrn
 #7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #8 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
 #9 {main}
+ERROR - 2024-11-27 14:23:04 --> Unknown column 'id_turno' in 'where clause'
+CRITICAL - 2024-11-27 14:23:04 --> Unknown column 'id_turno' in 'where clause'
+#0 C:\xampp\htdocs\BarberiaKing\system\Database\MySQLi\Connection.php(292): mysqli->query('DELETE FROM `tu...', 0)
+#1 C:\xampp\htdocs\BarberiaKing\system\Database\BaseConnection.php(670): CodeIgniter\Database\MySQLi\Connection->execute('DELETE FROM `tu...')
+#2 C:\xampp\htdocs\BarberiaKing\system\Database\BaseConnection.php(598): CodeIgniter\Database\BaseConnection->simpleQuery('DELETE FROM `tu...')
+#3 C:\xampp\htdocs\BarberiaKing\system\Database\BaseBuilder.php(2225): CodeIgniter\Database\BaseConnection->query('DELETE FROM `tu...', Array, false)
+#4 C:\xampp\htdocs\BarberiaKing\app\Models\turnos_model.php(103): CodeIgniter\Database\BaseBuilder->delete(Array)
+#5 C:\xampp\htdocs\BarberiaKing\app\Controllers\Turnos_controller.php(237): App\Models\Turnos_model->eliminarTurno('57')
+#6 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(832): App\Controllers\Turnos_controller->Turno_cancelado('57')
+#7 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Turnos_controller))
+#8 C:\xampp\htdocs\BarberiaKing\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\BarberiaKing\index.php(45): CodeIgniter\CodeIgniter->run()
+#10 {main}
