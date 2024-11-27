@@ -64,13 +64,16 @@
              <td><?php echo $prod['precio_vta']; ?></td>
              <?php  switch ($prod['categoria_id']) {
                 case 1:
-                    $categoria = 'Makinas';
+                    $categoria = 'Maquinas';
                     break;
                 case 2:
                     $categoria = 'Perfumes';
                     break;
                 case 3:
                     $categoria = 'Ropa';
+                    break;
+                case 4:
+                    $categoria = 'Otros';
                     break;
                 
             }?>

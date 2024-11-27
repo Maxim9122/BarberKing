@@ -54,9 +54,10 @@
   <div class="inputBox">
     <select name="categoria_id">
     <option>Seleccione Categoria</option>
-    <option value="1">Bebidas</option>
-    <option value="2">Mercaderia</option>
-    <option value="3">Carniceria</option>
+    <option value="1">Maquinas</option>
+    <option value="2">Perfumes</option>
+    <option value="3">Ropa</option>
+    <option value="4">Otros</option>
     </select>
     <label for="exampleFormControlTextarea1" class="form-label">Categoria</label>
     <!-- Error -->
@@ -112,8 +113,10 @@
         <?php }?>
   </div>
   <br>
-  <button type="submit" class="success">Guardar</button>
-  <a href="<?php echo base_url('Lista_Productos');?>" class="danger">Cancelar</a>    
+
+  <a href="<?php echo base_url('Lista_Productos');?>" class="btn">Cancelar</a>   
+  <button type="submit" class="btn">Guardar</button>
+   
   <br>
  </div>
 </form>
