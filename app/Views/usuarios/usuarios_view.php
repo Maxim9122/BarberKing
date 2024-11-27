@@ -7,20 +7,29 @@
 <div class="container">
    <div class="row">
    <?php if(session("msg")):?>
-   <div class="container alert alert-success text-center " id="flash-message" style="width: 50%;">
-      <?php echo session("msg"); ?>
-      </div>
-      <script>
+   <!-- Mensajes temporales -->
+   <?php if (session()->getFlashdata('msg')): ?>
+        <div id="flash-message" class="flash-message success">
+            <?= session()->getFlashdata('msg') ?>
+        </div>
+    <?php endif; ?>
+    <?php if (session("msgEr")): ?>
+        <div id="flash-message" class="flash-message danger">
+            <?php echo session("msgEr"); ?>
+        </div>
+    <?php endif; ?>
+    <script>
         setTimeout(function() {
             document.getElementById('flash-message').style.display = 'none';
         }, 3000); // 3000 milisegundos = 3 segundos
     </script>
+<!-- Fin de los mensajes temporales -->
   <?php endif?> 
 </div></div>
-<div class="">
 <section class="contenedor-titulo">
   <strong class="titulo-vidrio">Lista de Empleados/Barber</strong>
   </section>
+<div style="width: 100%; text-align: end;">
   <br>
   <a class="btn" href="<?php echo base_url('eliminados');?>">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-recycle" viewBox="0 0 16 16">

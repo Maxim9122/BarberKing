@@ -71,13 +71,13 @@
   <table class="table table-responsive table-hover" id="users-list">
        <thead>
           <tr class="colorTexto2">
-             <th>Nro Turno</th>
+             <th>Fecha Turno</th>
              <th>Cliente</th>
              <th>Teléfono</th>
              <th>Barber</th>
              <th>Hora Turno</th>
              <th>Servicio</th>
-             <th>Fecha</th>             
+             <th>Precio</th>             
              <th>Acciones</th>
           </tr>
        </thead>
@@ -85,7 +85,7 @@
           <?php if($turnos): ?>
             <?php foreach($turnos as $trn): ?>
     <tr>
-        <td><?php echo $trn['id']; ?></td>
+        <td><?php echo $trn['fecha_turno']; ?></td>
         <td><?php echo $trn['cliente_nombre']; ?></td>
         <td><?php echo $trn['cliente_telefono']; ?></td>
 
@@ -122,13 +122,10 @@
             $dia = date('d-m-Y');
             ?>
             <!-- Campo solo de visualización del precio -->
-            <td><?php 
-                // Compara las fechas después de asegurarte de que están en el mismo formato
-                if ($trn['fecha_turno'] != $dia): ?>
-                    <?php echo $trn['fecha_turno']; ?>
-                <?php else: ?>
+            <td>                    
+                
                     $<?php echo $trn['precio']; ?>
-                <?php endif; ?>
+                
             </td>
 
             

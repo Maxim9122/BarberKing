@@ -1,20 +1,22 @@
 <?php $cart = \Config\Services::cart(); ?>
 
+<!-- Mensajes temporales -->
 <?php if (session()->getFlashdata('msg')): ?>
-    <div id="flash-message" class="success" style="width: 30%;">
-        <?= session()->getFlashdata('msg') ?>
-    </div>
+        <div id="flash-message" class="flash-message success">
+            <?= session()->getFlashdata('msg') ?>
+        </div>
+    <?php endif; ?>
+    <?php if (session("msgEr")): ?>
+        <div id="flash-message" class="flash-message danger">
+            <?php echo session("msgEr"); ?>
+        </div>
+    <?php endif; ?>
     <script>
         setTimeout(function() {
             document.getElementById('flash-message').style.display = 'none';
-        }, 2000); // 2000 milisegundos = 2 segundos
+        }, 3000); // 3000 milisegundos = 3 segundos
     </script>
-<?php endif; ?>
-  <?php if(session("msgEr")):?>
-   <div class="secondary" style="width: 30%;">
-      <?php echo session("msgEr"); ?>
-      </div>
-  <?php endif?>
+<!-- Fin de los mensajes temporales -->
 <br>
 
 <div class="comprados" style="width:100%;">

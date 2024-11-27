@@ -92,6 +92,8 @@ class Turnos_model extends Model
             ->join('usuarios', 'usuarios.id = turnos.id_barber')
             ->join('servicios', 'servicios.id_servi = turnos.id_servi')
             ->where('turnos.estado', 'Listo')
+            ->orderBy('turnos.fecha_turno', 'DESC')
+            ->orderBy('turnos.hora_turno', 'DESC ')
             ->findAll();
     }
 }

@@ -1,6 +1,6 @@
 /* Estilos para la barra de desplazamiento */
 ::-webkit-scrollbar {
-    width: 12px; /* Ancho del scrollbar */
+    width: 15px; /* Ancho del scrollbar */
 }
 
 ::-webkit-scrollbar-track {

@@ -107,6 +107,7 @@
 </div>
 
 </section>
+
           <script src="<?php echo base_url('./assets/js/jquery-3.5.1.slim.min.js');?>"></script>
           <link rel="stylesheet" type="text/css" href="<?php echo base_url('./assets/css/jquery.dataTables.min.css');?>">
           <script type="text/javascript" src="<?php echo base_url('./assets/js/jquery.dataTables.min.js');?>"></script>
@@ -114,6 +115,7 @@
     
     $(document).ready( function () {
       $('#users-list').DataTable( {
+        "ordering": false, // Desactiva el ordenamiento en toda la tabla
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página.",
             "zeroRecords": "Lo sentimos! No hay resultados.",
