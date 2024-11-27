@@ -131,7 +131,7 @@ class Turnos_controller extends Controller{
         // Guardar el turno en la base de datos
         $turnosModel->save([
             'id_cliente' => $id_cliente,
-            'id_barber' => 2,
+            'id_barber' => 1,
             'fecha_registro' => $fecha,
             'fecha_turno' => $fecha_turno_formateada,
             'hora_turno' => $this->request->getVar('hora_turno'),
@@ -164,7 +164,7 @@ class Turnos_controller extends Controller{
          // Guardar el turno en la base de datos
          $turnosModel->save([
              'id_cliente' => $id_cliente,
-             'id_barber' => 2,
+             'id_barber' => 1,
              'fecha_registro' => $fecha,
              'fecha_turno' => $fecha_turno_formateada,
              'hora_turno' => $this->request->getVar('hora_turno'),
@@ -173,7 +173,7 @@ class Turnos_controller extends Controller{
          ]);
  
          session()->setFlashdata('msg', 'Turno Registrado!');
-         return redirect()->to(base_url('turnos'));
+         return redirect()->to($this->request->getHeader('referer')->getValue());
     }
 
     //Actualiza el turno
@@ -206,6 +206,22 @@ class Turnos_controller extends Controller{
     public function Turno_completado($id_turno)
     {
         $turnosModel = new Turnos_model();
+
+        // Capturar los datos enviados desde el formulario
+     $id_barber = $this->request->getPost('id_barber');
+     $hora_turno = $this->request->getPost('hora_turno');
+     $id_servi = $this->request->getPost('id_servi');
+
+     // Preparar los datos para actualizar
+     $data = array(
+         'id_barber' => $id_barber,
+         'hora_turno' => $hora_turno,
+         'id_servi' => $id_servi
+     );
+
+     // Actualiza el turno en la base de datos antes de cambiar el estado a Listo
+     $turnosModel->actualizar_turno($id_turno, $data);
+
         $turnosModel->cambiarEstado($id_turno, 'Listo');
         session()->setFlashdata('msg', 'Turno Completado!');
         return redirect()->to($this->request->getHeader('referer')->getValue());

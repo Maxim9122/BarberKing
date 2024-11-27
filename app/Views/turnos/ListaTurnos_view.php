@@ -22,12 +22,13 @@
 <!-- Fin de los mensajes temporales -->
 
 
-<div class="" style="width: 100%;">
+<div style="width: 100%;">
         <section class="contenedor-titulo">
         <strong class="nombreLogo">Barber King</strong>
         
         <!-- Formulario para turno para Clientes Registrados -->
         <form class="estiloTurno" action="<?php echo base_url('turnoClienteRegistrado'); ?>" method="POST">
+        <!--Selector/Buscador de clientes -->
         <select class="form-control" name="id_cliente" id="id_cliente" required>
             <option value="">Seleccione un cliente</option>
             <?php foreach ($clientes as $cliente): ?>
@@ -95,7 +96,7 @@
         <td><?php echo $trn['cliente_telefono']; ?></td>
 
         <!-- Formulario por cada turno -->
-        <form action="<?php echo base_url('turno_actualizar/'.$trn['id']); ?>" method="POST">
+        <form id="turnoForm" action="<?php echo base_url('turno_actualizar/'.$trn['id']); ?>" method="POST">
             <!-- Dropdown para el barbero -->
             <td>
                 <select class="form-control btn" name="id_barber">
@@ -135,15 +136,18 @@
                 <a class="btn" href="<?php echo base_url('cancelar/'.$trn['id']);?>" onclick="mostrarConfirmacion(event, 'Cancelar turno.?', this.href);">
                 Cancelar
                 </a>
-
+                        
                 <!-- Botón para terminar un turno (Concretado o Completado) -->
-                <a class="btn" href="<?php echo base_url('clienteListo/'.$trn['id']);?>" onclick="mostrarConfirmacion(event, 'Turno Completado.?', this.href);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="" viewBox="0 0 16 16">
-                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                    <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-                </svg> 
-                Listo
-                </a>
+                <button 
+                    type="button" 
+                    class="btn btn-completar" 
+                    onclick="confirmarYEnviar('<?php echo base_url('clienteListo/'.$trn['id']); ?>')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                        <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    Listo
+                </button>
 
             </td>
             
@@ -174,8 +178,8 @@
           <script src="<?php echo base_url('./assets/js/jquery-3.5.1.slim.min.js');?>"></script>
           <link rel="stylesheet" type="text/css" href="<?php echo base_url('./assets/css/jquery.dataTables.min.css');?>">
           <script type="text/javascript" src="<?php echo base_url('./assets/js/jquery.dataTables.min.js');?>"></script>
+<!-- Para la tabla de turnos-->
 <script>
-    
     $(document).ready( function () {
       $('#users-list').DataTable( {
         "language": {
@@ -223,7 +227,7 @@ document.getElementById('hora').value = formattedTime;
 
 </script>
 
-<!--Esta parte es el Script para el cartel de confirmacion de Cancelar o dar como Listo un turno -->
+<!-- Esta parte es del cartel de confirmacion de Cancelar Turno o Turno Listo-->
 <script>
     function mostrarConfirmacion(event, mensaje, href) {
         event.preventDefault(); // Detener la acción predeterminada del enlace
@@ -236,36 +240,6 @@ document.getElementById('hora').value = formattedTime;
 
         messageElement.textContent = mensaje;
         dialog.style.display = 'flex';
-
-        // Acción para confirmar
-        yesButton.onclick = function () {
-            dialog.style.display = 'none';
-            window.location.href = href; // Redirigir al enlace
-        };
-
-        // Acción para cancelar
-        noButton.onclick = function () {
-            dialog.style.display = 'none';
-        };
-    }
-</script>
-<script>
-    function mostrarConfirmacion(event, mensaje, href) {
-        event.preventDefault(); // Detener la acción predeterminada del enlace
-
-        // Mostrar el cuadro de diálogo
-        const dialog = document.getElementById('confirm-dialog');
-        const messageElement = document.getElementById('confirm-message');
-        const yesButton = document.getElementById('confirm-yes');
-        const noButton = document.getElementById('confirm-no');
-
-        messageElement.textContent = mensaje;
-        dialog.style.display = 'flex';
-
-        // Acción para confirmar
-        yesButton.onclick = function () {
-            confirmarAccion(href);
-        };
 
         // Acción para cancelar
         noButton.onclick = cerrarConfirmacion;
@@ -302,4 +276,125 @@ document.getElementById('hora').value = formattedTime;
     }
 </script>
 
+
+
+<!-- Buscador de clientes -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const buscarInput = document.getElementById("buscar_cliente");
+    const clienteSelect = document.getElementById("id_cliente");
+
+    // Mostrar opciones al escribir en el buscador
+    buscarInput.addEventListener("input", function() {
+        const filter = buscarInput.value.toLowerCase();
+        const options = clienteSelect.querySelectorAll("option:not(.search-box)");
+
+        let hasMatches = false; // Bandera para saber si hay coincidencias
+
+        options.forEach(option => {
+            const text = option.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                option.style.display = "block"; // Mostrar coincidencias
+                hasMatches = true;
+            } else {
+                option.style.display = "none"; // Ocultar otras
+            }
+        });
+
+        // Mostrar solo si hay coincidencias y el filtro no está vacío
+        if (filter.length > 0 && hasMatches) {
+            clienteSelect.classList.add("show-options");
+        } else {
+            clienteSelect.classList.remove("show-options");
+        }
+    });
+
+    // Ocultar opciones al borrar todo el buscador
+    buscarInput.addEventListener("keydown", function(event) {
+        if (event.key === "Escape" || buscarInput.value === "") {
+            buscarInput.value = "";
+            clienteSelect.classList.remove("show-options");
+            const options = clienteSelect.querySelectorAll("option:not(.search-box)");
+            options.forEach(option => {
+                option.style.display = "none";
+            });
+        }
+    });
+
+    // Actualizar selección al hacer clic en una opción
+    clienteSelect.addEventListener("change", function() {
+        const selectedOption = clienteSelect.options[clienteSelect.selectedIndex];
+        if (!selectedOption.classList.contains("search-box")) {
+            buscarInput.value = selectedOption.textContent; // Mostrar el texto seleccionado en el buscador
+            clienteSelect.classList.remove("show-options"); // Ocultar opciones
+        }
+    });
+
+    // Enfocar el buscador automáticamente
+    clienteSelect.addEventListener("focus", function() {
+        buscarInput.focus();
+    });
+});
+</script>
+
+<!-- Cartel de la funcion que actualiza los campos de Barber Hora y Servicio 
+ si se modificaron antes de guardar el turno Completado-->
+<script>
+
+function confirmarYEnviar(url) {
+    // Detener la acción predeterminada del enlace (si es necesario, en un evento de tipo 'click')
+    event.preventDefault();
+
+    // Mostrar el cuadro de diálogo
+    const dialog = document.getElementById('confirm-dialog');
+    const messageElement = document.getElementById('confirm-message');
+    const yesButton = document.getElementById('confirm-yes');
+    const noButton = document.getElementById('confirm-no');
+
+    messageElement.textContent = 'Marcar Turno como completado?';
+    dialog.style.display = 'flex';
+
+    // Acción para confirmar
+    yesButton.onclick = function () {
+        enviarFormulario(url);
+    };
+
+    // Acción para cancelar
+    noButton.onclick = cerrarConfirmacion;
+
+    // Detectar clics fuera del cuadro de diálogo
+    window.onclick = function (e) {
+        if (e.target === dialog) {
+            cerrarConfirmacion();
+        }
+    };
+
+    // Detectar las teclas Enter y Escape
+    window.onkeydown = function (e) {
+        if (e.key === "Escape") {
+            cerrarConfirmacion();
+        } else if (e.key === "Enter") {
+            enviarFormulario(url);
+        }
+    };
+}
+
+function enviarFormulario(url) {
+    // Enviar el formulario al hacer clic en "Sí"
+    const formulario = document.getElementById('turnoForm');
+    formulario.action = url; // Cambiar la acción del formulario
+    formulario.submit(); // Enviar el formulario
+    cerrarConfirmacion(); // Cerrar el cuadro de confirmación
+}
+
+function cerrarConfirmacion() {
+    const dialog = document.getElementById('confirm-dialog');
+    dialog.style.display = 'none';
+
+    // Eliminar los eventos para evitar interferencias en el futuro
+    window.onclick = null;
+    window.onkeydown = null;
+}
+
+</script>
 <br><br>

@@ -68,6 +68,7 @@
     </svg> Turnos De Hoy</a>
   <br><br>
   <?php $Recaudacion = 0; ?>
+  
   <table class="table table-responsive table-hover" id="users-list">
        <thead>
           <tr class="colorTexto2">
@@ -85,6 +86,7 @@
           <?php if($turnos): ?>
             <?php foreach($turnos as $trn): ?>
     <tr>
+
         <td><?php echo $trn['fecha_turno']; ?></td>
         <td><?php echo $trn['cliente_nombre']; ?></td>
         <td><?php echo $trn['cliente_telefono']; ?></td>
@@ -117,10 +119,6 @@
                     <?php endforeach; ?>
                 </select>
             </td>
-            <?php
-            // Fecha actual en el formato d-m-Y
-            $dia = date('d-m-Y');
-            ?>
             <!-- Campo solo de visualización del precio -->
             <td>                    
                 
@@ -136,15 +134,6 @@
                 <!-- Botón para eliminar o cancelar un turno -->
                 <a class="btn" href="<?php echo base_url('cancelar/'.$trn['id']);?>" onclick="mostrarConfirmacion(event, 'Cancelar turno.?', this.href);">
                 Cancelar
-                </a>
-
-                <!-- Botón para terminar un turno (Concretado o Completado) -->
-                <a class="btn" href="<?php echo base_url('clienteListo/'.$trn['id']);?>" onclick="mostrarConfirmacion(event, 'Turno Completado.?', this.href);">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="" viewBox="0 0 16 16">
-                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                    <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
-                </svg> 
-                Listo
                 </a>
 
             </td>
@@ -182,7 +171,7 @@
       $('#users-list').DataTable( {
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página.",
-            "zeroRecords": "Sin Resultados! No hay turnos agendados para Hoy.",
+            "zeroRecords": "Sin Resultados! No hay turnos agendados.",
             "info": "Mostrando la página _PAGE_ de _PAGES_",
             "infoEmpty": "No hay registros disponibles.",
             "infoFiltered": "(filtrado de _MAX_ registros totales)",
@@ -263,11 +252,6 @@ document.getElementById('hora').value = formattedTime;
 
         messageElement.textContent = mensaje;
         dialog.style.display = 'flex';
-
-        // Acción para confirmar
-        yesButton.onclick = function () {
-            confirmarAccion(href);
-        };
 
         // Acción para cancelar
         noButton.onclick = cerrarConfirmacion;
