@@ -230,12 +230,18 @@ class Turnos_controller extends Controller{
 
     //Guarda el turno Cancelado
     public function Turno_cancelado($id_turno)
-        {
-             $turnosModel = new Turnos_model();
-             $turnosModel->cambiarEstado($id_turno, 'Cancelado');
-             session()->setFlashdata('msgEr', 'Turno Cancelado!');
-             return redirect()->to($this->request->getHeader('referer')->getValue());
-        }
+    {
+    $turnosModel = new Turnos_model();
+    
+    // Eliminar el turno de la base de datos por completo, no de forma logica.
+    if ($turnosModel->eliminarTurno($id_turno)) {
+        session()->setFlashdata('msgEr', 'Turno Eliminado!');
+    } else {
+        session()->setFlashdata('msgEr', 'Error al eliminar el turno.');
+    }
+    
+    return redirect()->to($this->request->getHeader('referer')->getValue());
+    }
     
     //Muestra todos los turnos realizados    
     public function turnosCompletados()

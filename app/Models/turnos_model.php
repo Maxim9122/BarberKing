@@ -96,4 +96,11 @@ class Turnos_model extends Model
             ->orderBy('turnos.hora_turno', 'DESC ')
             ->findAll();
     }
+
+    //Elimina de forma fisica el turno porque el Cliente del Soft asi lo quiere.
+    public function eliminarTurno($id_turno)
+    {
+    return $this->db->table('turnos')->delete(['id' => $id_turno]);
+    }
+
 }
