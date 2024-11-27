@@ -41,7 +41,7 @@ $routes->get('/turnosTodos', 'Turnos_controller::TurnosTodos');
 $routes->get('/nuevoTurno', 'Turnos_controller::nuevoTurno');
 $routes->post('/RegistrarTurno', 'Turnos_controller::RegistrarTurno');
 $routes->post('turno_actualizar/(:num)', 'Turnos_controller::turno_actualizar/$1');
-$routes->get('clienteListo/(:num)', 'Turnos_controller::Turno_completado/$1');
+$routes->post('clienteListo/(:num)', 'Turnos_controller::Turno_completado/$1');
 $routes->get('cancelar/(:num)', 'Turnos_controller::Turno_cancelado/$1');
 $routes->post('turnoClienteRegistrado', 'Turnos_controller::turnoClienteRegistrado');
 

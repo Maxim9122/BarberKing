@@ -105,13 +105,17 @@
   case 3:
       $categoria = 'Ropa';
       break;
+  case 4:
+      $categoria = 'Otros';
+      break;
 }?>
    <label for="exampleFormControlInput1" class="form-label">Categoria</label>
    <select name="categoria_id">
     <option value="<?php echo $data['categoria_id']?>"><?php echo $categoria ?></option>
-    <option value="1">Makinas</option>
+    <option value="1">Maquinas</option>
     <option value="2">Perfumes</option>
     <option value="3">Ropa</option>
+    <option value="4">Otros</option>
     
     </select>
    <!-- Error -->
