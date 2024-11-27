@@ -151,7 +151,7 @@ public function ListCompraDetalle($id)
     {
         $cart = \Config\Services::cart();
 	    // Recibe los datos del carrito, calcula y actualiza
-       	$cart_info =  $_POST['cart'];
+       	$cart_info = $this->request->getPost('cart');
 		
 		foreach( $cart_info as $id => $carrito)
 		{   
