@@ -31,7 +31,7 @@
                 </div>
                 <div class="">
                     <!-- Boton de ingresar -->
-                    <button type="submit" class="button2"> Ingresar </button>
+                    <button type="submit" class="button"> Ingresar </button>
                 </div>
             </form>
         </div>

@@ -24,36 +24,73 @@
 
 <div style="width: 100%;">
         <section class="contenedor-titulo">
-        <strong class="nombreLogo">Barbershop</strong>
-        
-        <!-- Formulario para turno para Clientes Registrados -->
-        <form class="estiloTurno" action="<?php echo base_url('turnoClienteRegistrado'); ?>" method="POST">
-        <!--Selector/Buscador de clientes -->
-        <select class="form-control" name="id_cliente" id="id_cliente" required>
-            <option value="">Seleccione un cliente</option>
-            <?php foreach ($clientes as $cliente): ?>
-                <option value="<?= $cliente['id_cliente']; ?>">
-                <?= $cliente['nombre']; ?>
-                </option>
-            <?php endforeach; ?>
-            </select>
-            
-            <select name="tipo_servicio" class="form-control" required>
-            <option value="">Seleccione un servicio</option>
-            <?php foreach($servicios as $servicio): ?>
-                <option value="<?= $servicio['id_servi']; ?>"><?= $servicio['descripcion']; ?> - $<?= $servicio['precio']; ?></option>
-            <?php endforeach; ?>
-            </select>
-            
-            <label for="fecha" class="label-inline">Fecha:</label>
-            <input type="date" class="form-control" id="fecha" name="fecha_turno">
-            
-            <label for="hora" class="label-inline">Hora:</label>
-            <input type="time" class="form-control" id="hora" name="hora_turno">
-            
-            <button type="submit" class="btn btn-submit">Agendar</button>
-        </form>
-        </section>
+            <h1 class="logo-text">GÉNESIS PELUQUERÍA</h1>
+
+            <!-- Formulario para turno para Clientes Registrados -->
+            <form class="estiloTurno" action="<?php echo base_url('turnoClienteRegistrado'); ?>" method="POST">
+
+                <!-- Selector/Buscador de clientes -->
+                <select class="form-control" name="id_cliente" id="id_cliente" required>
+                <option value="">Seleccione un cliente</option>
+                <?php foreach ($clientes as $cliente): ?>
+                    <option value="<?= $cliente['id_cliente']; ?>">
+                    <?= $cliente['nombre']; ?>
+                    </option>
+                <?php endforeach; ?>
+                </select>
+
+                <!-- ===== SECCIÓN ===== -->
+                <select class="form-control" name="seccion_id" id="seccion" required>
+                <option value="">Seleccione una sección</option>
+                <option value="1">Barbería</option>
+                <option value="2">Peluquería</option>
+                </select>
+
+                <!-- ===== SERVICIOS (FILTRADOS) ===== -->
+                <select name="tipo_servicio" id="tipo_servicio" class="form-control" disabled required>
+                <option value="">Seleccione un servicio</option>
+                </select>
+
+                <label for="fecha" class="label-inline">Fecha:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha_turno">
+
+                <label for="hora" class="label-inline">Hora:</label>
+                <input type="time" class="form-control" id="hora" name="hora_turno">
+
+                <button type="submit" class="btn btn-submit">Agendar</button>
+            </form>
+            </section>
+
+  <script>
+  const servicios = <?= json_encode($servicios); ?>;
+</script>
+<script>
+  const seccionSelect = document.getElementById('seccion');
+  const servicioSelect = document.getElementById('tipo_servicio');
+
+  seccionSelect.addEventListener('change', function () {
+    const seccionElegida = parseInt(this.value);
+
+    servicioSelect.innerHTML = '<option value="">Seleccione un servicio</option>';
+    servicioSelect.disabled = true;
+
+    if (!seccionElegida) {
+      return;
+    }
+
+    servicios.forEach(servicio => {
+      if (parseInt(servicio.seccion_id) === seccionElegida) {
+        const option = document.createElement('option');
+        option.value = servicio.id_servi;
+        option.textContent = servicio.descripcion + ' - $' + servicio.precio;
+        servicioSelect.appendChild(option);
+      }
+    });
+
+    servicioSelect.disabled = false;
+  });
+</script>
+
   <div style="text-align: end;">
   
   <br>
@@ -74,6 +111,12 @@
     </svg> Turno Cliente Nuevo</a>
   <br><br>
   <?php $Recaudacion = 0; ?>
+  <!-- Selector de seccion -->   
+  <select id="filtroSeccion" class="form-control button" style="margin-bottom:10px;">
+  <option value="2" selected>Peluquería</option>
+  <option value="1">Barbería</option>
+  </select>
+
   <table class="table table-responsive table-hover" id="users-list">
        <thead>
           <tr class="colorTexto2">
@@ -90,7 +133,8 @@
        <tbody>
           <?php if($turnos): ?>
             <?php foreach($turnos as $trn): ?>
-    <tr>
+    <tr data-seccion="<?= $trn['seccion_id']; ?>">
+
         <td><?php echo $trn['id']; ?></td>
         <td><?php echo $trn['cliente_nombre']; ?></td>
         <td><?php echo $trn['cliente_telefono']; ?></td>
@@ -115,12 +159,16 @@
 
             <!-- Dropdown para el servicio -->
             <td>
-                <select class="form-control btn" name="id_servi">
-                    <?php foreach ($servicios as $servicio): ?>
-                        <option value="<?= $servicio['id_servi']; ?>" <?= $servicio['id_servi'] == $trn['id_servi'] ? 'selected' : ''; ?>>
-                            <?= $servicio['descripcion']; ?>
-                        </option>
-                    <?php endforeach; ?>
+                <select class="form-control btn select-servicio" name="id_servi">
+                <?php foreach ($servicios as $servicio): ?>
+                    <option
+                    value="<?= $servicio['id_servi']; ?>"
+                    data-seccion="<?= $servicio['seccion_id']; ?>"
+                    <?= $servicio['id_servi'] == $trn['id_servi'] ? 'selected' : ''; ?>
+                    >
+                    <?= $servicio['descripcion']; ?>
+                    </option>
+                <?php endforeach; ?>
                 </select>
             </td>
 
@@ -159,6 +207,56 @@
          <?php endif; ?>
        
      </table>
+
+  <script>
+  const filtroSeccion = document.getElementById('filtroSeccion');
+  const filasTurnos = document.querySelectorAll('#users-list tbody tr');
+
+  function aplicarFiltroSeccion() {
+    const seccionSeleccionada = filtroSeccion.value;
+
+    // 1️⃣ Mostrar / ocultar filas según sección
+    filasTurnos.forEach(fila => {
+      const seccionFila = fila.dataset.seccion;
+      fila.style.display = (seccionFila === seccionSeleccionada) ? '' : 'none';
+    });
+
+    // 2️⃣ Filtrar servicios SOLO en filas visibles
+    filasTurnos.forEach(fila => {
+      if (fila.style.display === 'none') return;
+
+      const select = fila.querySelector('.select-servicio');
+      if (!select) return;
+
+      let seleccionValida = false;
+
+      Array.from(select.options).forEach(option => {
+        if (option.dataset.seccion === seccionSeleccionada) {
+          option.style.display = '';
+          if (option.selected) seleccionValida = true;
+        } else {
+          option.style.display = 'none';
+        }
+      });
+
+      // Si el servicio actual no corresponde a la sección,
+      // seleccionar el primero válido
+      if (!seleccionValida) {
+        const primeraValida = Array.from(select.options)
+          .find(opt => opt.dataset.seccion === seccionSeleccionada);
+
+        if (primeraValida) primeraValida.selected = true;
+      }
+    });
+  }
+
+  // Aplicar al cargar (Peluquería por defecto)
+  aplicarFiltroSeccion();
+
+  // Aplicar al cambiar sección
+  filtroSeccion.addEventListener('change', aplicarFiltroSeccion);
+</script>
+
 
 <!-- Cuadro de confirmación -->
 <div id="confirm-dialog" class="confirm-dialog" style="display: none;">

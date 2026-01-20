@@ -59,6 +59,7 @@ class Servicios_controller extends Controller{
         } else {
             $ServiModel->save([
                 'descripcion' => $this->request->getPost('descripcion'),
+                'seccion_id' => $this->request->getPost('seccion_id'),
                 'precio' => $this->request->getPost('precio'),
             ]);
     
@@ -96,6 +97,7 @@ class Servicios_controller extends Controller{
         $id = $this->request->getPost('id');
         $data = [
             'descripcion' => $this->request->getPost('descripcion'),
+            'seccion_id'      => $this->request->getPost('seccion_id'),
             'precio'      => $this->request->getPost('precio')
         ];
     

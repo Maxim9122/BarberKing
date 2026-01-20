@@ -34,6 +34,7 @@ class Turnos_model extends Model
              c.telefono AS cliente_telefono,
              u.nombre AS barber_nombre,
              s.descripcion,
+             s.seccion_id,
              s.precio
          ');
          $builder->join('cliente c', 'c.id_cliente = t.id_cliente');

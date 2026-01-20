@@ -32,11 +32,12 @@
     /* max-height: 600px */
     width: 100%;
     max-width: 450px;
-    background: rgb(255, 255, 255, 0.2);
+    background: rgb(255, 255, 255, 0.1);
     backdrop-filter: blur(2px);
     padding: 30px 30px 30px;
     text-align: center;
     border-radius:25px ;
+    border: 3px solid #d4af37;   /* dorado clásico */
 }
 
 .form-content h1{
@@ -126,6 +127,6 @@ form p a {
 }
 @media screen and (max-width: 925px) {
     .containerLogin{
-        height: 300vh;
+        height: 55vh;
     }
 }

@@ -227,9 +227,17 @@ label {
     color: white;
 }
 
+.logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; /* tamaño mediano */
+    letter-spacing: 2px;
+    color: #d4af37; /* dorado */
+    font-weight: 400;
+}
+
 body {
-    background: linear-gradient(rgba(33,33,33,0.522), rgba(33,33,33,0.522)),url(../img/corona.webp);
-    background-size: cover;
+    background: linear-gradient(rgba(33,33,33,0.522), rgba(33,33,33,0.522)),#1A1818;
+    
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;

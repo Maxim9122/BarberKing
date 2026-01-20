@@ -8,7 +8,6 @@
   <strong class="titulo-vidrio">Lista de Servicios</strong>
   </section>
   <div style="text-align: end;">
-  <strong class="nombreLogo">Barber King</strong>
   <br><br>
     <a class="button" href="<?php echo base_url('new_Servicio');?>">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
@@ -21,6 +20,7 @@
        <thead>
           <tr class="colorTexto2">
              <th>Nro Servicio</th>
+             <th>Sección</th>
              <th>Descripcion</th>
              <th>Precio</th>             
              <th>Acciones</th>
@@ -31,6 +31,11 @@
           <?php foreach($servicios as $serv): ?>
           <tr>
              <td><?php echo $serv['id_servi']; ?></td>
+             <?php if ($serv['seccion_id'] == 1): ?>
+                  <td>Barbería</td>
+              <?php else: ?>
+                  <td>Peluquería</td>
+              <?php endif; ?>
              <td><?php echo $serv['descripcion']; ?></td>
              <td><?php echo $serv['precio']; ?></td>           
              

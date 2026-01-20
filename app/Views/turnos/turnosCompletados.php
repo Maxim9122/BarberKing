@@ -27,7 +27,6 @@
 
 <div class="" style="width: 100%;">
         <section class="contenedor-titulo">
-        <strong class="nombreLogo">Barbershop</strong>
 
         <div class="estiloTurno">
         <form action="<?php echo base_url('filtrarTurnos'); ?>" method="POST">

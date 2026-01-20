@@ -4,12 +4,14 @@
           $id=$session->get('id');?> 
 <div>
 <?php if($perfil == 1){  ?>
-  <div class="comprados nuevoTurno" style="width: 50%;">
+  <br>
+<div class="nuevoTurno">
+  <div style="width: 100%;" >
     <div>
-      <h2>Editar Servicio</h2>
+      <h2>Editando Servicio</h2>
     </div>
-    <br>
-    <?php $validation = session()->get('validation'); ?>
+  
+ <?php $validation = \Config\Services::validation(); ?>
     <form method="post" action="<?php echo base_url('/edicionServiOk') ?>" enctype="multipart/form-data">
       <?= csrf_field(); ?>
       <?php if (session()->getFlashdata('fail')) : ?>
@@ -31,6 +33,25 @@
       </div>
 
       <div>
+        <label for="seccion_id">Sección</label>
+        <select name="seccion_id">
+          <option value="1" <?= old('seccion_id', $data['seccion_id'] ?? '') == 1 ? 'selected' : '' ?>>
+            Barbería
+          </option>
+          <option value="2" <?= old('seccion_id', $data['seccion_id'] ?? '') == 2 ? 'selected' : '' ?>>
+            Peluquería
+          </option>
+        </select>
+
+        <!-- Error -->
+        <?php if ($validation && $validation->getError('seccion_id')) : ?>
+          <div class='alert alert-danger mt-2'>
+            <?= $validation->getError('seccion_id'); ?>
+          </div>
+        <?php endif ?>
+      </div>
+
+      <div>
         <label for="precio">Precio</label>
         <input name="precio" type="text" placeholder="Precio" value="<?= old('precio', $data['precio'] ?? '') ?>">
         <!-- Error -->
@@ -44,8 +65,8 @@
       <input type="hidden" name="id" value="<?= $data['id_servi'] ?? '' ?>">
       <br><br>
       <div class="button-container">
-        <a type="reset" href="<?php echo base_url('Lista_servicios'); ?>" class="btn">Volver</a>
-        <button type="submit" value="Editar" class="btn">Modificar</button>
+        <a type="reset" href="<?php echo base_url('Lista_servicios'); ?>" class="button">Volver</a>
+        <button type="submit" value="Editar" class="button">Modificar</button>
       </div>
     </form>
   </div>

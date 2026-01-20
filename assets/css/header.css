@@ -10,32 +10,32 @@
 ::-webkit-scrollbar-thumb {
     background: repeating-linear-gradient(
         45deg,
-        white 0%, white 12.5%, 
-        red 12.5%, red 25%, 
-        white 25%, white 37.5%, 
-        blue 37.5%, blue 50%, 
-        white 50%, white 62.5%, 
-        red 62.5%, red 75%, 
-        white 75%, white 87.5%, 
-        blue 87.5%, blue 100%
+        #000000 0%, #000000 12.5%, 
+        #d4af37 12.5%, #d4af37 25%, 
+        #000000 25%, #000000 37.5%, 
+        #7a4a1d 37.5%, #7a4a1d 50%, 
+        #000000 50%, #000000 62.5%, 
+        #d4af37 62.5%, #d4af37 75%, 
+        #000000 75%, #000000 87.5%, 
+        #7a4a1d 87.5%, #7a4a1d 100%
     );
     border-radius: 6px;
-    border: 2px solid #f0f0f0;
-    transition: 0.3s ease-in-out; /* Suaviza el cambio */
+    border: 2px solid #1a1a1a;
+    transition: background 0.3s ease-in-out;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background: repeating-linear-gradient(
         45deg,
-        blue 0%, blue 12.5%, 
-        white 12.5%, white 25%, 
-        red 25%, red 37.5%, 
-        white 37.5%, white 50%, 
-        blue 50%, blue 62.5%, 
-        white 62.5%, white 75%, 
-        red 75%, red 87.5%, 
-        white 87.5%, white 100%
-    ); /* Invierte el orden de colores */
+        #d4af37 0%, #d4af37 12.5%, 
+        #000000 12.5%, #000000 25%, 
+        #7a4a1d 25%, #7a4a1d 37.5%, 
+        #000000 37.5%, #000000 50%, 
+        #d4af37 50%, #d4af37 62.5%, 
+        #000000 62.5%, #000000 75%, 
+        #7a4a1d 75%, #7a4a1d 87.5%, 
+        #000000 87.5%, #000000 100%
+    );
 }
 
 
@@ -194,7 +194,7 @@ table.dataTable tbody tr:hover {
     margin: auto;
     width: 100%;
     max-width: 285px;
-    background: rgb(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.466);
     padding: 10px 10px 10px;
     text-align: center;
     border-radius:12px ;

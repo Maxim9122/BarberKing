@@ -3,16 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barberia King</title>
-  <link rel="icon" href="<?php echo base_url('./assets/img/iconoBK.png');?>">
+  <title>Genesis Peluqueria</title>
+  <link rel="icon" href="<?php echo base_url('./assets/img/GP_2.png');?>">
   <link rel="stylesheet" href="<?php echo base_url('./assets/css/navbar.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('./assets/css/clock.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('./assets/css/mensajesTemporales.css');?>">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
   <script src="<?php echo base_url('./assets/js/a25933befb.js');?>" crossorigin="anonymous"></script>
   
 </head>
+<style>
+  .clock-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* espacio entre logo y reloj */
+}
 
+.nav-logo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #d4af37;
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+
+    object-fit: contain; /* CAMBIO CLAVE */
+    background-color: black; /* opcional */
+}
+
+/* Opcional: ajustar reloj */
+.clock {
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+}
+@media (min-width: 768px) {
+    .nav-logo {
+        width: 75px;
+        height: 75px;
+    }
+}
+.nav-logo:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+</style>
 <body>
 
 <?php $session = session();
@@ -25,13 +61,21 @@
 <section class="navBarSection">
     <div class="headernav">
         <div class="logoDiv">
-            <div class="clock">
-                <div id="day" class="day"></div>
-                <div id="hours"></div>
-                <span class="colon" id="colon">:</span>
-                <div id="minutes"></div>
-            </div>
-        </div>
+          <div class="clock-container">        
+              <div class="clock">
+                  <div id="day" class="day"></div>
+                  <div id="hours"></div>
+                  <span class="colon" id="colon">:</span>
+                  <div id="minutes"></div>
+              </div>
+              <img 
+                  src="<?php echo base_url('assets/img/GP_2.png'); ?>" 
+                  alt="Logo Genesis"
+                  class="nav-logo"
+              >
+          </div>
+      </div>
+
 
         <!-- Botón de hamburguesa -->
         <button class="toggleNavBar" id="toggleNavBar">

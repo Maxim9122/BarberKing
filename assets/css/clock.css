@@ -31,15 +31,15 @@
     right: -4px;
     bottom: -4px;
     z-index: -1;
-    background: linear-gradient(45deg, 
-    white 0%, white 12.5%, 
-    red 12.5%, red 25%, 
-    white 25%, white 37.5%, 
-    blue 37.5%, blue 50%, 
-    white 50%, white 62.5%, 
-    red 62.5%, red 75%, 
-    white 75%, white 87.5%, 
-    blue 87.5%, blue 100%);
+    background: linear-gradient( 45deg,
+        #000000 0%, #000000 12.5%, 
+        #d4af37 12.5%, #d4af37 25%, 
+        #000000 25%, #000000 37.5%, 
+        #7a4a1d 37.5%, #7a4a1d 50%, 
+        #000000 50%, #000000 62.5%, 
+        #d4af37 62.5%, #d4af37 75%, 
+        #000000 75%, #000000 87.5%, 
+        #7a4a1d 87.5%, #7a4a1d 100%);
     background-size: 400%;
     border-radius: 12px;
     filter: blur(8px);

@@ -28,6 +28,15 @@
   </div>
 
   <div>
+    <label for="seccion">Sección:</label>
+    <select name="seccion_id" id="seccion" required>
+      <option value="">Seleccione una sección</option>
+      <option value="1">Barbería</option>
+      <option value="2">Peluquería</option>
+    </select>
+  </div>
+
+  <div>
    <label for="exampleFormControlInput1">Precio</label>
    <input name="precio" type="text" placeholder="Precio" >
      <!-- Error -->
@@ -40,8 +49,8 @@
 
     <br>
   <div class="button-container">
-  <a href="<?php echo base_url('Lista_servicios'); ?>" class="button2" type="reset">Cancelar</a>
-  <button type="submit" class="button2">Registrar</button>
+  <a href="<?php echo base_url('Lista_servicios'); ?>" class="button" type="reset">Cancelar</a>
+  <button type="submit" class="button">Registrar</button>
   </div>
 
       <br>

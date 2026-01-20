@@ -14,15 +14,15 @@
         <div class="footer">
     <div class="secContainer container grid">
         <div class="logoDiv">
-            <div class="footerLogo">
-                <a href="<?= base_url('catalogo')?>" class="logo">
-                    <strong class="nombreLogo">Barberia King</strong>
-                </a>
-            </div>
             
             <div class="socials flex">
-                <i class="fa fa-facebook icon" aria-hidden="true"></i>
-                <i class="fa fa-instagram icon" aria-hidden="true"></i>
+                <a href="https://www.facebook.com/tu_pagina" target="_blank" aria-label="Facebook">
+                    <i class="fa fa-facebook icon" aria-hidden="true"></i>
+                </a>
+
+                <a href="https://www.instagram.com/Genesis.peluqueriaOk" target="_blank" aria-label="Instagram">
+                    <i class="fa fa-instagram icon" aria-hidden="true"></i>
+                </a>
             </div>
             
             <div class="desarrollador">
