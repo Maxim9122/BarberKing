@@ -2,20 +2,39 @@
 
 <!-- Mensajes temporales -->
 <?php if (session()->getFlashdata('msg')): ?>
-        <div id="flash-message" class="flash-message success">
-            <?= session()->getFlashdata('msg') ?>
-        </div>
-    <?php endif; ?>
-    <?php if (session("msgEr")): ?>
-        <div id="flash-message" class="flash-message danger">
-            <?php echo session("msgEr"); ?>
-        </div>
-    <?php endif; ?>
-    <script>
-        setTimeout(function() {
-            document.getElementById('flash-message').style.display = 'none';
-        }, 3000); // 3000 milisegundos = 3 segundos
-    </script>
+    <div id="flash-message-success" class="flash-message success">
+        <?= session()->getFlashdata('msg') ?>
+    </div>
+<?php endif; ?>
+
+<?php if (session("msgEr")): ?>
+    <div id="flash-message-Error" class="flash-message danger">
+        <?php echo nl2br(session("msgEr")); ?>
+        <button class="close-btn" onclick="cerrarMensaje()">×</button>
+    </div>
+<?php endif; ?> 
+
+<script>
+    function cerrarMensaje() {
+        document.getElementById("flash-message-Error").style.display = "none";
+    }
+    // Ocultar mensaje de éxito después de 3 segundos
+    setTimeout(function() {
+        const successMessage = document.getElementById('flash-message-success');
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+    }, 3000);
+
+    // Ocultar mensaje de error después de 3 segundos
+    setTimeout(function() {
+        const errorMessage = document.getElementById('flash-message-danger');
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
+    }, 3000);
+</script>
+
 <!-- Fin de los mensajes temporales -->
 <br>
 
@@ -149,7 +168,7 @@ $gran_total = isset($gran_total) ? $gran_total : 0; // Si $gran_total no está d
                         Actualizar Importes</button>
                         <br><br>
                         <!-- " Confirmar orden envia a carrito_controller/muestra_compra  -->
-                        <a href="<?php echo base_url('comprar');?>" class ="success">Confirmar Compra</a>
+                        <a href="<?php echo base_url('comprar');?>" class ="success">Continuar Compra</a>
                     </td>
                 </tr>
                 <?php echo form_close();

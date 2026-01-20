@@ -18,10 +18,7 @@
                 <?php endif;?>
             <form action="<?php echo base_url('enviarlogin');?>" method="post">
                 <div class="input-group">
-                    <!-- <div class="input-field">
-                        <i class="fa-solid fa-user"></i>
-                        <input id="nameInput" type="text" placeholder="nombre">
-                    </div> -->
+                    
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
                         <input type="text" placeholder="correo" name= "email">

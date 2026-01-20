@@ -272,6 +272,13 @@ class Turnos_controller extends Controller{
 //Filtrado de turnos por fecha y barber
 public function filtrarTurnos()
 {
+    $session = session();
+    
+    // Guardar los valores en la sesión
+    $session->set('fecha_desde', $this->request->getVar('fecha_desde'));
+    $session->set('fecha_hasta', $this->request->getVar('fecha_hasta'));
+    $session->set('id_barber', $this->request->getVar('id_barber'));
+
     $turnosModel = new Turnos_model();
     $filtros = [
         'estado' => 'Listo',
@@ -280,7 +287,7 @@ public function filtrarTurnos()
         'id_barber' => $this->request->getVar('id_barber'),
     ];
     $datos['turnos'] = $turnosModel->obtenerTurnos($filtros);
-    //Creo un objeto del tipo modelo y en la misma linea ejecuto una funcion de ese modelo.
+    
     $datos2['barbers'] = (new Usuarios_model())->getUsBaja('NO');
     $datos3['servicios'] = (new Servicios_model())->getServicio();
     $datos4['clientes'] = (new Clientes_model())->getClientes();
@@ -291,6 +298,7 @@ public function filtrarTurnos()
     echo view('turnos/turnosCompletados', $datos + $datos2 + $datos3 + $datos4);
     echo view('footer/footer');
 }
+
 
 
 }

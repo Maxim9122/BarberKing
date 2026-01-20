@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barberia King</title>
   <link rel="icon" href="<?php echo base_url('./assets/img/iconoBK.png');?>">
-  <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/navbar.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/clock.css">
-  <link rel="stylesheet" href="<?php echo base_url();?>./assets/css/mensajesTemporales.css">
+  <link rel="stylesheet" href="<?php echo base_url('./assets/css/navbar.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('./assets/css/clock.css');?>">
+  <link rel="stylesheet" href="<?php echo base_url('./assets/css/mensajesTemporales.css');?>">
 
-  <script src="<?php echo base_url();?>./assets/js/a25933befb.js" crossorigin="anonymous"></script>
+  <script src="<?php echo base_url('./assets/js/a25933befb.js');?>" crossorigin="anonymous"></script>
   
 </head>
 
@@ -18,28 +18,36 @@
 <?php $session = session();
           $nombre= $session->get('nombre');
           $perfil=$session->get('perfil_id');
-          $id=$session->get('id');?>
+          $id=$session->get('id');
+          $estado =$session->get('estado'); 
+          ?>
 
-  <section class="navBarSection">
+<section class="navBarSection">
     <div class="headernav">
-      <div class="logoDiv">
-        <a href="<?= base_url('turnos')?>" class="logo">
-        <div class="clock">
-        <div id="day" class="day"></div>
-        <div id="hours"></div>
-        <span class="colon" id="colon">:</span>
-        <div id="minutes"></div>
+        <div class="logoDiv">
+            <div class="clock">
+                <div id="day" class="day"></div>
+                <div id="hours"></div>
+                <span class="colon" id="colon">:</span>
+                <div id="minutes"></div>
+            </div>
         </div>
 
-        </a>
+        <!-- Botón de hamburguesa -->
+        <button class="toggleNavBar" id="toggleNavBar">
+            &#9776; <!-- Icono de hamburguesa -->
+        </button>
 
-      </div>
-      
-      <div id="navBar" class="navBar">
-        <ul class="navList flex">
-        <?php if( ($perfil =='1')) { ?>
-          <li class="navItem">
-          <h5 class="colorTexto2"><?php echo "Bienvenido ".$nombre?> </h5>
+        <div id="navBar" class="navBar">
+            <ul class="navList flex">
+
+            <?php if( ($perfil =='1')) { ?>
+          
+          <li class="nnavItem">
+            <a href="<?= base_url('/catalogo')?>" class="btn">Productos</a>
+          </li>
+          <li class="navItem navImg">
+          <a href="<?php echo base_url('CarritoList') ?>"> <img src=" <?php echo base_url('assets/img/icons/carrito2.png')?>"> </a>
           </li>
           <li class="nnavItem">
             <a class="btn signUp" href="<?php echo base_url('compras');?>">VENTAS</a>
@@ -51,18 +59,16 @@
             <a class="btn signUp" href="<?php echo base_url('clientes');?>">CLIENTES</a>
           </li>
           <li class="nnavItem">
-            <a href="<?= base_url('Lista_Productos')?>" class="btn">PRODUCTOS</a>
+            <a href="<?= base_url('Lista_Productos')?>" class="btn">ABM/PRODUCTOS</a>
           </li>
           <li class="nnavItem">
-            <a href="<?= base_url('Lista_servicios')?>" class="button">SERVICIOS</a>
+            <a href="<?= base_url('Lista_servicios')?>" class="button btn">SERVICIOS</a>
           </li>
           <li class="nnavItem">
-            <a href="<?= base_url('turnos')?>" class="button">TURNOS</a>
+            <a href="<?= base_url('turnos')?>" class="button btn">TURNOS</a>
           </li>
-          <li class="navItem">
-            <button class="btn signUp">
-              <a href="<?= base_url('/logout')?>" class="signUp">Salir</a>
-            </button>
+          <li class="nnavItem">
+          <a href="<?= base_url('/logout')?>" class="btn" onclick="return confirmarAccionSalir(event);">Salir</a>
           </li>
           <?php } else if( (($perfil =='2')) ) { ?>
           <li class="navItem">
@@ -90,10 +96,56 @@
           </li>
           
          <?php } ?> 
-        </ul>
-      </div>
+         </ul>
+        </div>
     </div>
-  </section>
+</section>
+
+<style>
+  .resaltado {
+    color: orange;
+    border: 2px solid orange;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+}
+</style>
+
+<script>
+  // Obtén el botón de hamburguesa y la barra de navegación
+const toggleButton = document.querySelector('.toggleNavBar');
+const navBar = document.querySelector('.navBar');
+const body = document.querySelector('body');
+
+// Función para activar la barra de navegación y desplazar el contenido
+toggleButton.addEventListener('click', function() {
+    navBar.classList.toggle('active'); // Abre o cierra la barra de navegación
+    body.classList.toggle('navbar-active'); // Desplaza el contenido hacia abajo
+});
+
+</script>
+
+
+
+  <script>
+    // Obtener elementos del DOM
+    const toggleNavBar = document.getElementById('toggleNavBar');
+    const navBar = document.getElementById('navBar');
+
+    // Función para alternar la visibilidad del menú
+    toggleNavBar.addEventListener('click', () => {
+        navBar.classList.toggle('active');
+    });
+
+    // Cerrar el menú si se hace clic fuera de él
+    document.addEventListener('click', (event) => {
+        if (!navBar.contains(event.target) && !toggleNavBar.contains(event.target)) {
+            navBar.classList.remove('active');
+        }
+    });
+  </script>
+
 
   <script>
 
@@ -143,5 +195,37 @@ updateClock(); // Llamar inicialmente
 </script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  function confirmarAccionSalir(event) {
+      event.preventDefault(); // Detiene la navegación automática
+
+      Swal.fire({
+          title: "¿Desea Cerrar Sesión y Salir?",
+          icon: "question",
+          showCancelButton: true,
+          confirmButtonText: "Sí, Salir",
+          cancelButtonText: "Cancelar",
+          customClass: {
+              popup: 'small-swal' // Clases personalizadas
+          }
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = "<?= base_url('/logout') ?>";
+          }
+      });
+
+      return false; // Evita la navegación si no se confirma
+  }
+</script>
+
+<style>
+  /* Reducir tamaño del cuadro de diálogo */
+  .small-swal {
+      width: 300px !important; /* Ancho más pequeño */
+      font-size: 14px !important; /* Texto más pequeño */
+      padding: 10px !important;
+  }
+</style>
 </body>
 </html>

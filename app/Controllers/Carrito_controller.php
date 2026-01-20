@@ -197,20 +197,34 @@ public function ListCompraDetalle($id)
 		echo view('footer/footer');
     }
 
+	
     public function guarda_compra()
 {
     $cart = \Config\Services::cart();
     $session = session();
 	
     // Recuperar datos del formulario usando $this->request->getPost()
-    $id_cliente = $this->request->getPost('cliente_id');
-	//print_r($id_cliente);
-		//exit;
-    if ($id_cliente == "Anonimo") {
+    $id_cliente = $this->request->getVar('cliente_id');
+	
+    if (!$id_cliente) {
         $id_cliente = 1; // Valor por defecto si no se envía cliente_id
     }
-    $tipo_pago = $this->request->getPost('tipo_pago');
-    $total = $this->request->getPost('total_venta');
+    $monto_efectivo = $this->request->getVar('pagoEfectivo');
+	$monto_transferencia = $this->request->getVar('pagoTransferencia');
+
+	$nombre_cliente = $this->request->getVar('nombre_prov');
+
+    $total = $this->request->getVar('total_venta');
+
+	if ($monto_efectivo > 0 && $monto_transferencia > 0) {
+		$tipo_pago = 'Mixto';
+	} elseif ($monto_efectivo > 0) {
+		$tipo_pago = 'Efectivo';
+	} elseif ($monto_transferencia > 0) {
+		$tipo_pago = 'Transferencia';
+	} else {
+		$tipo_pago = 'Indefinido'; // En caso de que no se haya ingresado ningún valor
+	}
 
     // Establecer zona horaria y obtener fecha/hora en formato correcto
     date_default_timezone_set('America/Argentina/Buenos_Aires');
@@ -223,8 +237,11 @@ public function ListCompraDetalle($id)
         'fecha'        => $fecha,
         'hora'         => $hora,
         'id_cliente'   => $id_cliente,
+		'monto_efectivo' => $monto_efectivo,
+		'monto_transfer' => $monto_transferencia,
         'total_venta'  => $total,
         'tipo_pago'    => $tipo_pago,
+		'nombre_cliente' => $nombre_cliente
     ]);
 
     // Obtener ID de la cabecera guardada

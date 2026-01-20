@@ -27,26 +27,29 @@
 
 <div class="" style="width: 100%;">
         <section class="contenedor-titulo">
-        <strong class="nombreLogo">Barber King</strong>
+        <strong class="nombreLogo">Barbershop</strong>
 
         <div class="estiloTurno">
-    <form action="<?php echo base_url('filtrarTurnos'); ?>" method="POST">
-        <label for="start-date" class="label-inline">Fecha desde:</label>
-        <input type="date" id="fecha_desde" name="fecha_desde" required>
-        
-        <label for="end-date" class="label-inline">Fecha hasta:</label>
-        <input type="date" id="fecha_hasta" name="fecha_hasta" required>
-        
-        <label for="barber-id" class="label-inline">Barber:</label>
-        <select id="barber-id" name="id_barber">
-            <option value="">Todos</option>
-            <?php foreach ($barbers as $barber): ?>
-                <option value="<?= $barber['id']; ?>"><?= $barber['nombre']; ?></option>
-            <?php endforeach; ?>
-        </select>
-        
-        <button type="submit" class="btn">Filtrar</button>
-        </form>
+        <form action="<?php echo base_url('filtrarTurnos'); ?>" method="POST">
+    <label for="start-date" class="label-inline">Fecha desde:</label>
+    <input type="date" id="fecha_desde" name="fecha_desde" value="<?= isset($_POST['fecha_desde']) ? $_POST['fecha_desde'] : '' ?>" required>
+
+    <label for="end-date" class="label-inline">Fecha hasta:</label>
+    <input type="date" id="fecha_hasta" name="fecha_hasta" value="<?= isset($_POST['fecha_hasta']) ? $_POST['fecha_hasta'] : '' ?>" required>
+
+    <label for="barber-id" class="label-inline">Barber:</label>
+    <select id="barber-id" name="id_barber">
+        <option value="">Todos</option>
+        <?php foreach ($barbers as $barber): ?>
+            <option value="<?= $barber['id']; ?>" <?= (isset($_POST['id_barber']) && $_POST['id_barber'] == $barber['id']) ? 'selected' : ''; ?>>
+                <?= $barber['nombre']; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <button type="submit" class="btn">Filtrar</button>
+    </form>
+
 
         </div>
   <div style="text-align: end;">
@@ -97,10 +100,9 @@
        
      </table>
             <!-- Muestro la Recaudacion de los turnos completado que se trajo del filtro o de todos-->
-     <section class="estiloTurno textColor day">
+     <section class="estiloTurno textColor">
      <h3 class="estiloTurno textColor day">Recaudacion total: $ <?php echo $Recaudacion ?></h3>
-     <?php $Recaudacion = $Recaudacion * 0.6 ;?>
-     <h3 class="estiloTurno textColor day">Le corresponde al Barber: $ <?php echo $Recaudacion ?></h3>
+     
      </section>
      
   </div>
@@ -144,9 +146,6 @@ const formatter = new Intl.DateTimeFormat('es-AR', {
 
 const formattedDate = formatter.format(today).split('/').reverse().join('-'); // Formato YYYY-MM-DD
 
-// Establecer la fecha y hora actuales en los campos correspondientes
-document.getElementById('fecha_desde').value = formattedDate;
-document.getElementById('fecha_hasta').value = formattedDate;
 
 </script>
 

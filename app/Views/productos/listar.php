@@ -25,6 +25,35 @@
   <div class="">
   <h2 class="textoColor" align="center">Listado de Productos</h2>
   <br>
+
+  <section class="buscador">
+  
+  <form id="product_form" action="<?php echo base_url('Carrito_agrega'); ?>" method="post">
+  <button type="submit" class="btn">Buscar y Agregar</button>
+  <br>
+    <div style="position: relative; display: inline-block;">
+        <input type="text" id="product_input" placeholder="Buscar producto..." autocomplete="off" required onfocus="this.value=''" />
+        <select id="product_select" name="product_id" required size="3">
+            <option class="separador">Seleccione un Producto!</option>
+            <?php if ($productos): ?>
+                
+                <?php foreach ($productos as $prod): ?>
+                  <?php if($prod['stock'] != 0) {?>
+                    <option class="product-option" value="<?php echo $prod['id']; ?>" data-nombre="<?php echo $prod['nombre']; ?>" data-precio="<?php echo $prod['precio_vta']; ?>">
+                        <?php echo $prod['nombre']; ?> <h5> ---- Precio -- $</h5> <?php echo $prod['precio_vta']; ?>
+                    </option>
+                    <?php  } ?>
+                <?php endforeach; ?>
+                
+            <?php endif; ?>
+        </select>
+        <input type="hidden" name="nombre" id="nombre">
+        <input type="hidden" name="precio_vta" id="precio_vta">
+        <input type="hidden" name="id" id="product_id">
+    </div>
+</form>
+
+    </section>
   
   <table class="" id="users-list">
        <thead>
@@ -77,7 +106,7 @@
                                           <?php
                                           
                                       } else if ($session){
-                                        if ($perfil==2) {
+                                        if ($perfil==1) {
                                             
                                            // Envia los datos en forma de formulario para agregar al carrito
                                    echo form_open('Carrito_agrega');
@@ -125,24 +154,41 @@
 
 <script>
     
-    $(document).ready( function () {
-      $('#users-list').DataTable( {
+    $(document).ready(function () {
+    $('#users-list').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por página.",
             "zeroRecords": "Lo sentimos! No hay resultados.",
-            "info": "Mostrando la página e _PAGE_ de _PAGES_",
+            "info": "Mostrando la página _PAGE_ de _PAGES_",
             "infoEmpty": "No hay registros disponibles.",
             "infoFiltered": "(filtrado de _MAX_ registros totales)",
             "search": "Buscar: ",
             "paginate": {
-              "next": "Siguiente",
-              "previous": "Anterior"
+                "next": "Siguiente",
+                "previous": "Anterior"
             }
-        }
-    } );
-  } );
+        },
+        "dom": '<"top d-flex justify-content-end"l f>rtip' // Mueve la búsqueda y el selector de registros a la derecha
+    });
+});
 
 </script>
+
+<style>
+    .dataTables_length,
+.dataTables_filter {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.dataTables_wrapper .top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px; /* Espacio entre el selector y el buscador */
+}
+
+</style>
 
 <script>
 

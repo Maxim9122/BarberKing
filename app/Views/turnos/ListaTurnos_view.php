@@ -24,7 +24,7 @@
 
 <div style="width: 100%;">
         <section class="contenedor-titulo">
-        <strong class="nombreLogo">Barber King</strong>
+        <strong class="nombreLogo">Barbershop</strong>
         
         <!-- Formulario para turno para Clientes Registrados -->
         <form class="estiloTurno" action="<?php echo base_url('turnoClienteRegistrado'); ?>" method="POST">

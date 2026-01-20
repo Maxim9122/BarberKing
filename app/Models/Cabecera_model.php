@@ -5,7 +5,7 @@ class Cabecera_model extends Model
 {
 	protected $table = 'ventas_cabecera';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id','fecha', 'hora_registro', 'hora' ,'id_cliente', 'total_venta', 'tipo_pago'];
+    protected $allowedFields = ['id','fecha', 'hora_registro', 'hora' ,'id_cliente', 'nombre_cliente' , 'monto_efectivo' , 'monto_transfer' ,'total_venta', 'tipo_pago'];
 
     public function getVentasCabecera(){
       $db = db_connect();
@@ -21,7 +21,7 @@ class Cabecera_model extends Model
         $db = db_connect();
         // Construir la consulta con el join
         $builder = $db->table($this->table . ' u');
-        $builder->select('u.id, c.nombre, c.telefono, u.total_venta, u.fecha, u.hora, u.tipo_pago');
+        $builder->select('u.id, u.nombre_cliente, c.telefono, u.total_venta, u.fecha, u.hora, u.tipo_pago , u.monto_efectivo, u.monto_transfer');
         $builder->join('cliente c', 'u.id_cliente = c.id_cliente');
         
         // Ejecutar la consulta y retornar el resultado como array

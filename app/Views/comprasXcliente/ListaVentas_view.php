@@ -8,7 +8,7 @@
   <strong class="titulo-vidrio">Lista de Productos Vendidos</strong>
   </section>
   <div style="text-align: end;">
-  <strong class="nombreLogo" >Barber King</strong>
+ 
   
   <br><br>
   <?php $Recaudacion = 0; ?>
@@ -17,7 +17,8 @@
           <tr class="colorTexto2">
              <th>Nro Venta</th>
              <th>Cliente</th>
-             <th>Telefono</th>
+             <th>Pago Efectivo</th>
+             <th>Pago Transfer</th>
              <th>Total Venta</th>
              <th>Fecha</th>
              <th>Hora</th>
@@ -30,8 +31,9 @@
           <?php foreach($ventas as $vta): ?>
           <tr>
              <td><?php echo $vta['id']; ?></td>
-             <td><?php echo $vta['nombre']; ?></td>
-             <td><?php echo $vta['telefono']; ?></td>
+             <td><?php echo $vta['nombre_cliente']; ?></td>
+             <td><?php echo $vta['monto_efectivo']; ?></td>
+             <td><?php echo $vta['monto_transfer']; ?></td>
              <td><?php echo $vta['total_venta']; ?></td>
              <td><?php echo $vta['fecha']; ?></td>
              <td><?php echo $vta['hora']; ?></td>
