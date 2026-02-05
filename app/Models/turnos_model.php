@@ -5,7 +5,7 @@ class Turnos_model extends Model
 {
 	protected $table = 'turnos';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id_cliente','id_barber', 'id_servi' ,'fecha_registro','fecha_turno','hora_turno','estado'];
+    protected $allowedFields = ['id_cliente','id_barber', 'id_servi' ,'fecha_registro','inicio','fin','fecha_turno','estado'];
 
     public function getUsuario($id){
 
@@ -19,47 +19,34 @@ class Turnos_model extends Model
     }
 
      // Obtiene turnos con las relaciones necesarias
-     public function obtenerTurnos($filtros = [])
-     {
-         $builder = $this->db->table($this->table . ' t');
-         $builder->select('
-             t.id, 
-             t.id_barber, 
-             t.hora_turno, 
-             t.estado, 
-             t.fecha_turno, 
-             t.fecha_registro, 
-             t.id_servi,
-             c.nombre AS cliente_nombre, 
-             c.telefono AS cliente_telefono,
-             u.nombre AS barber_nombre,
-             s.descripcion,
-             s.seccion_id,
-             s.precio
-         ');
-         $builder->join('cliente c', 'c.id_cliente = t.id_cliente');
-         $builder->join('usuarios u', 'u.id = t.id_barber');
-         $builder->join('servicios s', 's.id_servi = t.id_servi');
- 
-         // Aplicar filtros si existen
-         if (!empty($filtros['estado'])) {
-             $builder->where('t.estado', $filtros['estado']);
-         }
-         if (!empty($filtros['fecha_turno'])) {
-             $builder->where('t.fecha_turno', $filtros['fecha_turno']);
-         }
-         if (!empty($filtros['fecha_desde'])) {
-             $builder->where('STR_TO_DATE(t.fecha_turno, "%d-%m-%Y") >=', date('Y-m-d', strtotime($filtros['fecha_desde'])));
-         }
-         if (!empty($filtros['fecha_hasta'])) {
-             $builder->where('STR_TO_DATE(t.fecha_turno, "%d-%m-%Y") <=', date('Y-m-d', strtotime($filtros['fecha_hasta'])));
-         }
-         if (!empty($filtros['id_barber'])) {
-             $builder->where('t.id_barber', $filtros['id_barber']);
-         }
- 
-         return $builder->get()->getResultArray();
-     }
+     public function obtenerTurnos(array $filtros = [])
+{
+    $builder = $this->db->table('turnos t');
+
+    $builder->select('
+        t.*,
+        c.nombre AS cliente_nombre,
+        c.telefono AS cliente_telefono,
+        s.descripcion AS servicio,
+        s.precio,
+        s.seccion_id
+    ');
+
+    $builder->join('cliente c', 'c.id_cliente = t.id_cliente');
+    $builder->join('servicios s', 's.id_servi = t.id_servi');
+
+    if (!empty($filtros['estado'])) {
+        $builder->where('t.estado', $filtros['estado']);
+    }
+
+    if (!empty($filtros['fecha_turno'])) {
+        $builder->where('t.fecha_turno', $filtros['fecha_turno']);
+    }
+
+    $builder->orderBy('t.inicio', 'ASC');
+    
+    return $builder->get()->getResultArray();
+}
 
       // Actualiza el turno
     public function actualizarTurno($id_turno, $data)

@@ -127,19 +127,30 @@
           <li class="nnavItem">
             <a class="button" href="<?php echo base_url('turnos');?>">Turnos</a>
             <li class="navItem">
-            <button class="btn signUp">
-              <a href="<?= base_url('/logout')?>" class="signUp">Salir</a>
+            <button class="btn">
+              <a href="<?= base_url('/logout')?>">Salir</a>
             </button>
           </li>
+          <?php } else if ($perfil =='0') { ?>
+
+          <li class="nnavItem">
+            <a class="button" href="<?php echo base_url('MisTurnos');?>">Mis Turnos</a>
+            <li class="navItem">
+            <button class="btn">
+              <a href="<?= base_url('/logout')?>">Salir</a>
+            </button>
+          </li>
+
           <?php } else { ?>
-          
-          <li class="navItem">
-            <button class="btn loginBtn">
-              <a href="<?= base_url('/login')?>" class="login">Ingresar</a>
+
+          <li class="nnavItem">
+            <button class="button">
+              <a href="<?= base_url('/nuevoTurnoOnline')?>">Registrarse</a>
             </button>
           </li>
-          
-         <?php } ?> 
+
+         <?php } ?>          
+
          </ul>
         </div>
     </div>
@@ -175,7 +186,7 @@ toggleButton.addEventListener('click', function() {
   <script>
     // Obtener elementos del DOM
     const toggleNavBar = document.getElementById('toggleNavBar');
-    const navBar = document.getElementById('navBar');
+    var navBar = document.getElementById('navBar');
 
     // Función para alternar la visibilidad del menú
     toggleNavBar.addEventListener('click', () => {

@@ -2,11 +2,11 @@
 <div class="nuevoTurno">
   <div style="width: 100%;">
     <div>
-      <h2>Nuevo Turno</h2>
+      <h2>Registro y Nuevo Turno</h2>
     </div>
 
 <?php $validation = \Config\Services::validation(); ?>
-<form method="post" action="<?php echo base_url('RegistrarTurno') ?>">
+<form method="post" action="<?php echo base_url('RegistrarTurnoOnline') ?>">
 <?= csrf_field(); ?>
 
 <?php if(!empty (session()->getFlashdata('fail'))): ?>
@@ -21,11 +21,33 @@
 
   <div>
     <label for="exampleFormControlInput1">Nombre</label>
-    <input name="nombre_cliente" type="text" placeholder="Nombre del Cliente" required>
+    <input name="nombre_cliente" type="text" placeholder="Nombre..." required>
 
     <?php if($validation->getError('nombre')) { ?>
       <div class='alert alert-danger mt-2'>
         <?= $validation->getError('nombre'); ?>
+      </div>
+    <?php } ?>
+  </div>
+
+  <div>
+    <label for="exampleFormControlInput1">Email</label>
+    <input name="email_cliente" type="text" placeholder="Email@..." required>
+
+    <?php if($validation->getError('email_cliente')) { ?>
+      <div class='alert alert-danger mt-2'>
+        <?= $validation->getError('email_cliente'); ?>
+      </div>
+    <?php } ?>
+  </div>
+
+  <div>
+    <label for="exampleFormControlInput1">Contraseña</label>
+    <input name="pass_cliente" type="text" placeholder="Minimo de 3 caracteres..." required>
+
+    <?php if($validation->getError('pass_cliente')) { ?>
+      <div class='alert alert-danger mt-2'>
+        <?= $validation->getError('pass_cliente'); ?>
       </div>
     <?php } ?>
   </div>
@@ -51,7 +73,9 @@
       </div>
     <?php } ?>
   </div>
-
+  <br>
+  <hr> 
+  <h3 style="text-align: center;" class="">Datos del turno a solicitar</h3>
   <!-- ================= SECCIÓN ================= -->
   <div>
     <label for="seccion">Sección:</label>
@@ -81,7 +105,9 @@
     <input type="date" class="form-control" id="fecha" name="fecha_turno">
 
     <label for="hora">Hora:</label>
-    <input type="time" class="form-control" id="hora" name="hora_turno">
+    <select id="hora" name="hora_turno" disabled required>
+      <option value="">Seleccione una hora</option>
+    </select>
 
     <?php if($validation->getError('fecha') || $validation->getError('hora')) { ?>
       <div class='alert alert-danger mt-2'>
@@ -103,60 +129,89 @@
 </div>
 </div>
 
-<!-- ====== PASO SERVICIOS A JS ====== -->
 <script>
-  const servicios = <?= json_encode($servicios); ?>;
-</script>
+/* ================= REFERENCIAS ================= */
+const seccionSelect  = document.getElementById('seccion');
+const servicioSelect = document.getElementById('tipo_servicio');
+const fechaInput     = document.getElementById('fecha');
+const horaSelect     = document.getElementById('hora');
 
-<!-- ====== FILTRO POR SECCIÓN_ID ====== -->
-<script>
-  const seccionSelect = document.getElementById('seccion');
-  const servicioSelect = document.getElementById('tipo_servicio');
+/* ================= SERVICIOS DESDE PHP ================= */
+const servicios = <?= json_encode($servicios); ?>;
 
-  seccionSelect.addEventListener('change', function () {
-    const seccionElegida = parseInt(this.value);
+/* ================= SECCIÓN → SERVICIOS ================= */
+seccionSelect.addEventListener('change', () => {
+    const seccionElegida = seccionSelect.value;
 
     servicioSelect.innerHTML = '<option value="">Seleccione un servicio</option>';
     servicioSelect.disabled = true;
 
-    if (!seccionElegida) {
-      return;
-    }
+    horaSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+    horaSelect.disabled = true;
+
+    if (!seccionElegida) return;
 
     servicios.forEach(servicio => {
-      if (parseInt(servicio.seccion_id) === seccionElegida) {
-        const option = document.createElement('option');
-        option.value = servicio.id_servi;
-        option.textContent = servicio.descripcion + ' - $' + servicio.precio;
-        servicioSelect.appendChild(option);
-      }
+        if (servicio.seccion_id == seccionElegida) {
+            const opt = document.createElement('option');
+            opt.value = servicio.id_servi;
+            opt.textContent = `${servicio.descripcion} - $${servicio.precio}`;
+            servicioSelect.appendChild(opt);
+        }
     });
 
     servicioSelect.disabled = false;
-  });
+});
+
+/* ================= EVENTOS ================= */
+servicioSelect.addEventListener('change', generarHorarios);
+fechaInput.addEventListener('change', generarHorarios);
+
+/* ================= AJAX → HORARIOS DISPONIBLES ================= */
+function generarHorarios() {
+    const fecha    = fechaInput.value;
+    const servicio = servicioSelect.value;
+
+    horaSelect.innerHTML = '<option value="">Seleccione fecha y servicio</option>';
+    horaSelect.disabled = true;
+
+    if (!fecha || !servicio) return;
+
+    horaSelect.innerHTML = '<option value="">Cargando horarios...</option>';
+
+    fetch('<?= base_url("horariosDisponibles") ?>', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `fecha=${fecha}&servicio=${servicio}`
+    })
+    .then(res => res.json())
+    .then(horas => {
+        horaSelect.innerHTML = '<option value="">Seleccione una hora</option>';
+
+        if (!horas || horas.length === 0) {
+            horaSelect.innerHTML += '<option disabled>No hay horarios disponibles</option>';
+            return;
+        }
+
+        horas.forEach(hora => {
+            const opt = document.createElement('option');
+            opt.value = hora;
+            opt.textContent = hora;
+            horaSelect.appendChild(opt);
+        });
+
+        horaSelect.disabled = false;
+    })
+    .catch(() => {
+        horaSelect.innerHTML = '<option disabled>Error al cargar horarios</option>';
+    });
+}
+
+/* ================= FECHA MÍNIMA (HOY) ================= */
+const today = new Date().toISOString().split('T')[0];
+fechaInput.min = today;
 </script>
 
-<!-- ====== FECHA Y HORA ACTUAL ====== -->
-<script>
-  const today = new Date();
-  const options = { timeZone: 'America/Argentina/Buenos_Aires', hour12: false };
-
-  const formatter = new Intl.DateTimeFormat('es-AR', {
-    ...options,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  });
-
-  const formattedDate = formatter.format(today).split('/').reverse().join('-');
-
-  const formattedTime = new Intl.DateTimeFormat('es-AR', {
-    ...options,
-    hour: '2-digit',
-    minute: '2-digit'
-  }).format(today);
-
-  document.getElementById('fecha').value = formattedDate;
-  document.getElementById('hora').value = formattedTime;
-</script>
 <br>

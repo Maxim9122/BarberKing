@@ -94,6 +94,9 @@
   <div style="text-align: end;">
   
   <br>
+  <a href="<?= base_url('admin/horarios') ?>" class="button">
+  Configurar horarios de atención
+  </a>
   <a class="button" href="<?php echo base_url('turnosTodos');?>">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
@@ -123,8 +126,9 @@
              <th>Nro Turno</th>
              <th>Cliente</th>
              <th>Teléfono</th>
-             <th>Barber</th>
-             <th>Hora Turno</th>
+             <th>Barber</th> 
+             <th>Fecha</th>
+             <th>Hora</th>      
              <th>Servicio</th>
              <th>Precio</th>             
              <th>Acciones</th>
@@ -150,11 +154,23 @@
                         </option>
                     <?php endforeach; ?>
                 </select>
-            </td>
-
-            <!-- Campo editable para la hora del turno -->
+            </td>           
             <td>
-                <input type="time" class="form-control btn" name="hora_turno" value="<?= $trn['hora_turno']; ?>">
+            <input 
+                type="date"
+                name="fecha_turno"
+                class="form-control"
+                value="<?= date('Y-m-d', strtotime($trn['fecha_turno'])); ?>"
+                min="<?= date('Y-m-d'); ?>"
+            >
+            </td>
+            <td>
+            <input 
+                type="time"
+                name="hora_turno"
+                class="form-control"
+                value="<?= date('H:i', strtotime($trn['inicio'])); ?>"
+            >
             </td>
 
             <!-- Dropdown para el servicio -->

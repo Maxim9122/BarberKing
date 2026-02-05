@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\Usuarios_model;
+use App\Models\Clientes_model;
   
 class Login_controller extends Controller
 {
@@ -19,44 +20,83 @@ class Login_controller extends Controller
   
     public function auth()
     {
-        $session = session();
-        $model = new Usuarios_model();
-        $email = $this->request->getVar('email');
-        $password = $this->request->getVar('pass');
-        $data = $model->where('email', $email)->first();
-        if($data){
-            $pass = $data['pass'];
-            $verify_pass = password_verify($password, $pass);
-            if($verify_pass){
-                if($data['baja']=='SI'){
-                    $session->setFlashdata('msg', 'Usted fue dado de Baja');
-                    return redirect()->to('login');
-                }else{
-                $ses_data = [
-                    'id' => $data['id'],
-                    'nombre' => $data['nombre'],
-                    'apellido'=> $data['apellido'],
-                    'email' =>  $data['email'],
-                    'telefono' => $data['telefono'],
-                    'direccion' => $data['direccion'],
-                    'perfil_id'=> $data['perfil_id'],
-                    'logged_in'     => TRUE
-                ];
-                $session->set($ses_data);
-                if($ses_data['perfil_id'] == 2){
-                return redirect()->to('turnos');
-                }else{
-                return redirect()->to('/Lista_Productos');
-                }
-            }}else{
-                $session->setFlashdata('msg', 'Password Incorrecta');
-                return redirect()->to('login');
-            }
-        }else{
-            $session->setFlashdata('msg', 'Email Incorrecto');
+    $session = session();
+    $usuariosModel = new Usuarios_model();
+    $clientesModel = new Clientes_model();
+
+    $email = $this->request->getVar('email');
+    $password = $this->request->getVar('pass');
+
+    /* =========================
+       1️⃣ BUSCAR EN USUARIOS
+    ========================== */
+    $usuario = $usuariosModel->where('email', $email)->first();
+
+    if ($usuario) {
+
+        if (!password_verify($password, $usuario['pass'])) {
+            $session->setFlashdata('error', 'Password Incorrecta');
             return redirect()->to('login');
         }
+
+        if ($usuario['baja'] == 'SI') {
+            $session->setFlashdata('error', 'Usted fue dado de baja');
+            return redirect()->to('login');
+        }
+
+        $session->set([
+            'id'         => $usuario['id'],
+            'nombre'     => $usuario['nombre'],
+            'apellido'   => $usuario['apellido'],
+            'email'      => $usuario['email'],
+            'telefono'   => $usuario['telefono'],
+            'direccion'  => $usuario['direccion'],
+            'perfil_id'  => $usuario['perfil_id'],
+            'logged_in'  => true
+        ]);
+
+        // Redirección según perfil
+        if ($usuario['perfil_id'] == 2) {
+            return redirect()->to('turnos');
+        } else {
+            return redirect()->to('Lista_Productos');
+        }
     }
+
+    /* =========================
+       2️⃣ BUSCAR EN CLIENTES
+    ========================== */
+    $cliente = $clientesModel->where('email', $email)->first();
+
+    if ($cliente) {
+
+        // Si el cliente no tiene password (registro simple)
+        if (!empty($cliente['pass'])) {
+            if (!password_verify($password, $cliente['pass'])) {
+                $session->setFlashdata('error', 'Password Incorrecta');
+                return redirect()->to('login');
+            }
+        }
+
+        $session->set([
+            'id'         => $cliente['id_cliente'],
+            'nombre'     => $cliente['nombre'],
+            'email'      => $cliente['email'] ?? '',
+            'telefono'   => $cliente['telefono'],
+            'perfil_id'  => 0, // 👈 CLIENTE
+            'logged_in'  => true
+        ]);
+
+        return redirect()->to('turnos');
+    }
+
+        /* =========================
+        3️⃣ NO EXISTE
+        ========================== */
+        $session->setFlashdata('error', 'Email Incorrecto');
+        return redirect()->to('login');
+    }
+
   
     public function logout()
     {

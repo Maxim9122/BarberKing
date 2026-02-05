@@ -15,6 +15,15 @@ class Carrito_controller extends Controller{
 
 	public function ListVentasCabecera()
 {
+	$session = session();
+        $perfil=$session->get('perfil_id');
+        // Verifica si el usuario está logueado
+        if (!$session->has('id')) { 
+            return redirect()->to(base_url('login')); // Redirige al login si no hay sesión
+        }
+        if($perfil == 0){
+            return redirect()->to(base_url('login'));
+       }
     // Instanciar el modelo
     $cabeceraModel = new Cabecera_model();
     
@@ -31,6 +40,15 @@ class Carrito_controller extends Controller{
 
 public function ListaComprasCabeceraCliente($id)
 {
+	$session = session();
+        $perfil=$session->get('perfil_id');
+        // Verifica si el usuario está logueado
+        if (!$session->has('id')) { 
+            return redirect()->to(base_url('login')); // Redirige al login si no hay sesión
+        }
+        if($perfil == 0){
+            return redirect()->to(base_url('login'));
+       }
     // Obtener la fecha de hoy
     $fechaHoy = date('d-m-Y');
 
@@ -50,6 +68,15 @@ public function ListaComprasCabeceraCliente($id)
 
 public function ListCompraDetalle($id)
 {
+	$session = session();
+        $perfil=$session->get('perfil_id');
+        // Verifica si el usuario está logueado
+        if (!$session->has('id')) { 
+            return redirect()->to(base_url('login')); // Redirige al login si no hay sesión
+        }
+        if($perfil == 0){
+            return redirect()->to(base_url('login'));
+       }
     // Instanciar el modelo
     $cabeceraModel = new Cabecera_model();
 
